@@ -1,5 +1,6 @@
 ![Huzen Icon](https://raw.githubusercontent.com/Silvarini/Huzen/master/Icon/huzen-logo-500.png)
 
+![Website](https://img.shields.io/website?down_color=red&down_message=offline&style=flat-square&up_color=green&up_message=online)
 
 ### 1º Delivery : 1.11.2020
 - [x] Project name
