@@ -1,4 +1,5 @@
-# Huzen
+![Huzen Icon](https://raw.githubusercontent.com/Silvarini/Huzen/main/Icon/huzen-logo-github.jpg)
+
 
 ### 1º Delivery : 1.11.2020
 - [x] Project name
