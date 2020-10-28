@@ -1,4 +1,4 @@
-![Huzen Icon](https://raw.githubusercontent.com/Silvarini/Huzen/main/Icon/huzen-logo-github.jpg)
+![Huzen Icon](https://raw.githubusercontent.com/Silvarini/Huzen/master/Icon/huzen-logo-500.png)
 
 
 ### 1º Delivery : 1.11.2020
