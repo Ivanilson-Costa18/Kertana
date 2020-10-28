@@ -2,14 +2,23 @@
 
 ![Website](https://img.shields.io/website?down_color=red&down_message=offline&style=flat-square&up_color=green&up_message=online)
 
-### 1º Delivery : 1.11.2020
+# Table of Contents
+
+1. [First Delivery](#first-delivery)
+2. [Second Delivery](#second-delivery)
+3. [Third Delivery](#third-delivery)
+4. [Forth Delivery](#forth-delivery)
+
+## First Delivery
+  1.11.2020
 - [x] Project name
 - [ ] Concept and reasearch on the area in which it operates and on other tools that already exist
 - [ ] Creation of proto-persona (use description)
 - [ ] 1 core use case (describes step by step, user's progression)
 - [ ] 2 other use cases
 
-### 2º Delivery : 15.11.2020
+## Second Delivery
+  15.11.2020
 - [ ] Final use case definition and personas
 - [ ] Use case diagram
 - [ ] Functional and not functional requirements necessary for presented scenes
@@ -19,7 +28,8 @@
 - [ ] Requirement implementations calendar
 - [ ] Software project plan
 
-### 3º Delivery : 13.12.2020
+## Third Delivery
+  13.12.2020
 - [ ] Software Project Plan and WBS
 - [ ] Working prototype
 - [ ] Prototype's code
@@ -29,7 +39,8 @@
 - [ ] Mockups and early web interfaces
 - [ ] Domain Model and State Machine Diagram 
 
-### 4º Delivery : 31.01.2020
+## Forth Delivery
+  31.01.2020
 - [ ] Project final version
 - [ ] Final version code
 - [ ] Updated concept and use cases
