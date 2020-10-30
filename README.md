@@ -1,6 +1,6 @@
 ![Huzen Icon](https://raw.githubusercontent.com/Silvarini/Huzen/master/Icon/huzen-logo-500.png)
+<br> ![Website](https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fhuzen.herokuapp.com%2F)            https://huzen.herokuapp.com/
 
-![Website](https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fhuzen.herokuapp.com%2F)
 
 # Table of Contents
 
