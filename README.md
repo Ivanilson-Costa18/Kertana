@@ -6,16 +6,24 @@
 
 
 1. [Enquadramento](#enquadramento)
-2. [First Delivery](#first-delivery)
-3. [Second Delivery](#second-delivery)
-4. [Third Delivery](#third-delivery)
-5. [Forth Delivery](#forth-delivery)
+2. [Highlights](#highlights)
+3. [First Delivery](#first-delivery)
+4. [Second Delivery](#second-delivery)
+5. [Third Delivery](#third-delivery)
+6. [Forth Delivery](#forth-delivery)
 
 ## Enquadramento
 O projeto consiste no desenvolvimento de uma plataforma web para consulta e exposição de imóveis. Temos como objetivo aumentar a quantidade de informação disponibilizada aos clientes e facilitar o trabalho daqueles que pretendem anunciar os seus imóveis encontrando informações relevantes sobre a zona em que o imóvel se encontra. 
 No ramo da imobiliária, para além da inspeção sobre o imóvel que se pretende anunciar, os consultores devem realizar estudos sobre a localização do imóvel e como esta pode influenciar nos processos de compra ou aluguel. No entanto para anúncios independentes o proprietário pode não ter tempo para realizar tal estudo e não conseguir contratar serviços imobiliários.
 A nossa plataforma pretende agilizar o processo, fazendo com que os anunciantes precisem apenas de introduzir as fotos do imóvel enquanto a plataforma trata de recolher toda informação sobre a vizinhança como escolas, restaurantes, transportes, entre outros. Com isto os anúncios passam a ser mais completos, dispensando as buscas por este tipo de informação. 
 Tendo em vista os aspetos mencionados a nossa plataforma é importante para quem pretende anunciar os seus imóveis e para quem busca um, tendo acesso à informação confiável, poupando tempo e esforço a quem precise.
+
+## Highlights
+**Consultar imóveis** - Encontrar um imóvel para comprar<br>
+**Consultar vizinhança** - Para ter uma vista da rua, supermercados, atos de criminalidade, restaurantes e escolas da zona de interesse<br>
+**Desenhar zona de interesse no mapa** - Obter resultados personalizados<br>
+**Receber notificações de imóveis novos, com base nos interesses do utilizador** - Não perder oportunidades<br>
+**Descrição automáticamente gerada sobre vizinhança** - Para não perderem tempo em pesquisar a vizinhança à volta do imóvel<br>
 
 
 ## First Delivery
