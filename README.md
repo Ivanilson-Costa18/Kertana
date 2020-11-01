@@ -12,10 +12,10 @@
 ## First Delivery
   1.11.2020
 - [x] Project name
-- [ ] Concept and reasearch on the area in which it operates and on other tools that already exist
-- [ ] Creation of proto-persona (use description)
-- [ ] 1 core use case (describes step by step, user's progression)
-- [ ] 2 other use cases
+- [x] Concept and reasearch on the area in which it operates and on other tools that already exist
+- [x] Creation of proto-persona (use description)
+- [x] 1 core use case (describes step by step, user's progression)
+- [x] 2 other use cases
 
 ## Second Delivery
   15.11.2020
