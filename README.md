@@ -4,10 +4,12 @@
 
 # Table of Contents
 
-1. [First Delivery](#first-delivery)
-2. [Second Delivery](#second-delivery)
-3. [Third Delivery](#third-delivery)
-4. [Forth Delivery](#forth-delivery)
+
+1. [Enquadramento](#enquadramento)
+2. [First Delivery](#first-delivery)
+3. [Second Delivery](#second-delivery)
+4. [Third Delivery](#third-delivery)
+5. [Forth Delivery](#forth-delivery)
 
 ## Enquadramento
 O projeto consiste no desenvolvimento de uma plataforma web para consulta e exposição de imóveis. Temos como objetivo aumentar a quantidade de informação disponibilizada aos clientes e facilitar o trabalho daqueles que pretendem anunciar os seus imóveis encontrando informações relevantes sobre a zona em que o imóvel se encontra. 
