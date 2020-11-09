@@ -1,5 +1,5 @@
 ![Kertana Logo](https://raw.githubusercontent.com/Silvarini/Huzen/master/Icon/banner-kertana.png) **[N'zembo - 50039011 &](https://github.com/Ivanilson-Costa18) [Bernardo - 50039481](https://github.com/Silvarini)**
-<br> ![Website](https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fhuzen.herokuapp.com%2F)            https://kertana.herokuapp.com/
+<br> ![Website](https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fkertana.herokuapp.com%2F)            https://kertana.herokuapp.com/
 
 
 # Table of Contents
