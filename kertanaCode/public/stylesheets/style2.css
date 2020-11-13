@@ -1,0 +1,26 @@
+@import "style.css";
+
+header{
+    font-size: 1.5em;
+}
+
+table {
+    padding-top: 10px;
+}
+
+th {
+    text-align: start;
+    background-color: orangered;
+    color:white;
+    padding: 5px;
+    height: 30px;
+  }
+
+td {
+    text-align: start;
+    height: 20px;
+    padding: 5px;
+    padding-right: 130px;
+}
+
+  tr:nth-child(odd) {background-color: #f2f2f2;}
