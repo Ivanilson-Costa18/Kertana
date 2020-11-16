@@ -11,6 +11,10 @@
                   container: 'map',
                 style: 'mapbox://styles/mapbox/streets-v11'
                 });
+
+                new mapboxgl.Marker()
+                    setLngLat([-0.1404545, 51.5220163])
+                    .addTo(map);
         </script>
     </body>
 </html>
