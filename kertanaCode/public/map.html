@@ -8,8 +8,10 @@
         <script>
             mapboxgl.accessToken = 'sk.eyJ1IjoiaXZhbnBnIiwiYSI6ImNraGwzOHBreTI5OWIyemw2Y2RxMjhidGgifQ.Yh3Msgn1ACmjaTJUww0uTg';
             var map = new mapboxgl.Map({
-                  container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v11'
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v9', 
+                center: [-0.1404545, 51.5220163], 
+                zoom: 16 
                 });
 
                 new mapboxgl.Marker()
