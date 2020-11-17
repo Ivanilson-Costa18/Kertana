@@ -12,7 +12,7 @@ a {
 .footer { grid-area: footer; }
 
 .grid {
-  background-image: "/images/FarmBG.jpeg";
+  background-image: url("/images/FarmBG.jpeg");
   display: grid;
   grid-template-columns: auto  ;
   grid-template-rows: 30% auto 30%;
