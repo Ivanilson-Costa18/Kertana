@@ -1,23 +1,61 @@
 <html>
-
 <head>
   <title>Kertana</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="icon" href="/images/bar-icon.png" type="image/png" style="width: 10px; height: 15px;">
 </head>
 
-<body class="grid">
-  <header class="header">
-    <h1>ASDF</h1>
-  </header>
+<body class="grid-container">
+  <div class="bc">
+    <div class="nav">  
+      <section class="links">  
+        <a href="https://www.github.com/Ivanilson-Costa18/Kertana">
+          <img src="/images/Github-icon.png" alt="Github" width="20" height="20">
+        </a>  
+      </section>
+    </div>
+    <div class="header">
+      <section class="logo">
+        <img src="/images/Logo.png" alt="Logo">
+      </section>
+      <section class="profileButton">
+        <button class="edit">Profile</button>  
+      </section>
+    </div>
 
-  <main class="main">
-    <h1>GHJK</h1>
-  </main>
-
-  <footer class="footer">
-    <h1>LZXC</h1>
-  </footer>
+    <div class="main">
+      <section class="search-area">
+        <section class=search-title>
+          <strong><p style="color: white; font-size: 35;">Ser Agricultor nunca foi tão fácil</p></strong>
+        </section>
+        <section class="search">
+          <div class="mytabs">
+            <input type="radio" id="tablocal" name="mytabs" checked>
+            <label for="tablocal">Localização</label>
+            <div class="tab">
+              <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">            </div>
+        
+            <input type="radio" id="tabhort" name="mytabs">
+            <label for="tabhort">Hortaliça</label>
+            <div class="tab">
+              <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+            </div>
+        
+          </div>
+        </section>
+        </section>
+      </section>
+    </main> 
+  </div>
+  </div>
+  <div class="footer">
+    <h4 style="color: hsl(124, 90%, 16%);">
+      A Kertana é a plataforma que lhe assiste em decisões difíceis
+    </h4>
+    <p>Sistema informático baseando as decisões através de dados como tipo de terreno, clima.<br>
+    Procure o terreno a partir de uma hortaliça que queira colher.<br>
+    Procure as hortaliças que pode cultivar.</p>
+  </div>
 
 </body>
-
 </html>

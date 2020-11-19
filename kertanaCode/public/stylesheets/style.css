@@ -1,37 +1,185 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
   padding: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
-}
-
-.header { grid-area: header; }
-.main { grid-area: main; }
-.footer { grid-area: footer; }
-
-.grid {
-  background-image: url("/images/FarmBG.jpeg");
+/* The grid container */
+.grid-container {
   display: grid;
-  grid-template-columns: auto  ;
-  grid-template-rows: 30% auto 30%;
   grid-template-areas: 
-    'header header header header header'
-    'main main main main main'
-    'footer footer footer footer footer';
+    'bc bc bc bc bc bc'
+    'footer footer footer footer footer footer';
+  /* grid-column-gap: 10px; - if you want gap between the columns */
+} 
+
+.bc{
+  grid-area: bc;
+  background-image: url("/images/FarmBG.jpeg");
+  background-repeat: no-repeat;
+  min-width: 1349px;
+  min-height: 550px;
+  display: grid;
+  grid-template-rows: 5% 20% 75% ;
+  grid-template-areas: 
+    'nav nav nav nav nav nav'
+    'header header header header header header' 
+    'main main main main main main' ;
+    
 }
 
-header {
+.nav{
+  grid-area: nav;
+  text-align: center;
+  font-size: 35px;
+  grid-column: 1/8;
   display: flex;
-  color: white;
+  justify-content: flex-end;
 }
 
-main {
-  background-color: #FFFFFFFF
+.nav .links{
+  padding-top: 5px;
+  padding-right: 33px;
 }
 
-footer{
-  background-color: greenyellow;
+/* Style the header */
+.header {
+  display: flex;
+  grid-area: header;
+  text-align: center;
+  font-size: 35px;
+  grid-column: 1/8;
+}
+
+
+.header .logo{
+  flex: 1;
+  height: 20px;
+  width: 25px;
+  padding-top: 20px;
+  padding-right: 450px;
+}
+
+.header .profileButton{
+  flex: 1;
+  align-items: center;
+  height: 20px;
+  width: 25px;
+  padding-top: 40px;
+}
+
+/* Style the main */
+.main
+{
+  display: flex;
+  grid-column: 1/8;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.main .search-area{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+.main .search-area .search-title{
+  flex: 1;
+}
+
+.main .search-area .search{
+  flex: 1;
+}
+
+
+/* Style the footer */
+.footer {
+  background-color: white;
+  grid-area: footer;
+  text-align: left;
+  grid-column: 1/8;
+  padding-left: 50px;
+  padding-top: 30px;
+
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+  .grid-container  {
+    grid-template-areas: 
+      'bc bc bc bc bc bc'  
+      'footer footer footer footer footer footer';
+  }
+}
+
+.grid-container .bc .header .profileButton .edit {
+  background-color: #4CAF50; /* Green */
+  border: none;
   color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  padding: 10px 10px;
+}
+
+.grid-container .bc .header .profileButton .edit {
+  background-color:  white; 
+  color: #8DBD70; 
+  border: #6CBE45;
+  border-radius: 5px 5px 5px 5px ;
+}
+
+.grid-container .bc .header .profileButton .edit:hover {
+  background-color: #8DBD70;
+  color: white;
+  border: #6CBE45;
+}
+
+.search{
+  max-width: 500px;
+}
+.mytabs {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 25px;
+}
+.mytabs input[type="radio"] {
+  display: none;
+}
+.mytabs label {
+  padding: 15px;
+  background: #e2e2e2;
+  font-weight: bold;
+  border-radius: 8px 8px 0 0;
+}
+
+.mytabs .tab {
+  width: 100%;
+  padding: 20px;
+  background: #fff;
+  order: 1;
+  display: none;
+  border-radius: 0 8px 8px 8px;
+}
+.mytabs .tab h2 {
+  font-size: 3em;
+}
+
+.mytabs input[type='radio']:checked + label + .tab {
+  display: block;
+}
+
+.mytabs input[type="radio"]:checked + label {
+  background: #fff;
 }
