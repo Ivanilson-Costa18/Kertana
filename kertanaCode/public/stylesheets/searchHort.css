@@ -1,0 +1,48 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: violet;
+}
+
+/* The grid container */
+.grid-container{
+    display: grid;
+    grid-template-rows: 7% 93%;
+    grid-template-areas:
+    'header header header header header header'
+    'main main main main main main';
+
+}
+.header{
+    grid-area: header;
+    background-color: #7AC457;
+}
+
+#hpLogo{
+    height: 40px;
+    width: auto;
+    padding-left: 20px;
+    padding-top: 4px;
+}
+
+.main{
+    grid-area: main;
+    padding-top: 1%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: 
+    'hortList hortList hortList map map map';
+    background-color: white;
+}
+
+.main #map{
+    height: auto;
+    width: auto;
+}
+
+.main .hortList{
+
+}
+
+
