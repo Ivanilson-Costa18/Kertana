@@ -1,28 +1,27 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0px;
 }
 
-/* The grid container */
-.grid-container {
+.grid-container{
   display: grid;
   grid-template-areas: 
-    'bc bc bc bc bc bc'
-    'footer footer footer footer footer footer';
-  /* grid-column-gap: 10px; - if you want gap between the columns */
-} 
+  'bc bc bc bc bc bc bc'
+  'footer footer footer footer footer footer footer';
+}
+
 
 .bc{
+  grid-column: ;
   grid-area: bc;
   background-image: url("/images/FarmBG.jpeg");
   background-repeat: no-repeat;
-  min-width: 1349px;
-  min-height: 550px;
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 1366px;
+  min-height: 551px;
+  object-fit: contain;
   display: grid;
   grid-template-rows: 5% 20% 75% ;
   grid-template-areas: 
@@ -119,7 +118,7 @@ body {
   }
 }
 
-.grid-container .bc .header .profileButton .edit {
+.grid-container .bc .header .profileButton #buttonBorder {
   background-color: #4CAF50; /* Green */
   border: none;
   color: white;
@@ -131,14 +130,14 @@ body {
   padding: 10px 10px;
 }
 
-.grid-container .bc .header .profileButton .edit {
+.grid-container .bc .header .profileButton #buttonBorder {
   background-color:  white; 
   color: #8DBD70; 
   border: #6CBE45;
   border-radius: 5px 5px 5px 5px ;
 }
 
-.grid-container .bc .header .profileButton .edit:hover {
+.grid-container .bc .header .profileButton #buttonBorder:hover {
   background-color: #8DBD70;
   color: white;
   border: #6CBE45;
