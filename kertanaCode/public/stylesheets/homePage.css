@@ -149,12 +149,13 @@ body {
   float: none;
   display: block;
   text-align: left;
-  width: 100%;
+  width: 60%;
   margin: 0;
   padding: 14px;
   flex-basis: 1000px;
   border:none;
   outline: none;
+  font-size: 20px;
 }
 
 
