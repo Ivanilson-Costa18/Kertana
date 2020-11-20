@@ -183,6 +183,7 @@ body {
   background: #fff;
   order: 1;
   display: none;
+  border-radius: 0 8px 8px 8px;
 }
 .mytabs .tab h2 {
   font-size: 3em;
