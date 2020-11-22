@@ -12,7 +12,7 @@ h2,h1{
 /* The grid container */
 .grid-container{
     display: grid;
-    grid-template-rows: 8% 14% 78%;
+    grid-template-rows: 10% 12% 78%;
     grid-template-areas:
     'header header header header header header'
     'search-term search-term search-term search-term search-term search-term'
@@ -28,7 +28,7 @@ h2,h1{
 }
 
 #search-term-frame{
-    padding-top: 4%;
+    padding-top: 2%;
     padding-left: 2%;
 }
 
