@@ -3,6 +3,7 @@
   <title>Kertana</title>
   <link rel="stylesheet" href="stylesheets/homePage.css">
   <link rel="icon" href="/images/bar-icon.png" type="image/png" style="width: 10px; height: 15px;">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="grid-container">
@@ -28,18 +29,24 @@
         <section class=search-title>
           <strong><p style="color: white; font-size: 30;">Ser Agricultor nunca foi tão fácil</p></strong>
         </section>
-        <section class="search">
+        <section class="searchTabs">
           <div class="mytabs">
             <input type="radio" id="tablocal" name="mytabs" checked>
             <label for="tablocal">Localização</label>
             <div class="tab">
-                <input type="text" class="mySearch" placeholder="Search.." title="Type in a category"> 
+              <div class="search-container">
+                <input type="text" class="mySearch" placeholder="Search.." title="Introduza uma localização"> 
+                <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
+              </div>
             </div>
         
             <input type="radio" id="tabhort" name="mytabs">
             <label for="tabhort">Hortaliça</label>
             <div class="tab">
-              <input type="text" class="mySearch" placeholder="Search.." title="Type in a category">
+              <div class="search-container">
+                <input type="text" class="mySearch" placeholder="Search.." title="Introduza uma localização"> 
+                <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
+              </div>
             </div>
         
           </div>

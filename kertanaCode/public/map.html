@@ -1,11 +1,17 @@
 <html>
     <head>
         <title>Kertana</title>
-        <link rel="stylesheet" href="stylesheets/searchHort.css">
-        <link rel="icon" href="/images/bar-icon.png" type="image/png" style="width: 10px; height: 15px;">
         <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js"></script>
+        <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js"></script>
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js"></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+        <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css" type="text/css"/>
+        <link rel="stylesheet" href="stylesheets/searchHort.css">
+        <link rel="icon" href="/images/bar-icon.png" type="image/png" style="width: 10px; height: 15px;"> 
     </head>
+
+
     <body class="grid-container">
         <header class="header">
             <a href="index.html">
@@ -19,7 +25,7 @@
             </section>
         </section>
         <main class="main">
-            <div class="hortList">
+            <section class="hortList">
                 <section class= "hortalica-result">
                     <section class="imagem-hortalica">
                         <section class="imagem-frame">
@@ -30,22 +36,14 @@
                         <p>descircao</p>
                     </section>
                 </section>
-            </div>
-            <div id='map'></div>
-                <script>
-                    mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnBnIiwiYSI6ImNraGwybDczMzFnOXcyeHA2MnM0ZWF4aDQifQ.dbfnIhEI5JJf-TV1LyEQQw';
-                    var map = new mapboxgl.Map({
-                            container: 'map',
-                            style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
-                            center: [-9.142685, 38.736946], 
-                            zoom: 9
-                            });
-
-                new mapboxgl.Marker()
-                    setLngLat([-9.142685, 38.736946])
-                    .addTo(map);
-        </script>
+            </section>
+            <section class="mapDisplay">
+                <div id='map'>
+                </div>
+                <script src="javascripts/displayMap.js"></script>
+                <script src="javascripts/drawPolygon.js"></script>
+            </section>
         </main>
-       
+
     </body>
 </html>

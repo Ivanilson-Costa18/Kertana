@@ -44,14 +44,20 @@ h2,h1{
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-areas: 
-    'hortList hortList hortList map map map';
+    'hortList hortList hortList mapDisplay mapDisplay mapDisplay';
     background-color: white;
 }
 
-.main #map{
+.main .mapDisplay{
     height: auto;
     width: auto;
 }
+
+.main .mapDisplay #map{
+    height: 100%;
+    width: 100%;
+}
+
 
 .main .hortList{
     max-height: auto;
@@ -101,3 +107,13 @@ h2,h1{
     flex:50%;
 }
 
+.calculation-box {
+height: 75px;
+width: 150px;
+position: absolute;
+bottom: 40px;
+left: 10px;
+background-color: rgba(255, 255, 255, 0.9);
+padding: 15px;
+text-align: center;
+}
