@@ -1,7 +1,7 @@
 window.onload = function() {
     loadListProducts();
 }
-
+/*
 async function loadListProducts() {
     try {
         let products = await $.ajax({
@@ -18,7 +18,19 @@ async function loadListProducts() {
                 "<h2> Por favor tente mais tarde</h2>";
     }
 } 
+*/
+window.onload = async function loadListProducts() {
+    let productName = sessionStorage.getItem("productName");
 
+    let product = await $.ajax({
+        url: "/api/products/"+productName,
+        method: "get",
+        dataType: "json"
+    });
+    console.log(product);
+    listProducts(product);
+
+}
 function listProducts(products) {
     let elemHortlist = document.getElementById("hortList");
     let html ="";

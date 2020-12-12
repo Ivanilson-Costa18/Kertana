@@ -145,31 +145,19 @@ body {
 }
 
 
-#search-localizacao{
+input{
   float: left;
   display: block;
   text-align: left;
   width:90%;
   margin: 0;
-  padding: 12px;
+  padding: 12px;  
   flex-basis: 1000px;
   font-size: 20px;
   border: none;
   outline: none;
 }
 
-#search-hortalica{
-  float: left;
-  display: block;
-  text-align: left;
-  width:90%;
-  margin: 0;
-  padding: 12px;
-  flex-basis: 1000px;
-  font-size: 20px;
-  border: none;
-  outline: none;
-}
 
 .search-button{
   float: left;

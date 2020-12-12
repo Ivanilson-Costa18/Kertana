@@ -2,8 +2,8 @@
 <head>
   <title>Kertana</title>
 
-  <script src="javascripts/searchBar.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="javascripts/searchBar.js"></script>
 
 
 
@@ -54,11 +54,11 @@
             <label for="tabhort">Hortaliça</label>
             <div class="tab">
               <div class="search-container">
-                <input type="text" id="search-hortalica" onkeyup="filtrar()" placeholder="Search.." title="Introduza uma hortaliça"> 
+                <input type="text" id="search-hortalica"  placeholder="Search.." title="Introduza uma hortaliça"> 
                 <div class="autocom-box">
                   <!-- here list are inserted from javascript -->
                 </div>
-                <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
+                <button class="search-button"  type="button" onclick="saveProduct()"><i class="fa fa-search"></i></button>
               </div>
             </div>
         
