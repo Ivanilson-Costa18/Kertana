@@ -1,12 +1,6 @@
 <html>
 <head>
   <title>Kertana</title>
-
-  <script src="javascripts/searchBar.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-
   <link rel="stylesheet" href="stylesheets/homePage.css">
   <link rel="icon" href="/images/bar-icon.png" type="image/png" style="width: 10px; height: 15px;">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -41,17 +35,16 @@
             <label for="tablocal">Localização</label>
             <div class="tab">
               <div class="search-container">
-                <input type="text" id="search-localizacao"  placeholder="Search.." title="Introduza uma localização"> 
+                <input type="text" class="mySearch" placeholder="Search.." title="Introduza uma localização"> 
                 <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
               </div>
             </div>
-            
         
             <input type="radio" id="tabhort" name="mytabs">
             <label for="tabhort">Hortaliça</label>
             <div class="tab">
               <div class="search-container">
-                <input type="text" id="search-hortalica" onkeyup="filtrar()" placeholder="Search.." title="Introduza uma hortaliça"> 
+                <input type="text" class="mySearch" placeholder="Search.." title="Introduza uma localização"> 
                 <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
               </div>
             </div>

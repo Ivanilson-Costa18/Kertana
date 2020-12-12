@@ -145,7 +145,7 @@ body {
 }
 
 
-#search-localizacao #search-hortalica{
+.mySearch{
   float: left;
   display: block;
   text-align: left;
