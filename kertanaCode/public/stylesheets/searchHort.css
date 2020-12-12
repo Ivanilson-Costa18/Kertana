@@ -46,6 +46,7 @@ h2,h1{
     grid-template-areas: 
     'hortList hortList hortList mapDisplay mapDisplay mapDisplay';
     background-color: white;
+    max-height: 100%;
 }
 
 .main .mapDisplay{
@@ -59,8 +60,8 @@ h2,h1{
 }
 
 
-.main .hortList{
-    max-height: auto;
+.main #hortList{
+    max-height: 100%;
     overflow-y: auto;
     scroll-behavior: smooth;
     padding-right: 2rem;
@@ -68,12 +69,14 @@ h2,h1{
     scrollbar-width: thin;
     scrollbar-color: #eceff2 #f6f7f9;
     display: flex;
+    flex-direction: column;
 }
 
-.hortalica-result{
+.hortalica-result{  
     flex: 100%;
     display: flex;
     flex-direction: row;
+    margin-bottom: 2em;
  
     
 }
