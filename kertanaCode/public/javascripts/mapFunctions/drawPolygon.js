@@ -16,6 +16,7 @@ var draw = new MapboxDraw({
 
     if (data.features.length > 0) {
         var area = turf.area(data);
+        console.log(data.features[0].geometry.coordinates)
     } 
     else {
         if (e.type !== 'draw.delete')
