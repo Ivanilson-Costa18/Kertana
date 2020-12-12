@@ -5,5 +5,12 @@ var map = new mapboxgl.Map({
         style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
         center: [-9.142685, 38.736946], 
         zoom: 9
-        });
+        })
+        map.addControl(
+                new MapboxGeocoder({
+                        accessToken: mapboxgl.accessToken,
+                        mapboxgl: mapboxgl
+        })
+        );
 
+       
