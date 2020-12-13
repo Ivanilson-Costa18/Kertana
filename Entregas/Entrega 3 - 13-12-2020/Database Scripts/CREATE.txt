@@ -1,0 +1,32 @@
+#CREATE DATABASE KERTANA;
+
+/*Hortalica*/
+CREATE TABLE Produto (produtoID int AUTO_INCREMENT not null,
+					  nome varchar(20) not null,
+                      descricao varchar(150) not null,
+                      tempMax int not null,
+                      tempMin int not null,
+                      humMax int not null,
+                      humMin int not null,
+                      tempoColheita int not null,
+                      tipoSolo int not null,
+                      tipoPH int not null,
+                      photoFile varchar(100),
+			constraint PPK primary key (produtoID));
+            
+CREATE TABLE Mes (mesID int AUTO_INCREMENT not null,
+					  mes varchar(9) not null,
+			constraint MPK primary key (mesID));
+            
+CREATE TABLE TipoSolo (tipoSoloID int AUTO_INCREMENT not null,
+					  tipoSolo varchar(14) not null,
+			constraint TPPK primary key (tipoSoloID));
+            
+CREATE TABLE TipoPH (tipoPHID int AUTO_INCREMENT not null,
+					  tipoPH varchar(13) not null,
+			constraint TPHPK primary key (tipoPHID));
+
+CREATE TABLE EpocaSemear ( epocaSemearID int AUTO_INCREMENT not null,
+								   produto int not null,
+                                   mes int not null,
+			constraint PK primary key (epocaSemearID));
