@@ -38,10 +38,10 @@ O projeto tem como objetivo alcançar um público alvo jovem, que não tem grand
 
 ## Second Delivery
   15.11.2020
-- [X] Final use case definition and personas
-- [X] Use case diagram
-- [X] Functional and not functional requirements necessary for presented scenes
-- [X] Ux journeys
+- [x] Final use case definition and personas
+- [x] Use case diagram
+- [x] Functional and not functional requirements necessary for presented scenes
+- [x] Ux journeys
 - [X] Mockups
 - [x] Domain model
 - [x] Requirement implementations calendar
@@ -49,14 +49,14 @@ O projeto tem como objetivo alcançar um público alvo jovem, que não tem grand
 
 ## Third Delivery
   13.12.2020
-- [ ] Software Project Plan and WBS
-- [ ] Working prototype
-- [ ] Prototype's code
-- [ ] Functional and non functional requirements
-- [ ] Block Diagram - 3 layers 
-- [ ] Usability and UX tests
-- [ ] Mockups and early web interfaces
-- [ ] Domain Model and State Machine Diagram 
+- [x] Software Project Plan and WBS
+- [x] Working prototype
+- [x] Prototype's code
+- [x] Functional and non functional requirements
+- [x] Block Diagram - 3 layers 
+- [x] Usability and UX tests
+- [x] Mockups and early web interfaces
+- [x] Domain Model and State Machine Diagram 
 
 ## Forth Delivery
   31.01.2020
