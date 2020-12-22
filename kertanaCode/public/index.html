@@ -3,10 +3,7 @@
   <title>Kertana</title>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="javascripts/searchBar.js"></script>
-
-
-
+  <script src="javascripts/homePageScripts/profileButton.js"></script>
   <link rel="stylesheet" href="stylesheets/homePage.css">
   <link rel="icon" href="/images/bar-icon.png" type="image/png" style="width: 10px; height: 15px;">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,12 +18,13 @@
         </a>  
       </section>
     </div>
+    <hr style="outline: none; line-height: 1px;">
     <div class="header">
       <section class="logo">
         <img src="/images/Logo.png" alt="Logo">
       </section>
-      <section class="profileButton">
-        <button id="buttonBorder">Profile</button>  
+      <section class="profileButton-container">
+        <button id="buttonProfile" onclick="onClick()" >Profile</button>  
       </section>
     </div>
 
@@ -40,26 +38,23 @@
             <input type="radio" id="tablocal" name="mytabs" checked>
             <label for="tablocal">Localização</label>
             <div class="tab">
+              <form autocomplete="off">
               <div class="search-container">
-                <input type="text" id="search-localizacao"  placeholder="Search.." title="Introduza uma localização"> 
-                <div class="autocom-box">
-                  <!-- here list are inserted from javascript -->
-                </div>
-                <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
-              </div>
+                <input type="text" id="search-localizacao" placeholder="Search.."> 
+                <button class="search-button" type="button"><i class="fa fa-search"></i></button>
+              </div> 
+              </form>             
             </div>
             
-        
             <input type="radio" id="tabhort" name="mytabs">
             <label for="tabhort">Hortaliça</label>
             <div class="tab">
+            <form autocomplete="off">
               <div class="search-container">
-                <input type="text" id="search-hortalica"  placeholder="Search.." title="Introduza uma hortaliça"> 
-                <div class="autocom-box">
-                  <!-- here list are inserted from javascript -->
-                </div>
+                <input  id="search-hortalica" type="text" placeholder="Search.."> 
                 <button class="search-button"  type="button" onclick="saveProduct()"><i class="fa fa-search"></i></button>
               </div>
+            </form> 
             </div>
         
           </div>
@@ -70,13 +65,15 @@
   </div>
   </div>
   <div class="footer">
-    <h4 style="color: hsl(124, 90%, 16%);">
+    <h3 style="color: hsl(124, 90%, 16%);">
       A Kertana é a plataforma que lhe assiste em decisões difíceis
-    </h4>
+    </h3>
     <p style="line-height: 20px;">Sistema informático baseando as decisões através de dados como tipo de terreno e clima.<br>
     Procure o terreno a partir de uma hortaliça que queira colher.<br>
     Procure as hortaliças que pode cultivar.</p>
   </div>
 
 </body>
+<script src="javascripts/homePageScripts/searchBar.js"></script>
+
 </html>

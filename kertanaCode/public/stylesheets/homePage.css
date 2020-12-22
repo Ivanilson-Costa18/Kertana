@@ -1,11 +1,12 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Calibri';
   margin: 0;
   padding: 0px;
 }
 
 .grid-container{
   display: grid;
+  grid-template-rows: 100% 10%;
   grid-template-areas: 
   'bc bc bc bc bc bc bc'
   'footer footer footer footer footer footer footer';
@@ -18,20 +19,11 @@ body {
   background-repeat: no-repeat;
   max-width: 100%;
   max-height: 100%;
-  min-width: 1366px;
-  min-height: 551px;
   background-size: cover;
-  display: grid;
-  grid-template-rows: 5% 20% 75% ;
-  grid-template-areas: 
-    'nav nav nav nav nav nav'
-    'header header header header header header' 
-    'main main main main main main' ;
-    
+  
 }
 
 .nav{
-  grid-area: nav;
   text-align: center;
   font-size: 35px;
   grid-column: 1/8;
@@ -47,7 +39,6 @@ body {
 /* Style the header */
 .header {
   display: flex;
-  grid-area: header;
   text-align: center;
   font-size: 35px;
   grid-column: 1/8;
@@ -62,7 +53,7 @@ body {
   padding-right: 450px;
 }
 
-.header .profileButton{
+.header .profileButton-container{
   flex: 1;
   align-items: center;
   height: 20px;
@@ -78,6 +69,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-top: 10%;
 }
 
 
@@ -98,7 +90,6 @@ body {
 /* Style the footer */
 .footer {
   background-color: white;
-  grid-area: footer;
   text-align: left;
   grid-column: 1/8;
   padding-left: 50px;
@@ -115,10 +106,12 @@ body {
   }
 }
 
-.grid-container .bc .header .profileButton #buttonBorder {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
+.grid-container .bc .header .profileButton-container #buttonProfile {
+  background-color:  #A39685; 
+  color: #ffffff; 
+  border: 1px solid;
+  border-color: #ffffff;
+  border-radius: 5px 5px 5px 5px ;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
@@ -127,17 +120,11 @@ body {
   padding: 10px 10px;
 }
 
-.grid-container .bc .header .profileButton #buttonBorder {
-  background-color:  white; 
-  color: #8DBD70; 
-  border: #6CBE45;
-  border-radius: 5px 5px 5px 5px ;
-}
 
-.grid-container .bc .header .profileButton #buttonBorder:hover {
-  background-color: #8DBD70;
+.grid-container .bc .header .profileButton #buttonProfile:hover {
+  background-color: #9E9284;
   color: white;
-  border: #6CBE45;
+  border: #ffffff;
 }
 
 .searchTabs{
@@ -161,27 +148,32 @@ input{
 
 .search-button{
   float: left;
-  width: 10%;
-  height: 100%;
+  width: 8%;
+  height: 48px;
+  max-height: 48px;
   padding: 10px;
-  color: gray;
+  color: #ffffff;
   font-size: 17px;
   border: none; 
   cursor: pointer;
-  background-color: #ffffff;
+  background-color: #E04824;
+  border-radius: 100% 100% 100% 100%;
 }
 
 .search-button:hover{
-  background-color: #cecece;
+  background-color: #DA5418;
   color: white;
   transition-duration: 0.6s;
 }
 
+.search-container{
+  position: relative;
+}
 
 .search-container::after {
   content: "";
   clear: both;
-  display: table;
+  display: inline-block;
 }
 
 .mytabs {
@@ -205,7 +197,7 @@ input{
 
 .mytabs .tab {
   width: 100%;
-  padding: 5px;
+  padding: 1%;
   background: #fff;
   order: 1;
   display: none;
@@ -223,33 +215,31 @@ input{
   background: #fff;
 }
 
-
-.search-input .autocom-box{
-  padding: 0;
-  opacity: 0;
-  pointer-events: none;
-  max-height: 280px;
-  overflow-y: auto;
+.search-container-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  width: 98.398%;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 49px;
+  left: 0;
+  right: 0;
 }
 
-.search-input.active .autocom-box{
-  padding: 10px 8px;
-  opacity: 1;
-  pointer-events: auto;
+.search-container div {
+  margin-left: -1.0787%;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
 }
 
-.autocom-box li{
-  list-style: none;
-  padding: 8px 12px;
-  display: none;
-  width: 100%;
-  cursor: default;
-  border-radius: 3px;
+.search-container-items div:hover {
+  background-color: #e9e9e9; 
 }
 
-.search-input.active .autocom-box li{
-  display: block;
-}
-.autocom-box li:hover{
-  background: #efefef;
+/*when navigating through the items using the arrow keys:*/
+.search-container-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
 }

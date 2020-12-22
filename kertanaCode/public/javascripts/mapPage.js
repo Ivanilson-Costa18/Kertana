@@ -27,10 +27,11 @@ window.onload = async function loadListProducts() {
         method: "get",
         dataType: "json"
     });
-    console.log(product);
     listProducts(product);
 
 }
+
+
 function listProducts(products) {
     let elemHortlist = document.getElementById("hortList");
     let html ="";
