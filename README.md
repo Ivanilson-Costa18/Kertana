@@ -74,4 +74,12 @@ O projeto tem como objetivo alcançar um público alvo jovem, que não tem grand
 
 
 ## GUI
+![Home-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/home-page.PNG?raw=true)
+![Search-Product-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/search-product-page.PNG?raw=true)
+![Field-Search-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/field-search-page.PNG?raw=true)
+![Add-Product-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/add-product-page.PNG?raw=true)
+![Profile-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/profile-page.PNG?raw=true)
+![Field-Creation-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/field-creation-page.PNG?raw=true)
+![Field-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/field-page.PNG?raw=true)
+
 ## Diagrams
