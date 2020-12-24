@@ -83,3 +83,23 @@ O projeto tem como objetivo alcançar um público alvo jovem, que não tem grand
 ![Field-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/field-page.PNG?raw=true)
 
 ## Diagrams
+
+#### Context Diagram
+![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/Diagrama%20Context.jpg?raw=true)
+
+#### Use Case Diagram
+![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/kertana-use-case.jpg?raw=true)
+
+#### Domain Model
+![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/kertana-modelo-dominio.jpg?raw=true)
+
+#### ER Diagram
+![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/kertana_database_model.png?raw=true)
+
+#### Machine State Diagram
+![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/Estado%20pol%C3%ADgono%20produ%C3%A7%C3%A3o.png?raw=true)
+![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/Estado%20Colheita.png?raw=true)
+
+
+
+
