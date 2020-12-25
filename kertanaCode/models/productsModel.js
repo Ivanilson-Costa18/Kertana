@@ -12,10 +12,10 @@ module.exports.getAllProducts = async function() {
 }
 
 
-module.exports.getProduct = async function(productName) {
+module.exports.getProduct = async function(productID) {
     try {
-        const sql = 'SELECT * FROM produto WHERE Produto_Nome = ?';
-        const product = await pool.query(sql,[productName]);
+        const sql = 'SELECT * FROM produto WHERE Produto_ID = ?';
+        const product = await pool.query(sql,[productID]);
         return product; 
     } catch (err) {
         console.log(err);

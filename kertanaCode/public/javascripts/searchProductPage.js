@@ -1,5 +1,5 @@
 window.onload = async function loadListProducts() {
-    let productName = sessionStorage.getItem("product");
+    let productName = sessionStorage.getItem("productID");
     let product = await $.ajax({
         url: "/api/products/"+productName,
         method: "get",
@@ -11,7 +11,7 @@ window.onload = async function loadListProducts() {
         dataType: 'json'
     })
         listProducts(product);
-        console.log(suitable_locations);
+        console.log(suitable_locations[0]);
 }
 
 
@@ -34,35 +34,7 @@ function listProducts(products) {
                        ' <p id="description-result">'+product.Produto_Descricao+'</p>'+
                    ' </section>'+
                 '</section>'+
-                '<hr style= "width: 100%; margin-bottom:20px;">'+ 
-                '<section class= "hortalica-result">' +
-                ' <section class="imagem-hortalica">' +
-                     '<section class="imagem-frame">' +
-                    '     <img id="product-icon" src="'+product.Produto_Photo+'">'+
-                    ' </section>'+
-               '  </section>'+
-                ' <section class="imagem-description">'+
-                    ' <p id="title-result">'+product.Produto_Nome+'</p>'+
-                    '<a onclick="deleteResult()"><img id="delete-result" src="/images/DeleteResult.PNG" alt="Delete Result" width="15px" height="15px"></a>'+
-                    ' <p id="description-result">'+product.Produto_Descricao+'</p>'+
-                ' </section>'+
-             '</section>'+
-             '<hr style= "width: 100%; margin-bottom:20px;">'+ 
-             '<section class= "hortalica-result">' +
-             ' <section class="imagem-hortalica">' +
-                  '<section class="imagem-frame">' +
-                 '     <img id="product-icon" src="'+product.Produto_Photo+'">'+
-                 ' </section>'+
-            '  </section>'+
-             ' <section class="imagem-description">'+
-                 ' <p id="title-result">'+product.Produto_Nome+'</p>'+
-                 '<a onclick="deleteResult()"><img id="delete-result" src="/images/DeleteResult.PNG" alt="Delete Result" width="15px" height="15px"></a>'+
-                 ' <p id="description-result">'+product.Produto_Descricao+'</p>'+
-             ' </section>'+
-          '</section>';
-          '<hr style= "width: 100%; margin-bottom:20px;">';
-
-                   
+                '<hr style= "width: 100%; margin-bottom:20px;">';             
     }
     elemHortlist.innerHTML = html;
 }

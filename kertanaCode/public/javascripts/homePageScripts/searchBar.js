@@ -1,28 +1,44 @@
 function saveProduct() {
+  let productID = 0;
   let productName = document.getElementById("search-hortalica").value;
-  sessionStorage.setItem("product",productName);
+  for(let product of hortalicas){
+    if(product.Produto_Nome == productName) productID = product.Produto_ID;
+  }
+  sessionStorage.setItem("productID",productID); //productID
   window.location = "searchProductPage.html";
 }
 
 function saveLocation(){
-let localizacao = document.getElementById("search-localizacao").value;
-sessionStorage.setItem("location",localizacao);
-window.location = 'searchLocationPage.html'
+  let localID = 0;
+  let localizacao = document.getElementById("search-localizacao").value;
+  for(let local of localizacoes){
+    if(local.nome == localizacao) localID = local.id;
+  }
+  sessionStorage.setItem("location",localID);
+  window.location = 'searchLocationPage.html'
 }
 
 var localizacoes = [];
 var hortalicas = [];
+var getLocationVar = [];
+var getProductVar = [];
 
-window.onload = () => {
+
+window.onload = () => { 
 const getProducts = async () =>{
-products = await $.ajax({
-  url: '/api/products', 
-  method:'get',
-  dataType: 'json'
+    products = await $.ajax({
+    url: '/api/products', 
+    method:'get',
+    dataType: 'json'
 });
-for(product of products){
-  hortalicas.push(product.Produto_Nome)
+  let objProduct
+  for(product of products){
+    objProduct = product;
+  hortalicas.push(objProduct);
 }
+  for(let product of products){
+    getProductVar.push(product.Produto_Nome);
+  }
 }
 
 const getLocations = async () =>{
@@ -31,13 +47,22 @@ locations = await $.ajax({
   method:'get',
   dataType: 'json'
 });
-for(local of locations){
-  localizacoes.push(local.Freguesia_Nome)
+let objLocation={};
+  for(local of locations){
+    objLocation = {
+      'id':local.Freguesia_ID,
+      'nome':local.Freguesia_Nome
+  }
+  localizacoes.push(objLocation);
+}
+for(let local of locations){
+  getLocationVar.push(local.Freguesia_Nome);
 }
 }
 
-getProducts();
-getLocations();
+  getProducts();
+  getLocations();  
+
 }
 
 function autocomplete(inp, arr) {
@@ -58,7 +83,7 @@ function autocomplete(inp, arr) {
       /*append the DIV element as a child of the autocomplete container:*/
       this.parentNode.appendChild(a);
       /*for each item in the array...*/
-      for (i = 0; i < arr.length; i++) {
+      for(i = 0; i < arr.length; i++) {
         /*check if the item starts with the same letters as the text field value:*/
         if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
           /*create a DIV element for each matching element:*/
@@ -138,6 +163,9 @@ function autocomplete(inp, arr) {
 }
 
 
+
+
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.querySelector("#search-localizacao"), localizacoes);
-autocomplete(document.querySelector("#search-hortalica"), hortalicas)
+autocomplete(document.querySelector("#search-localizacao"), getLocationVar);
+autocomplete(document.querySelector("#search-hortalica"), getProductVar);
+
