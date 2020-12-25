@@ -13,10 +13,9 @@ h2,h1{
 /* The grid container */
 .grid-container{
     display: grid;
-    grid-template-rows: 10% 8% 76% 6%;
+    grid-template-rows: 18% 76% 6%;
     grid-template-areas:
     'header header header header header header'
-    'search-term search-term search-term search-term search-term search-term'
     'main main main main main main'
     'footer footer footer footer footer footer';
 }
@@ -25,16 +24,7 @@ h2,h1{
     background-color:white;
 }
 
-#search-term{
-    padding-top: 15px;
-    grid-area: search-term;
-    margin:10px;
-}
 
-#search-term-frame{
-    padding-left: 2%;
-    align-self: baseline;
-}
 
 #hpLogo{
     height: 40px;

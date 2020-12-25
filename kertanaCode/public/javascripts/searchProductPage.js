@@ -1,35 +1,20 @@
-window.onload = function() {
-    loadListProducts();
-}
-/*
-async function loadListProducts() {
-    try {
-        let products = await $.ajax({
-            url: "/api/products",
-            method: "get",
-            dataType: "json"
-        });
-        listProducts(products);
-        
-    } catch(err) {
-        let elemHortlist = document.getElementById("hortList");
-        console.log(err);
-        elemHortlist.innerHTML = "<h1> Página não está disponível</h1>"+
-                "<h2> Por favor tente mais tarde</h2>";
-    }
-} 
-*/
 window.onload = async function loadListProducts() {
-    let productName = sessionStorage.getItem("productName");
-
+    let productName = sessionStorage.getItem("product");
     let product = await $.ajax({
         url: "/api/products/"+productName,
         method: "get",
         dataType: "json"
     });
-    listProducts(product);
-
+    let suitable_locations = await $.ajax({
+        url: "/api/locations/storedProcedure/"+productName,
+        method: 'get',
+        dataType: 'json'
+    })
+        listProducts(product);
+        console.log(suitable_locations);
 }
+
+
 
 
 function listProducts(products) {

@@ -1,26 +1,35 @@
-pool = require('./connection');
+const pool = require('./connection.js');
 
 module.exports.getAllProducts = async function() {
     try {
-        const sql = 'SELECT * FROM kertana.Produto;';
+        const sql = 'SELECT * FROM produto;';
         let products = await pool.query(sql);
-        console.log(sql);
-        return {status:200, data: products}; 
+        return products; 
     }  catch (err) {
         console.log(err);
-        return {status: 500, data: err};
+        return err;
     }
 }
 
 
 module.exports.getProduct = async function(productName) {
     try {
-        const sql = 'SELECT * FROM kertana.Produto WHERE Produto_Nome = '+productName+';';
-        const product = await pool.query(sql);
-        console.log(sql);
-        return {status:200, data: product}; 
+        const sql = 'SELECT * FROM produto WHERE Produto_Nome = ?';
+        const product = await pool.query(sql,[productName]);
+        return product; 
     } catch (err) {
         console.log(err);
-        return {status: 500, data: err};
+        return err;
 }
+}
+
+module.exports.getSuitableProducts = async function (local) {
+    try{
+        const sql = 'CALL verified_products(?);';
+        let suitable_products = await pool.query(sql,[local]);
+        return suitable_products
+    }catch(err){
+        console.log(err);
+        return err;
+    }
 }
