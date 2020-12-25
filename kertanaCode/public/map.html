@@ -6,21 +6,17 @@
         <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js"></script>
         <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js"></script>
         <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js"></script>
+        <script src="javascripts/mapPage.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
         <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
-        
-        <script src="javascripts/searchLocationPage.js"></script>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
         <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
 
         <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css"/>    <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
         <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css" type="text/css"/>
-        <link rel="stylesheet" href="stylesheets/searchProductPage.css">
-        <link rel="stylesheet" href="stylesheets/searchLocationPage.css">
-
+        <link rel="stylesheet" href="stylesheets/searchHort.css">
         <link rel="icon" href="/images/bar-icon.png" type="image/png" style="width: 10px; height: 15px;"> 
     </head>
 
@@ -28,31 +24,28 @@
     <body class="grid-container">
         <header class="header">
             <a href="index.html">
-                <img src="/images/LogoGreen.png" id="hpLogo" alt="Logo">
+                <img src="/images/Logo.png" id="hpLogo" alt="Logo">
             </a>
-            <hr style="outline: none; line-height: 1px;">
         </header>
         <section id="search-term">
+            <section id="search-term-frame">
+                <h2>Lisboa</h2>
+                <hr style= "width: 48%; margin-left: 0;">
+            </section>
         </section>
         <main class="main">
             <section id="hortList">
-                <hr style= "width: 90%; margin-left: 40px;">  
-                <section id="product-result">
-                </section>
-                <hr style= "width: 90%; margin-left: 40px;">  
             </section>
             <section class="mapDisplay">
                 <div id='map'>
                 </div>
-            </section>
-        </main>
-        <footer>
-        </footer>
         <script src="javascripts/mapFunctions/displayMap.js"></script>
         <script src="javascripts/mapFunctions/drawPolygon.js"></script>        
-        <script src="javascripts/Map-Functions/displayMap.js"></script>
-        <script src="javascripts/Map-Functions/drawPolygon.js"></script>
-        <script src="javascripts/Map-Functions/showPolygon.js"></script>
-    </body>
+                <script src="javascripts/Map-Functions/displayMap.js"></script>
+                <script src="javascripts/Map-Functions/drawPolygon.js"></script>
+                <script src="javascripts/Map-Functions/showPolygon.js"></script>
+            </section>
+        </main>
 
+    </body>
 </html>

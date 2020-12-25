@@ -1,0 +1,122 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+h2,h1{
+    font-family: 'Calibri';
+    font-size: 2em;
+    margin: 1px;
+}
+
+/* The grid container */
+.grid-container{
+    display: grid;
+    grid-template-rows: 10% 12% 78%;
+    grid-template-areas:
+    'header header header header header header'
+    'search-term search-term search-term search-term search-term search-term'
+    'main main main main main main';
+}
+.header{
+    grid-area: header;
+    background-color: #7AC457;
+}
+
+#search-term{
+    grid-area: search-term;
+}
+
+#search-term-frame{
+    padding-top: 2%;
+    padding-left: 2%;
+}
+
+#hpLogo{
+    height: 40px;
+    width: auto;
+    padding-left: 20px;
+    padding-top: 1%;
+}
+
+.main{
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: 
+    'hortList hortList hortList mapDisplay mapDisplay mapDisplay';
+    background-color: white;
+    max-height: 100%;
+}
+
+.main .mapDisplay{
+    height: auto;
+    width: auto;
+}
+
+.main .mapDisplay #map{
+    height: 100%;
+    width: 100%;
+}
+
+
+.main #hortList{
+    max-height: 100%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    scrollbar-width: thin;
+    scrollbar-color: #eceff2 #f6f7f9;
+    display: flex;
+    flex-direction: column;
+}
+
+.hortalica-result{  
+    flex: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2em;
+ 
+    
+}
+
+.imagem-hortalica{
+    background-color: lawngreen;
+    height: 100%;
+    width: 100%;
+    max-height: 180px;
+    max-width: 180px;
+    border-radius: 10px 10px 10px 10px ;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+
+}
+
+
+.imagem-resultado{
+    display: table-cell;
+    vertical-align: middle;
+    max-height: 180px;
+    max-width: 180px;
+
+}
+
+.imagem-description{
+    padding-left: 2em;
+    display: table-cell;
+    vertical-align: middle;
+    flex:50%;
+}
+
+.calculation-box {
+height: 75px;
+width: 150px;
+position: absolute;
+bottom: 40px;
+left: 10px;
+background-color: rgba(255, 255, 255, 0.9);
+padding: 15px;
+text-align: center;
+}
