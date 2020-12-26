@@ -6,6 +6,7 @@ var logger = require('morgan');
 var productsRouter = require('./routes/productsRoutes');
 var locationsRouter = require('./routes/locationsRoutes');
 
+
 var app = express();
 
 app.use(logger('dev'));
@@ -16,6 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/products', productsRouter);
 app.use('/api/locations', locationsRouter);
+
 
 
 module.exports = app;
