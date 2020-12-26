@@ -1,12 +1,17 @@
 const util = require('util')
 const mysql = require('mysql')
 const pool = mysql.createPool({
-  connectionLimit: 20,
+ connectionLimit: 20,
   host: 'db4free.net',
   user: 'kertanadb',
   password: 'Portugal2018',
   database: 'kertanadb',
-  port: 3306
+  port: 3306  
+ /*  host: 'localhost',
+  user: 'root',
+  password: '(Attellu2020)',
+  database: 'kertana',
+  port: 3306*/
 })
 
 // Ping database to check for common exception errors.
