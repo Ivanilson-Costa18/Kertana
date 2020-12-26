@@ -1,3 +1,5 @@
+
+
 var draw = new MapboxDraw({
     displayControlsDefault: false,
     controls: {
@@ -16,10 +18,64 @@ var draw = new MapboxDraw({
 
     if (data.features.length > 0) {
         var area = turf.area(data);
-        console.log(data.features[0].geometry.coordinates)
+
+        console.log(data.features[0].geometry.coordinates);
+        createPolygon(data.features[0].geometry.coordinates).then(value => {getSoilMoisture(value);})
     } 
     else {
         if (e.type !== 'draw.delete')
         alert('Use the draw tools to draw a polygon!');
         }
     }
+
+
+
+    async function createPolygon(coordinates) {
+        try {
+            obj = 
+            {
+                "name":"Search Polygon",
+                "geo_json":{
+                   "type":"Feature",
+                   "properties":{
+             
+                   },
+                   "geometry":{
+                      "type":"Polygon",
+                      "coordinates":coordinates
+                   }
+                }
+             }
+                let result = await $.ajax({
+                url: "http://api.agromonitoring.com/agro/1.0/polygons?appid=eaf41ee48e35adb39c24586fc8eb11c6",
+                method: "post",
+                dataType: "json",
+                data:JSON.stringify(obj),
+                contentType: "application/json"
+            });
+            console.log(JSON.stringify(result));
+            console.log(result.id);
+            return result.id;
+        } catch(err) {
+            console.log(err);
+        }
+    }
+        
+    
+    
+    async function getSoilMoisture(polygonID) {
+        try {
+                let result = await $.ajax({
+                url: "http://api.agromonitoring.com/agro/1.0/soil?polyid="+polygonID+"&appid=eaf41ee48e35adb39c24586fc8eb11c6",
+                method: "get",
+                dataType: "json"
+            });
+            soilInfo = result;
+            console.log(soilInfo.moisture);
+            return soilInfo.moisture;
+        } catch(err) {
+            console.log(err);
+        }
+    }
+        
+        
