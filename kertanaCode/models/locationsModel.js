@@ -2,7 +2,7 @@ const pool = require('./connection.js')
 
 module.exports.getAllLocations = async function () {
     try{
-        const sql = 'select * from freguesia;'
+        const sql = 'select * from Freguesia;'
         let locations = await pool.query(sql);
         return locations;
     }catch(err){
