@@ -2,7 +2,7 @@ const pool = require('./connection.js');
 
 module.exports.getAllProducts = async function() {
     try {
-        const sql = 'SELECT * FROM produto;';
+        const sql = 'SELECT * FROM Produto;';
         let products = await pool.query(sql);
         return products; 
     }  catch (err) {
@@ -14,7 +14,7 @@ module.exports.getAllProducts = async function() {
 
 module.exports.getProduct = async function(productID) {
     try {
-        const sql = 'SELECT * FROM produto WHERE Produto_ID = ?';
+        const sql = 'SELECT * FROM Produto WHERE Produto_ID = ?';
         const product = await pool.query(sql,[productID]);
         return product; 
     } catch (err) {
