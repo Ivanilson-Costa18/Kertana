@@ -9,14 +9,13 @@ function saveProduct() {
 }
 
 function saveLocation(){
-  let localID = 0;
   let localizacao = document.getElementById("search-localizacao").value;
   for(let local of localizacoes){
-    if(local.nome == localizacao) localID = local.id;
-  }
-  sessionStorage.setItem("location",localID);
-  window.location = 'searchLocationPage.html'
-}
+    if(local.nome == localizacao){
+      let json = JSON.stringify(local)
+      sessionStorage.setItem("location",json);
+      window.location = 'searchLocationPage.html'
+}}}
 
 var localizacoes = [];
 var hortalicas = [];
@@ -51,7 +50,8 @@ let objLocation={};
   for(local of locations){
     objLocation = {
       'id':local.Freguesia_ID,
-      'nome':local.Freguesia_Nome
+      'nome':local.Freguesia_Nome,
+      'coordenadas': local.Freguesia_Coordenadas
   }
   localizacoes.push(objLocation);
 }
