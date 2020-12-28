@@ -156,12 +156,12 @@ input{
   font-size: 17px;
   border: none; 
   cursor: pointer;
-  background-color: #E04824;
+  background-color: #DA5418;
   border-radius: 100% 100% 100% 100%;
 }
 
 .search-button:hover{
-  background-color: #DA5418;
+  background-color: #E04824;
   color: white;
   transition-duration: 0.6s;
 }

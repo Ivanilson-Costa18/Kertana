@@ -155,7 +155,7 @@ main{
 
 
 #button-add-product{
-    background-color: #E04824;
+    background-color: #DA5418;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -169,7 +169,7 @@ main{
 }
 
 #button-add-product:hover{
-    background-color: #DA5418;
+    background-color: #E04824;
     color: white;
     transition-duration: 0.6s;
 }
