@@ -170,7 +170,7 @@ input{
   position: relative;
 }
 
-.search-container::after {
+.search-container:after {
   content: "";
   clear: both;
   display: inline-block;

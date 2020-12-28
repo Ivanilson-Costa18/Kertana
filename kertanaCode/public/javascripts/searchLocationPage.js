@@ -122,7 +122,6 @@ function listProducts(products) {
                   '  </section>'+
                    ' <section class="imagem-description">'+
                        ' <p id="title-result">'+product.Produto_Nome+'</p>'+
-                       '<a onclick="deleteResult()"><img id="delete-result" src="/images/DeleteResult.PNG" alt="Delete Result" width="15px" height="15px"></a>'+
                        ' <p id="description-result">'+product.Produto_Descricao+'</p>'+
                    ' </section>'+
                 '</section>'+
