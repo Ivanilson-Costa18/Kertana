@@ -1,4 +1,4 @@
-window.onload = async function loadListProducts() {
+window.onload = async function loadListLocations() {
     let json = sessionStorage.getItem("location");
     let localizacao = JSON.parse(json);
     let suitable_products = await $.ajax({
@@ -114,7 +114,7 @@ function listProducts(products) {
     let html ="";
     for (let product of products) {
         html += 
-                '<section class= "hortalica-result">' +
+                '<section id= "hortalica-result">' +
                    ' <section class="imagem-hortalica">' +
                         '<section class="imagem-frame">' +
                        '     <img id="product-icon" src="'+product.Produto_Photo+'">'+
@@ -124,8 +124,7 @@ function listProducts(products) {
                        ' <p id="title-result">'+product.Produto_Nome+'</p>'+
                        ' <p id="description-result">'+product.Produto_Descricao+'</p>'+
                    ' </section>'+
-                '</section>'+
-                '<hr style= "width: 100%; margin-bottom:20px;">';             
+                '</section>';
     }
     elemHortlist.innerHTML = html;
 }

@@ -4,6 +4,11 @@
   <title>Kertana</title>
   <link rel="stylesheet" href="/stylesheets/profilePage.css">
   <script src="javascripts/profilePage.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <link rel="icon" href="/images/bar-icon.png" type="image/png" style="width: 10px; height: 15px;">
+
 
 </head>
 
@@ -12,15 +17,11 @@
     <a href="index.html">
         <img src="/images/LogoGreen.png" id="hpLogo" alt="Logo">
     </a>
-</header>
+  </header>
 
   <main class="main">
-    <section class="photo-section-flex">
+    <section id="photo-section-flex">
       <section class="photo-section">
-        <img id="profile-photo" src="https://thumbs.dreamstime.com/z/happy-farmer-19384661.jpg">
-      </section>
-      <section class="name-section">
-        <h2 id="name">Nary Chaby</h2>
       </section>
     </section>
     <section class="button-section">
@@ -28,123 +29,7 @@
         <button class="add-field-button" onclick="addField()">Novo Terreno +</button>
       </section>
     </section>
-    <seciton class="fields-section-flex">
-      <section class="field-item">
-        <section class="item-description-flex">
-          <section class="title-cancel-section">
-            <section class="title-section">
-              <h2 class="title">Plantacao de Alfaces</h2>
-            </section>
-            <section class="cancel-section">
-              <button class="delete-field-button" onclick="deleteField()">&times;</button>
-            </section>
-          </section>
-          <section class="description-section">
-            <p class="description">A minha plantacao de alfaces de lisboa.</p>
-          </section>
-          <section class="feedback">
-            <section class="image-feedback-section">
-              <img class="feedback-image" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/farming-1487861-1260766.png">
-            </section>
-            <secion class="message-feedback-section">
-              <p class="feedback-message">Pronto a colher!</p>
-            </secion>
-          </section>
-        </section>
-      </section>
-      <section class="field-item">
-        <section class="item-description-flex">
-          <section class="title-cancel-section">
-            <section class="title-section">
-              <h2 class="title">Plantacao de Alfaces</h2>
-            </section>
-            <section class="cancel-section">
-              <button class="delete-field-button" onclick="deleteField()">&times;</button>
-            </section>
-          </section>
-          <section class="description-section">
-            <p class="description">A minha plantacao de alfaces de lisboa.</p>
-          </section>
-          <section class="feedback">
-            <section class="image-feedback-section">
-              <img class="feedback-image" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/farming-1487861-1260766.png">
-            </section>
-            <secion class="message-feedback-section">
-              <p class="feedback-message">Pronto a colher!</p>
-            </secion>
-          </section>
-        </section>
-      </section>
-      <section class="field-item">
-        <section class="item-description-flex">
-          <section class="title-cancel-section">
-            <section class="title-section">
-              <h2 class="title">Plantacao de Alfaces</h2>
-            </section>
-            <section class="cancel-section">
-              <button class="delete-field-button" onclick="deleteField()">&times;</button>
-            </section>
-          </section>
-          <section class="description-section">
-            <p class="description">A minha plantacao de alfaces de lisboa.</p>
-          </section>
-          <section class="feedback">
-            <section class="image-feedback-section">
-              <img class="feedback-image" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/farming-1487861-1260766.png">
-            </section>
-            <secion class="message-feedback-section">
-              <p class="feedback-message">Pronto a colher!</p>
-            </secion>
-          </section>
-        </section>
-      </section>
-      <section class="field-item">
-        <section class="item-description-flex">
-          <section class="title-cancel-section">
-            <section class="title-section">
-              <h2 class="title">Plantacao de Alfaces</h2>
-            </section>
-            <section class="cancel-section">
-              <button class="delete-field-button" onclick="deleteField()">&times;</button>
-            </section>
-          </section>
-          <section class="description-section">
-            <p class="description">A minha plantacao de alfaces de lisboa.</p>
-          </section>
-          <section class="feedback">
-            <section class="image-feedback-section">
-              <img class="feedback-image" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/farming-1487861-1260766.png">
-            </section>
-            <secion class="message-feedback-section">
-              <p class="feedback-message">Pronto a colher!</p>
-            </secion>
-          </section>
-        </section>
-      </section>
-      <section class="field-item">
-        <section class="item-description-flex">
-          <section class="title-cancel-section">
-            <section class="title-section">
-              <h2 class="title">Plantacao de Alfaces</h2>
-            </section>
-            <section class="cancel-section">
-              <button class="delete-field-button" onclick="deleteField()">&times;</button>
-            </section>
-          </section>
-          <section class="description-section">
-            <p class="description">A minha plantacao de alfaces de lisboa.</p>
-          </section>
-          <section class="feedback">
-            <section class="image-feedback-section">
-              <img class="feedback-image" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/farming-1487861-1260766.png">
-            </section>
-            <secion class="message-feedback-section">
-              <p class="feedback-message">Pronto a colher!</p>
-            </secion>
-          </section>
-        </section>
-      </section>
-
+    <seciton id="fields-section-flex">
     </seciton>
   </main>
 

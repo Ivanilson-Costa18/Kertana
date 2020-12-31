@@ -1,82 +1,99 @@
-body{
+body {
     font-family: 'Calibri';
     margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-h2,h1{
-    font-family: 'Calibri';
-    font-size: 20px;
-    margin: 1px;
-}
+    padding: 0px;
+  }
 
-/* The grid container */
-.grid-container{
-    display: grid;
-    grid-template-rows: 10% 70% 6%;
-    grid-template-areas:
-    'header header header header header header'
-    'main main main main main main'
-    'footer footer footer footer footer footer';
-}
 .header{
-    grid-area: header;
-    background-color:white;
-    border-bottom: 1px solid black;
     display: flex;
-
+    height: 12%;
+    border-bottom: 1px solid black;
 }
 
+#profileButton{
+    padding-right: 5%;
+    padding-top: 1.5%;
+}
 
-#hpLogo{
-    height: 40px;
+#profileButton:hover{
+    cursor: pointer;
+}
+
+.logoContainer{
+    flex: 1;
+}
+
+#logo{
+    height: 40%;
     width: auto;
-    padding-left: 20px;
+    padding-left: 20%;
     padding-top: 1%;
     padding: 25px;
 }
 
-main{
-    grid-area: main;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 100% 100%;
-    height: 100%;
-    grid-template-areas: 
-    'hortList hortList hortList mapDisplay mapDisplay mapDisplay';
-    background-color: white;
+#slotName{
     margin-top: 1%;
+    margin-left: 2.5%;
+    border: none;
+    font-size: 18px;
 }
 
+.main{
+    display: grid;
+    height: 75%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100% 100%;
+    grid-template-areas: 
+    'hort hort hort map map map';
+}
 
-.mapDisplay #map{
+.hortContainer{
     height: 100%;
     width: 100%;
 }
 
-
-#hortList{
-    margin-top:5px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    max-height: 100%;
+.mapContainer{
+    width: 100%;
+    height: 100%;
 }
 
-#hortalica-result{  
+#map{
+    width: 90%; 
+    height: 87%;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.hortList{
+    height: 85%;
+    width: 100%;
+}
+
+#addSlot{
+    background-color: #80A964;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    height: 25px;
+    width: 140px;
+    border: none;
+    border-radius: 8px 8px 8px 8px;
+    margin-top: 2%;
+    margin-left: 40%;
+}
+
+#addSlot:hover{
+    cursor: pointer;
+}
+
+.hortalica-result{  
     flex: 100%;
     display: flex;
     flex-direction: row;  
     margin-top:15px;  
-    border-top: 1px solid black;
-    padding-top: 2%;
 }
 
 #product-result{
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: thin;
-    scrollbar-color: #eceff2 #f6f7f9;
     padding-right: 2rem;
     padding-left: 2rem;
 }
@@ -116,15 +133,35 @@ main{
     background: none;
     border: none;
     font-size: 20px;
-    margin-top: 0px;
-    float: left;
-
+    text-align: right;
+    margin-right: 2%;
 }
 
 #description-result{
     grid-area: description;
     width: 100%;
     font-size: 14px;
+}
+
+.image-feedback-section{
+    display: flex;
+    flex-direction: row;
+    grid-area: feedback ;
+    height: 30px;
+    margin-left: 68%;
+
+}
+
+.feedback-image{
+    height: 30px;
+    width: auto;
+}
+
+.feedback-message{
+    height: 100%;
+    background-color: white;
+    font-size: 14px;
+    margin-left: 1%;
 }
 
 .imagem-resultado{
@@ -139,25 +176,13 @@ main{
     padding-left: 2em;
     display: grid;
     grid-template-areas: 
-    'title title title delete'
-    'description description description description';
-    grid-template-rows: 2% 2% 95%;
-    grid-template-columns: 2% 2% 95%;
+    'title delete'
+    'description description'
+    'feedback feedback';
+    grid-template-rows: 10% 60% 30%;
     vertical-align: middle;
-    flex:50%;
+    flex:100%;
 }
-
-.calculation-box {
-    height: 75px;
-    width: 150px;
-    position: absolute;
-    bottom: 40px;
-    left: 10px;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 15px;
-    text-align: center;
-}
-
 
 #button-add-product{
     background-color: #DA5418;
@@ -172,21 +197,12 @@ main{
     cursor: pointer;
     border: none; 
     margin-top: 2%;
+    margin-left: 40%;
 }
+
 
 #button-add-product:hover{
     background-color: #E04824;
     color: white;
     transition-duration: 0.6s;
-}
-
-.mapboxgl-ctrl-bottom-left{
-    display: none;
-}
-.mapboxgl-ctrl-bottom-right{
-    display: none;
-}
-
-footer{
-    grid-area: footer;
 }

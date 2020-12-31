@@ -7,7 +7,7 @@ body{
 /* The grid container */
 .grid-container{
     display: grid;
-    grid-template-rows: 13% 76% 13%;
+    grid-template-rows: 13% 74% 13%;
     grid-template-areas:
     'header header header header header header'
     'main main main main main main'
@@ -39,9 +39,10 @@ main{
     grid-template-areas: 
     "photo button"
     "photo fields";
+
 }
 
-.photo-section-flex{
+#photo-section-flex{
     grid-area: photo;
     display:flex;
     flex-direction: column;
@@ -79,6 +80,8 @@ main{
 
 .button-section{
     grid-area: button;
+    border-bottom: 1px solid black;
+
 }
 
 .button{
@@ -109,7 +112,7 @@ main{
     width: 100%;
 }
 
-.fields-section-flex{
+#fields-section-flex{
     grid-area: fields;
     display: flex;
     flex-wrap: wrap;
@@ -121,10 +124,11 @@ main{
     padding-right: 2rem;
     padding-left: 2rem;
     gap: 10% 10%;
+    border-bottom: 1px solid black;
 }
 
 
-.field-item{
+#field-item{
     flex: 20%;
     max-width: 40%;
     padding: 10px 10px;
@@ -132,6 +136,8 @@ main{
     max-height: 30%;
     border: 2px solid grey;
     border-radius: 20px 20px 20px 20px;
+    margin-top: 2%;
+    cursor:pointer;
 
 }   
 
@@ -155,7 +161,7 @@ main{
     float: left;
 }
 
-.title{
+#title{
     margin-left: 2%;
     margin-top: 1%;
 }
@@ -211,6 +217,7 @@ main{
     height: 100%;
     width: 80%;
     background-color: white;
+    margin-left: 1%;
 }
 
 .feedback-message{
@@ -218,7 +225,6 @@ main{
 }
 
 footer{
-    background-color: blue;
     height: 100%;
     width: 100%;
 }

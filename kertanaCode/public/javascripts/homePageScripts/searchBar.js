@@ -18,7 +18,7 @@ function saveLocation(){
 }}}
 
 var localizacoes = [];
-var hortalicas = [];
+var hortalicas = [];  
 var getLocationVar = [];
 var getProductVar = [];
 

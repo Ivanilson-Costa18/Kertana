@@ -8,9 +8,9 @@ router.get('/', async function(req, res, next) {
   res.send(products); 
 });
 
-router.get('/:name', async function(req, res, next) {
-  let productName = req.params.name;
-  let product =  await mProd.getProduct(productName);
+router.get('/:id', async function(req, res, next) {
+  let productID = req.params.id;
+  let product =  await mProd.getProduct(productID);
   res.send(product); 
 });
 

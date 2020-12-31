@@ -1,14 +1,14 @@
 var suitable_locations = {}
 
 window.onload = async function loadListProducts() {
-    let productName = sessionStorage.getItem("productID");
+    let productID = sessionStorage.getItem("productID");
     let product = await $.ajax({
-        url: "/api/products/"+productName,
+        url: "/api/products/"+productID,
         method: "get",
         dataType: "json"
     });
     suitable_locations = await $.ajax({
-        url: "/api/locations/storedProcedure/"+productName,
+        url: "/api/locations/storedProcedure/"+productID,
         method: 'get',
         dataType: 'json'
     }).then( value => {
@@ -32,6 +32,7 @@ map.addControl(
         let count = 0
         for (local of value[0] ){
         let coordinate = JSON.parse(local.Freguesia_Coordenadas)
+        console.log(coordinate)
         map.addSource(String(count), {
                 'type': 'geojson',
                 'data': {
@@ -75,7 +76,6 @@ map.addControl(
             if (data.features.length > 0) {
                 var area = turf.area(data);
         
-                console.log(data.features[0].geometry.coordinates);
                 createPolygon(data.features[0].geometry.coordinates).then(value => {getSoilMoisture(value);})
             } 
             else {
@@ -136,12 +136,18 @@ map.addControl(
         listProducts(product);
 })}
 
+
+function deleteResult() {
+    var elem = document.getElementById('hortalica-result');
+    elem.parentNode.removeChild(elem);
+}
+
 function listProducts(products) {
     let elemHortlist = document.getElementById("product-result");
     let html ="";
     for (let product of products) {
         html += 
-                '<section class= "hortalica-result">' +
+                '<section id= "hortalica-result">' +
                    ' <section class="imagem-hortalica">' +
                         '<section class="imagem-frame">' +
                        '     <img id="product-icon" src="'+product.Produto_Photo+'">'+
@@ -151,10 +157,10 @@ function listProducts(products) {
                        ' <p id="title-result">'+product.Produto_Nome+'</p>'+
                        '<button id="delete-product" onclick="deleteResult()">&times;</button>'+
                        ' <p id="description-result">'+product.Produto_Descricao+'</p>'+
-                   ' </section>'+
-                '</section>'+
-                '<hr style= "width: 100%; margin-bottom:20px;">';             
+                   ' </section>';
+                
     }
+
     elemHortlist.innerHTML = html;
 }
 
