@@ -1,46 +1,7 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnBnIiwiYSI6ImNraGwybDczMzFnOXcyeHA2MnM0ZWF4aDQifQ.dbfnIhEI5JJf-TV1LyEQQw';
-var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
-        center: [0,0], 
-        zoom: 15
-        });
+var map
 
-map.addControl(
-         new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            mapboxgl: mapboxgl
-         })
-        ); 
-
-var draw = new MapboxDraw({
-    displayControlsDefault: false,
-    controls: {
-        polygon: true,
-        trash: true
-    }
-    });
-map.addControl(draw);
-
-map.on('draw.create',updateArea);
-map.on('draw.delete',updateArea);
-map.on('draw.update',updateArea);
-        
-function updateArea(e) {
-var data = draw.getAll();
-
-if (data.features.length > 0) {
-    var area = turf.area(data);
-
-} 
-else {
-    if (e.type !== 'draw.delete')
-    alert('Use the draw tools to draw a polygon!');
-    }
-}
 ////////////////////////////////////// WINDOW //////////////////////////////////////////////////////
-
-
 
 coordinates2 = [];
 window.onload = async function loadPage() {
@@ -65,15 +26,56 @@ window.onload = async function loadPage() {
     }).then( value => {
         centerCoordinate = JSON.parse(value[0].Terreno_Coordenadas);
         coordinates2.push(centerCoordinate)
-        map.center = centerCoordinate.shift(0)
+
+        map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
+            center: centerCoordinate.shift(0),
+            zoom: 15
+            });
+
+            map.addControl(
+                new MapboxGeocoder({
+                   accessToken: mapboxgl.accessToken,
+                   mapboxgl: mapboxgl
+                })
+               ); 
+            
+            var draw = new MapboxDraw({
+            displayControlsDefault: false,
+            controls: {
+               polygon: true,
+               trash: true
+            }
+            });
+            map.addControl(draw);
+            
+            map.on('draw.create',updateArea);
+            map.on('draw.delete',updateArea);
+            map.on('draw.update',updateArea);
+               
+            function updateArea(e) {
+            var data = draw.getAll();
+            
+            if (data.features.length > 0) {
+            var area = turf.area(data);
+            
+            } 
+            else {
+            if (e.type !== 'draw.delete')
+            alert('Use the draw tools to draw a polygon!');
+            }
+            }
+
         map.on('load', function () {   
             for (singleCoordinates of productionCoordinates){
                 coordinates2.push(JSON.parse(singleCoordinates.Producao_Coordenadas))
                 }
         // coordinates2[0] = terreno, os seguintes sao producoes
         // nao sei fazer a condicao ... a verificar o length do array, o arr.lenght() method nao resultou
-            for (i = 0; i < 6; i++) {
-            map.addSource(String(i), {
+            let count = 0 
+            for (coordinate of coordinates2) {
+            map.addSource(String(count), {
                     'type': 'geojson',
                     'data': {
                             'type': 'FeatureCollection',
@@ -82,22 +84,23 @@ window.onload = async function loadPage() {
                                             'type': 'Feature',
                                             'geometry': {
                                                 'type': 'Polygon',
-                                                'coordinates': [coordinates2.shift()]                               
+                                                'coordinates': [coordinate]                               
                                                             }
                                                         }
                                     ]
                                 }
                             }); 
                     map.addLayer({
-                            'id': String(i),
+                            'id': String(count),
                             'type': 'fill',
-                            'source': String(i),
+                            'source': String(count),
                             'layout': {},
                             'paint': {
                                 'fill-color': '#088',
                                 'fill-opacity': 0.65
                             }
                     });
+                count++
                 }
             });
     })   
@@ -127,8 +130,10 @@ function listProducts(products) {
                             '</section>'+
                         '</section>'+
                         '<section class="imagem-description">'+
+                            '<section class="image-header">'+
                             '<p id="title-result">'+product.Produto_Nome+'</p>'+
                             '<button id="delete-product" onclick="deleteResult()">&times;</button>'+
+                            '</section>'+
                             '<p id="description-result">'+product.Produto_Descricao+'</p>'+
                             '<section class="image-feedback-section">'+
                                 '<img class="feedback-image" src="/images/colheita-feedback-icon.PNG">'+
