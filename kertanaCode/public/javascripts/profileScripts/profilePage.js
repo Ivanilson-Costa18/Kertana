@@ -1,24 +1,20 @@
 const farmerID = 1;
+var farmer = {}
+var fields = []
 window.onload = async function loadProfileData() {
-    let farmer = await $.ajax({
+    farmer = await $.ajax({
         url: "/api/farmers/"+farmerID,
         method: "get",
         dataType: "json"
     });
 
-    let fields = await $.ajax({
+    fields = await $.ajax({
         url: "/api/fields/"+farmerID,
         method: "get",
         dataType: "json"
     });
-
     loadFarmerData(farmer[0]);
     loadFieldsData(fields);
-    $( "#field-item" ).click(function() {
-        sessionSaveFieldID(fields);
-      });
-
-      
 }
 
 
@@ -39,13 +35,14 @@ function loadFarmerData(farmer){
 function loadFieldsData(fields){
     let elementFieldsData = document.getElementById("fields-section-flex");
     let html ="";
+    let count = 0
     for (let field of fields) {
     html += 
-        '<section id="field-item">' +
+        '<section class="field-item" onclick="sessionSaveFieldID('+ count +')">' +
             '<section class="item-description-flex">'+
             '<section class="title-cancel-section">'+
                 '<section class="title-section">'+
-                '<h2 id="title">'+field.Terreno_Nome+'</h2>'+
+                '<h2 class="title" id="'+count+'" >'+field.Terreno_Nome+'</h2>'+
                 '</section>'+
                 '<section class="cancel-section">'+
                 '<button class="delete-field-button" onclick="deleteField()">&times;</button>'+
@@ -64,20 +61,25 @@ function loadFieldsData(fields){
             '</section>'+
             '</section>'+
         '</section>';
-    elementFieldsData.innerHTML = html;
+        count++
     }
+    elementFieldsData.innerHTML = html;
 }
 
 
-function sessionSaveFieldID(fields){
-    let selectedFieldName = document.getElementById("title").innerText;
-    for(let field of fields){
-        console.log(field);
-        console.log(selectedFieldName);
+function sessionSaveFieldID(id){
+    let selectedFieldName = document.getElementById(id).innerText;
+    for(field of fields){
       if(field.Terreno_Nome == selectedFieldName){
-        let json = JSON.stringify(field)
+        let json = JSON.stringify(field);
         sessionStorage.setItem("field",json);
         window.location = 'slotPage.html'
-  }}}
+      }
+    }
+}
   
   
+const addField = () => {
+    sessionStorage.setItem("farmerID", farmer[0].Agricultor_ID)
+    window.location = 'createSlotPage.html'
+}

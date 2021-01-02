@@ -63,7 +63,7 @@ main{
     max-height: 100%;
 }
 
-#hortalica-result{  
+.hortalica-result{  
     flex: 100%;
     display: flex;
     flex-direction: row;  

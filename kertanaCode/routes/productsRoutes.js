@@ -14,9 +14,9 @@ router.get('/:id', async function(req, res, next) {
   res.send(product); 
 });
 
-router.get('/storedProcedure/:name', async function(req, res, next){
-  let localName = req.params.name;
-  let products = await mProd.getSuitableProducts(localName);
+router.get('/storedProcedure/:id', async function(req, res, next){
+  let localID = req.params.id;
+  let products = await mProd.getSuitableProducts(localID);
   res.send(products);
 });
 

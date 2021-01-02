@@ -128,7 +128,7 @@ main{
 }
 
 
-#field-item{
+.field-item{
     flex: 20%;
     max-width: 40%;
     padding: 10px 10px;
@@ -161,7 +161,7 @@ main{
     float: left;
 }
 
-#title{
+.title{
     margin-left: 2%;
     margin-top: 1%;
 }

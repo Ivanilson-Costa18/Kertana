@@ -6,7 +6,8 @@ body {
 
 .header{
     display: flex;
-    height: 13%;
+    height: 12%;
+    border-bottom: 1px solid black;
 }
 
 #profileButton{
@@ -23,24 +24,15 @@ body {
 }
 
 #logo{
-    padding-top: 1.5%;
-    padding-left: 5%;
-    height: 55px;
-    width: 150px;
-}
-
-.slotInfo{
-    display: flex;
-}
-
-#errMsg{
-    display: none; 
-    max-height: 1px;
-    margin-top: 0;
-    color: red;
+    height: 40%;
+    width: auto;
+    padding-left: 20%;
+    padding-top: 1%;
+    padding: 25px;
 }
 
 #slotName{
+    margin-top: 1%;
     margin-left: 2.5%;
     border: none;
     font-size: 18px;
@@ -102,10 +94,6 @@ body {
 }
 
 #product-result{
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: thin;
-    scrollbar-color: #eceff2 #f6f7f9;
     padding-right: 2rem;
     padding-left: 2rem;
 }
@@ -145,15 +133,35 @@ body {
     background: none;
     border: none;
     font-size: 20px;
-    margin-left: 0px;
-    margin-top: 0px;
-
+    text-align: right;
+    margin-right: 2%;
 }
 
 #description-result{
     grid-area: description;
     width: 100%;
     font-size: 14px;
+}
+
+.image-feedback-section{
+    display: flex;
+    flex-direction: row;
+    grid-area: feedback ;
+    height: 30px;
+    margin-left: 68%;
+
+}
+
+.feedback-image{
+    height: 30px;
+    width: auto;
+}
+
+.feedback-message{
+    height: 100%;
+    background-color: white;
+    font-size: 14px;
+    margin-left: 1%;
 }
 
 .imagem-resultado{
@@ -168,9 +176,33 @@ body {
     padding-left: 2em;
     display: grid;
     grid-template-areas: 
-    'title title title delete'
-    'description description description description';
-    grid-template-rows: 2% 2% 95%;
-    grid-template-columns: 2% 2% 95%;
+    'title delete'
+    'description description'
+    'feedback feedback';
+    grid-template-rows: 10% 60% 30%;
     vertical-align: middle;
+    flex:100%;
+}
+
+#button-add-product{
+    background-color: #DA5418;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    max-width: 20%;
+    cursor: pointer;
+    border: none; 
+    margin-top: 2%;
+    margin-left: 40%;
+}
+
+
+#button-add-product:hover{
+    background-color: #E04824;
+    color: white;
+    transition-duration: 0.6s;
 }
