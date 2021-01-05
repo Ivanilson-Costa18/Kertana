@@ -120,7 +120,7 @@ function deleteResult() {
 }
 
 function listProducts(products) {
-    let elemHortlist = document.getElementById("hortList");
+    let elemHortlist = document.getElementById("hort");
     let html ="";
     for (let product of products) {
         html += 

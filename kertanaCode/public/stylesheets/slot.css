@@ -69,6 +69,11 @@ body {
     width: 100%;
 }
 
+#hort{
+    max-height: 100%;
+    overflow-y: auto;
+}
+
 
 .hortalica-result{  
     flex: 100%;
