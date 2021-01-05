@@ -35,14 +35,13 @@ function loadFarmerData(farmer){
 function loadFieldsData(fields){
     let elementFieldsData = document.getElementById("fields-section-flex");
     let html ="";
-    let count = 0
     for (let field of fields) {
     html += 
-        '<section class="field-item" onclick="sessionSaveFieldID('+ count +')">' +
+        '<section class="field-item" onclick="sessionSaveFieldID('+ field.Terreno_ID +')">' +
             '<section class="item-description-flex">'+
             '<section class="title-cancel-section">'+
                 '<section class="title-section">'+
-                '<h2 class="title" id="'+count+'" >'+field.Terreno_Nome+'</h2>'+
+                '<h2 class="title" id="'+field.Terreno_ID+'" >'+field.Terreno_Nome+'</h2>'+
                 '</section>'+
                 '<section class="cancel-section">'+
                 '<button class="delete-field-button" onclick="deleteField()">&times;</button>'+
@@ -61,17 +60,16 @@ function loadFieldsData(fields){
             '</section>'+
             '</section>'+
         '</section>';
-        count++
     }
     elementFieldsData.innerHTML = html;
 }
 
 
 function sessionSaveFieldID(id){
-    let selectedFieldName = document.getElementById(id).innerText;
     for(field of fields){
-      if(field.Terreno_Nome == selectedFieldName){
+      if(field.Terreno_ID == id){
         let json = JSON.stringify(field);
+        console.log(field)
         sessionStorage.setItem("field",json);
         window.location = 'slotPage.html'
       }
