@@ -100,10 +100,10 @@ function loadFieldsData(fields, growthStates){
 
 
 function sessionSaveFieldID(id){
+    let selectedFieldName = document.getElementById(id).innerText;
     for(field of fields){
-      if(field.Terreno_ID == id){
+      if(field.Terreno_Nome == selectedFieldName){
         let json = JSON.stringify(field);
-        console.log(field)
         sessionStorage.setItem("field",json);
         window.location = 'slotPage.html'
       }

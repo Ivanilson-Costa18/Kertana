@@ -116,6 +116,56 @@ function listProducts(products) {
     elemHortlist.innerHTML = html;
 }
 
+///////////////////////////////////////////AGRO API///////////////////////////////////////////////////
+
+async function createPolygon(coordinates) {
+    try {
+        obj = 
+        {
+            "name":"Search Polygon",
+            "geo_json":{
+               "type":"Feature",
+               "properties":{
+         
+               },
+               "geometry":{
+                  "type":"Polygon",
+                  "coordinates":coordinates
+               }
+            }
+         }
+            let result = await $.ajax({
+            url: "http://api.agromonitoring.com/agro/1.0/polygons?appid=eaf41ee48e35adb39c24586fc8eb11c6",
+            method: "post",
+            dataType: "json",
+            data:JSON.stringify(obj),
+            contentType: "application/json"
+        });
+        console.log(JSON.stringify(result));
+        console.log(result.id);
+        return result.id;
+    } catch(err) {
+        console.log(err);
+    }
+}
+    
+
+
+async function getSoilMoisture(polygonID) {
+    try {
+            let result = await $.ajax({
+            url: "http://api.agromonitoring.com/agro/1.0/soil?polyid="+polygonID+"&appid=eaf41ee48e35adb39c24586fc8eb11c6",
+            method: "get",
+            dataType: "json"
+        });
+        soilInfo = result;
+        console.log(soilInfo.moisture);
+        return soilInfo.moisture;
+    } catch(err) {
+        console.log(err);
+    }
+}
+
  
 ////////////////////////////////////////// MODAL ///////////////////////////////////////////
 function addProductList() {
