@@ -13,8 +13,16 @@ window.onload = async function loadProfileData() {
         method: "get",
         dataType: "json"
     });
+
+    let growthStates =  await $.ajax({
+        url: "/api/productions/"+fields[0].Terreno_ID+"/growthStates",
+        method: 'get',
+        dataType: 'json'
+    });
+    console.log(growthStates)
+    console.log(fields)
     loadFarmerData(farmer[0]);
-    loadFieldsData(fields);
+    loadFieldsData(fields, growthStates);
 }
 
 
@@ -32,39 +40,63 @@ function loadFarmerData(farmer){
     elementFarmerData.innerHTML = html;
 }
 
-function loadFieldsData(fields){
+function loadFieldsData(fields, growthStates){
     let elementFieldsData = document.getElementById("fields-section-flex");
     let html ="";
-    let count = 0
+    let count = 0;
+    
     for (let field of fields) {
-    html += 
-        '<section class="field-item" onclick="sessionSaveFieldID('+ count +')">' +
-            '<section class="item-description-flex">'+
-            '<section class="title-cancel-section">'+
-                '<section class="title-section">'+
-                '<h2 class="title" id="'+count+'" >'+field.Terreno_Nome+'</h2>'+
-                '</section>'+
-                '<section class="cancel-section">'+
-                '<button class="delete-field-button" onclick="deleteField()">&times;</button>'+
-                '</section>'+
-            '</section>'+
-            '<section class="description-section">'+
-                '<p class="description">'+field.Terreno_Descricao+'</p>'+
-            '</section>'+
-            '<section class="feedback">'+
-                '<section class="image-feedback-section">'+
-                '<img class="feedback-image" src="/images/colheita-feedback-icon.PNG">'+
-                '</section>'+
-                '<secion class="message-feedback-section">'+
-                '<p class="feedback-message">Pronto a colher!</p>'+
-                '</secion>'+
-            '</section>'+
-            '</section>'+
-        '</section>';
-        count++
-    }
+        let timeLeft = 0;
+        let state = ''; 
+        let finalTimeLeft = Number.MAX_SAFE_INTEGER;
+        for (let growthState of growthStates){
+            console.log(growthState.Producao_Terreno_ID)
+            if (field.Terreno_ID == growthState.Producao_Terreno_ID){
+                timeLeft = growthState.TimeLeft;
+                        if (finalTimeLeft > timeLeft){
+                        state = growthState.EstadoCrescimento_Estado;
+                        finalTimeLeft = timeLeft; 
+                        }      
+                }
+            }
+
+                html += 
+                    '<section class="field-item" onclick="sessionSaveFieldID('+ count +')">' +
+                        '<section class="item-description-flex">'+
+                        '<section class="title-cancel-section">'+
+                            '<section class="title-section">'+
+                            '<h2 class="title" id="'+count+'" >'+field.Terreno_Nome+'</h2>'+
+                            '</section>'+
+                            '<section class="cancel-section">'+
+                            '<button class="delete-field-button" onclick="deleteField()">&times;</button>'+
+                            '</section>'+
+                        '</section>'+
+                        '<section class="description-section">'+
+                            '<p class="description">'+field.Terreno_Descricao+'</p>'+
+                        '</section>'+
+                        '<section class="feedback">'+
+                            '<section class="image-feedback-section">'+
+                            '<img class="feedback-image" src="/images/colheita-feedback-icon.PNG">'+
+                            '</section>'+
+                            '<secion class="message-feedback-section">';
+                            if(finalTimeLeft <= 0){
+                                html += '<p class="feedback-message">'+state+'</p>';
+                                } else if(finalTimeLeft == Number.MAX_SAFE_INTEGER) {
+                                    html += '<p class="feedback-message">Vazio</p>';  
+                                } else{
+                                    html += '<p class="feedback-message">'+finalTimeLeft+'</p>';
+                                }
+                            html += '</section>'+
+                            '</secion>'+
+                        '</section>'+
+                        '</section>'+
+                    '</section>';
+                    count++
+            
+        
+        }
     elementFieldsData.innerHTML = html;
-}
+    }
 
 
 function sessionSaveFieldID(id){

@@ -3,6 +3,7 @@ body{
     margin: 0;
     padding: 0;
     overflow: hidden;
+    max-height: 100%;
 }
 /* The grid container */
 .grid-container{
@@ -125,6 +126,7 @@ main{
     padding-left: 2rem;
     gap: 10% 10%;
     border-bottom: 1px solid black;
+    height: 100%;
 }
 
 

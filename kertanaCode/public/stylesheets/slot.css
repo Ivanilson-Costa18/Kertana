@@ -2,6 +2,7 @@ body {
     font-family: 'Calibri';
     margin: 0;
     padding: 0px;
+    overflow: hidden;
   }
 
 .header{
@@ -44,7 +45,7 @@ body {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 100% 100%;
     grid-template-areas: 
-    'hort hort hort map map map';
+    'hort  map';
 }
 
 .hortContainer{
@@ -67,6 +68,13 @@ body {
 .hortList{
     height: 85%;
     width: 100%;
+    overflow-y:auto;
+}
+
+#hortList-section{
+    height: 85%;
+    width: 100%;
+
 }
 
 #addSlot{
@@ -91,6 +99,8 @@ body {
     display: flex;
     flex-direction: row;  
     margin-top:15px;  
+    margin-bottom:15px;
+
 }
 
 #product-result{
@@ -123,6 +133,7 @@ body {
 #title-result{
     margin-top: 0px;
     margin-right: 0px;
+    margin-bottom:0px;
 }
 
 #delete-product{
@@ -140,6 +151,8 @@ body {
     grid-area: description;
     width: 100%;
     font-size: 14px;
+    margin-top: 0px;
+    margin-bottom:0px;
 }
 
 .image-feedback-section{

@@ -3,6 +3,7 @@ var map
 
 ////////////////////////////////////// WINDOW //////////////////////////////////////////////////////
 
+colorsArray = [];
 coordinates2 = [];
 window.onload = async function loadPage() {
     let json = sessionStorage.getItem("field");
@@ -17,7 +18,16 @@ window.onload = async function loadPage() {
         method: 'get',
         dataType: 'json'
     });
-    listProducts(products);
+
+    let growthStates =  await $.ajax({
+        url: "/api/productions/"+field.Terreno_ID+"/growthStates",
+        method: 'get',
+        dataType: 'json'
+    });
+
+    listProducts(products, growthStates);
+
+   
 
     fieldCoordinates = await $.ajax({
         url: "/api/fields/"+field.Terreno_ID,
@@ -70,11 +80,18 @@ window.onload = async function loadPage() {
         map.on('load', function () {   
             for (singleCoordinates of productionCoordinates){
                 coordinates2.push(JSON.parse(singleCoordinates.Producao_Coordenadas))
+                colorsArray.push('#088'); //Cor do terreno : Azul
+                if (singleCoordinates.Producao_EstadoCrescimento_ID == 1) // Germinacao : Vermelho
+                colorsArray.push('#e10');
+                if (singleCoordinates.Producao_EstadoCrescimento_ID == 2) // Maturacao : Amarelo
+                colorsArray.push('#ff1');
+                if (singleCoordinates.Producao_EstadoCrescimento_ID == 3) // Pronto a colher : Verde
+                colorsArray.push('#081');
                 }
-        // coordinates2[0] = terreno, os seguintes sao producoes
-        // nao sei fazer a condicao ... a verificar o length do array, o arr.lenght() method nao resultou
             let count = 0 
             for (coordinate of coordinates2) {
+                color = colorsArray[count];
+
             map.addSource(String(count), {
                     'type': 'geojson',
                     'data': {
@@ -96,7 +113,7 @@ window.onload = async function loadPage() {
                             'source': String(count),
                             'layout': {},
                             'paint': {
-                                'fill-color': '#088',
+                                'fill-color': color,
                                 'fill-opacity': 0.65
                             }
                     });
@@ -117,32 +134,46 @@ function deleteResult() {
     elem.parentNode.removeChild(elem);
 }
 
-function listProducts(products) {
-    let elemHortlist = document.getElementById("hortList");
+
+
+function listProducts(products, growthStates) {
+    let elemHortlist = document.getElementById("hortList-section");
     let html ="";
     for (let product of products) {
-        html += 
-                '<section id="product-result">'+
-                    '<section class= "hortalica-result">'+
-                        '<section class="imagem-hortalica">'+
-                            '<section class="imagem-frame">'+
-                                '<img id="product-icon" src="'+product.Produto_Photo+'">'+
+        for (let growthState of growthStates){
+            if (product.Produto_ID == growthState.Producao_Produto_ID){
+                let state = growthState.EstadoCrescimento_Estado;
+                let timeLeft = growthState.TimeLeft;
+            
+
+                html += 
+                        '<section id="product-result">'+
+                            '<section class= "hortalica-result">'+
+                                '<section class="imagem-hortalica">'+
+                                    '<section class="imagem-frame">'+
+                                        '<img id="product-icon" src="'+product.Produto_Photo+'">'+
+                                    '</section>'+
+                                '</section>'+
+                                '<section class="imagem-description">'+
+                                    '<section class="image-header">'+
+                                    '<p id="title-result">'+product.Produto_Nome+'</p>'+
+                                    '<button id="delete-product" onclick="deleteResult()">&times;</button>'+
+                                    '</section>'+
+                                    '<p id="description-result">'+product.Produto_Descricao+'</p>'+
+                                    '<section class="image-feedback-section">'+
+                                        '<img class="feedback-image" src="/images/colheita-feedback-icon.PNG">';
+                                        if(timeLeft <= 0){
+                                        html += '<p class="feedback-message">'+state+'</p>';
+                                        } else{
+                                            html += '<p class="feedback-message">'+timeLeft+'</p>';  
+                                        }
+                                    html += '</section>'+
+                                '</section>'+
                             '</section>'+
-                        '</section>'+
-                        '<section class="imagem-description">'+
-                            '<section class="image-header">'+
-                            '<p id="title-result">'+product.Produto_Nome+'</p>'+
-                            '<button id="delete-product" onclick="deleteResult()">&times;</button>'+
-                            '</section>'+
-                            '<p id="description-result">'+product.Produto_Descricao+'</p>'+
-                            '<section class="image-feedback-section">'+
-                                '<img class="feedback-image" src="/images/colheita-feedback-icon.PNG">'+
-                                '<p class="feedback-message">Pronto a colher!</p>'+
-                            '</section>'+
-                        '</section>'+
-                    '</section>'+
-                '</section>';
+                        '</section>';
                 
+            }
+        }
     }
 
     elemHortlist.innerHTML = html;

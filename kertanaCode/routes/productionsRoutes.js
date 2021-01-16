@@ -14,4 +14,11 @@ router.get('/:fieldID/coordinates', async function(req, res, next) {
   res.send(productionCoordinates); 
 });
 
+router.get('/:fieldID/growthStates', async function(req, res, next) {
+  let fieldID = req.params.fieldID;
+  let growthStates =  await mProductions.getProductionsGrowthState(fieldID);
+  res.send(growthStates); 
+});
+
+
 module.exports = router;
