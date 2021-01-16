@@ -43,7 +43,6 @@ function loadFarmerData(farmer){
 function loadFieldsData(fields, growthStates){
     let elementFieldsData = document.getElementById("fields-section-flex");
     let html ="";
-    let count = 0;
     
     for (let field of fields) {
         let timeLeft = 0;
@@ -61,12 +60,10 @@ function loadFieldsData(fields, growthStates){
             }
 
                 html += 
-                    '<section class="field-item" onclick="sessionSaveFieldID('+ count +')">' +
-                        '<section class="item-description-flex">'+
+                '<section class="field-item" onclick="sessionSaveFieldID('+ field.Terreno_ID +')">' +                        '<section class="item-description-flex">'+
                         '<section class="title-cancel-section">'+
                             '<section class="title-section">'+
-                            '<h2 class="title" id="'+count+'" >'+field.Terreno_Nome+'</h2>'+
-                            '</section>'+
+                            '<h2 class="title" id="'+field.Terreno_ID+'" >'+field.Terreno_Nome+'</h2>'+                            '</section>'+
                             '<section class="cancel-section">'+
                             '<button class="delete-field-button" onclick="deleteField()">&times;</button>'+
                             '</section>'+
@@ -91,7 +88,6 @@ function loadFieldsData(fields, growthStates){
                         '</section>'+
                         '</section>'+
                     '</section>';
-                    count++
             
         
         }
@@ -100,9 +96,8 @@ function loadFieldsData(fields, growthStates){
 
 
 function sessionSaveFieldID(id){
-    let selectedFieldName = document.getElementById(id).innerText;
     for(field of fields){
-      if(field.Terreno_Nome == selectedFieldName){
+        if(field.Terreno_ID == id){
         let json = JSON.stringify(field);
         sessionStorage.setItem("field",json);
         window.location = 'slotPage.html'

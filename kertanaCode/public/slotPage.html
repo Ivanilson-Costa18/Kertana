@@ -6,20 +6,21 @@
         <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js"></script>
         <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
         <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js"></script>
-        <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet">
         <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script>
         <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
+        <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
 
         <link rel="icon" href="/images/bar-icon.png" type="image/png" style="width: 10px; height: 15px;">
         
         <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css"/>    <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
         <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css" type="text/css"/>
-        <link rel="stylesheet" href="/stylesheets/slot.css">
+        <link rel="stylesheet" href="/stylesheets/modalSlot.css"/>
+        <link rel="stylesheet" href="/stylesheets/slot.css"/>
         <link rel="stylesheet" href="/stylesheets/headerBar.css">
 
     </head>
@@ -47,11 +48,33 @@
               <button id="button-add-product" onclick="openModal()">Adicionar Produto</button>             </section>
             <div class="mapContainer">
               <div id="map">
+                <div class="slotInfo-container">
+                  <p>Yes</p>
+                  <div id="slotInfo"></div>
               </div>
             </div>
             <script src="javascripts/slotScripts/slotPage.js"></script>
             <script src="javascripts/header/headerButtons.js"></script>
           </main>
+          <footer></footer>
+          <section id="modal">
+            <section class="modal-search">
+                    <input type="text"  id="search-container" placeholder="Search..">
+            </section>
+            <form>
+              <label for="date">Data de início:  </label><input name="date" id="date" type="date" required>
+            </form>
+            <section id="modal-buttons">
+                <section id="modal-add-button">
+                    <button id="add-button"  type="button" onclick="addProductList()">Adicionar</button>
+                </section>
+                <section id="modal-cancel-button">
+                    <button id="cancel-button"  type="button" onclick="cancelAddProduct()">Cancelar</button>
+                </section>    
+            </section>
+        </section>
+        <section id="overlay"></section>
+          <script src="javascripts/slotScripts/addHort.js"></script>
     </body>
 
 </html>

@@ -46,6 +46,7 @@ function updateArea(e) {
 const saveSlot = async () => {
     let name = document.getElementById('slotName').value
     let err = document.getElementById('errMsg')
+    let agroID = await createPolygon(updateArea())
 
     let send = await $.ajax({
         url:'api/fields/'+farmerID+'/Terreno',
@@ -54,40 +55,41 @@ const saveSlot = async () => {
         data: {
             "nome": name,
             "descricao": "Test",
-            "coordenadas": JSON.stringify(updateArea())
-        },
+            "coordenadas": JSON.stringify(updateArea()[0]),
+            "agroId": agroID
+        }
 
     })
+    alert('Successful')
     window.location = 'profilePage.html'
 }
 
-map.on('load', function () {   
-    map.addSource('slot', {
-            'type': 'geojson',
-            'data': {
-                    'type': 'FeatureCollection',
-                    'features': [
-                                    {
-                                    'type': 'Feature',
-                                    'geometry': {
-                                        'type': 'Polygon',
-                                        'coordinates': 
-                                        [
-                                        polygon  
-                                        ]
-                                            }
-                                }
-                            ]
-                    }
-            }); 
-            map.addLayer({
-                    'id': 'slot',
-                    'type': 'fill',
-                    'source': 'slot',
-                    'layout': {},
-                    'paint': {
-                        'fill-color': '#088',
-                        'fill-opacity': 0.65
-                        }
-            });
-});
+async function createPolygon(coordinates) {
+    try {
+        obj = 
+        {
+            "name":"Search Polygon",
+            "geo_json":{
+               "type":"Feature",
+               "properties":{
+         
+               },
+               "geometry":{
+                  "type":"Polygon",
+                  "coordinates":coordinates
+               }
+            }
+         }
+            let result = await $.ajax({
+            url: "http://api.agromonitoring.com/agro/1.0/polygons?appid=eaf41ee48e35adb39c24586fc8eb11c6",
+            method: "post",
+            dataType: "json",
+            data:JSON.stringify(obj),
+            contentType: "application/json"
+        });
+        return result.id;
+    } catch(err) {
+        console.log(err);
+    }
+}
+

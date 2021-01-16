@@ -8,9 +8,9 @@ router.get('/', async function(req, res, next){
 })
 
 
-router.get('/storedProcedure/:name', async function(req, res, next){
-    let productName = req.params.name;
-    let locations = await mLoc.getSuitableLocations(productName);
+router.get('/storedProcedure/:id', async function(req, res, next){
+  let productId = req.params.id;
+  let locations = await mLoc.getSuitableLocations(productId);
     res.send(locations);
   });
 

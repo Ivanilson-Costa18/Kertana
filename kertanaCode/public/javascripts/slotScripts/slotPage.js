@@ -8,6 +8,8 @@ coordinates2 = [];
 window.onload = async function loadPage() {
     let json = sessionStorage.getItem("field");
     let field = JSON.parse(json);
+    getSoilMoisture(field.Terreno_AgroAPI_ID)
+    getTemperatures(field.Terreno_AgroAPI_ID)
     let products = await $.ajax({
         url: "/api/productions/"+field.Terreno_ID+"/products",
         method: "get",
@@ -34,7 +36,7 @@ window.onload = async function loadPage() {
         method: 'get',
         dataType: 'json'
     }).then( value => {
-        centerCoordinate = JSON.parse(value[0].Terreno_Coordenadas);
+        centerCoordinate = JSON.parse(field.Terreno_Coordenadas);
         coordinates2.push(centerCoordinate)
 
         map = new mapboxgl.Map({
@@ -178,5 +180,38 @@ function listProducts(products, growthStates) {
 
     elemHortlist.innerHTML = html;
 }
+
+
+///////////////////////////////////////////AGRO API///////////////////////////////////////////////////
+
+async function getSoilMoisture(polygonID) {
+    try {
+            let result = await $.ajax({
+            url: "http://api.agromonitoring.com/agro/1.0/soil?polyid="+polygonID+"&appid=eaf41ee48e35adb39c24586fc8eb11c6",
+            method: "get",
+            dataType: "json"
+        });
+        soilInfo = result;
+        console.log(soilInfo.moisture);
+        return soilInfo.moisture;
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+async function getTemperatures(polygonID) {
+    try {
+            let result = await $.ajax({
+            url: 'http://api.agromonitoring.com/agro/1.0/weather?polyid='+polygonID+'&units=metric&appid=eaf41ee48e35adb39c24586fc8eb11c6',
+            method: "get",
+            dataType: "json"
+        });
+        weatherInfo = result.main;
+        return console.log(weatherInfo);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
 
 
