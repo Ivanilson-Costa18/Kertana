@@ -3,33 +3,15 @@ body {
     margin: 0;
     padding: 0px;
     overflow: hidden;
+
   }
 
-.header{
-    display: flex;
-    height: 12%;
-    border-bottom: 1px solid black;
-}
-
-#profileButton{
-    padding-right: 5%;
-    padding-top: 1.5%;
-}
-
-#profileButton:hover{
-    cursor: pointer;
-}
-
-.logoContainer{
-    flex: 1;
-}
-
-#logo{
-    height: 40%;
-    width: auto;
-    padding-left: 20%;
-    padding-top: 1%;
-    padding: 25px;
+.grid{
+  display: grid;
+  grid-template-rows: 9% auto;
+  grid-template-areas:
+  'header'
+  'main';
 }
 
 #slotName{
@@ -37,14 +19,17 @@ body {
     margin-left: 2.5%;
     border: none;
     font-size: 18px;
+    grid-area: name;
 }
 
 .main{
+    grid-area: main;
     display: grid;
     height: 75%;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 100% 100%;
-    grid-template-areas: 
+    grid-template-rows: 10% 100% 10 0%;
+    grid-template-areas:
+    'name name' 
     'hort  map';
 }
 

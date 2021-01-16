@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css"/>    <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
         <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css" type="text/css"/>
         <link rel="stylesheet" href="/stylesheets/slot.css">
+        <link rel="stylesheet" href="/stylesheets/headerBar.css">
 
     </head>
 
@@ -27,15 +28,15 @@
         <header class="header">
             <div class="logoContainer">
               <a href="index.html">
-                <img id='logo' src="/images/LogoGreen.png" alt="Logo">
+                <img id='logo' src="/images/Logo.png" alt="Logo">
               </a>
             </div>
             <div id="profileButton">
-              <img src="/images/profile-icon.png" alt="profileButton" style="height: 50px; width: 75px;">
+              <img src="/images/profile-icon.png" alt="profileButton"  onclick="showProfile()" style="height: 50px; width: 75px;">
             </div>
         </header>
-        <h2 id='slotName'>Nome</h2>
         <main class="main">
+          <h2 id='slotName'>Nome</h2>
             <section class="hortContainer">
               <hr style="width: 90%;">
               <div class="hortList">
@@ -49,6 +50,7 @@
               </div>
             </div>
             <script src="javascripts/slotScripts/slotPage.js"></script>
+            <script src="javascripts/header/headerButtons.js"></script>
           </main>
     </body>
 

@@ -13,27 +13,10 @@ h2,h1{
 /* The grid container */
 .grid-container{
     display: grid;
-    grid-template-rows: 10% 70% 6%;
+    grid-template-rows: 9% auto;
     grid-template-areas:
-    'header header header header header header'
-    'main main main main main main'
-    'footer footer footer footer footer footer';
-}
-.header{
-    grid-area: header;
-    background-color:white;
-    border-bottom: 1px solid black;
-    display: flex;
-
-}
-
-
-#hpLogo{
-    height: 40px;
-    width: auto;
-    padding-left: 20px;
-    padding-top: 1%;
-    padding: 25px;
+    'header'
+    'main';
 }
 
 main{

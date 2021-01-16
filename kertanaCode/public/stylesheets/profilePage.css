@@ -8,27 +8,13 @@ body{
 /* The grid container */
 .grid-container{
     display: grid;
-    grid-template-rows: 13% 74% 13%;
+    grid-template-rows: 9% auto;
     grid-template-areas:
-    'header header header header header header'
-    'main main main main main main'
-    'footer footer footer footer footer footer';
-}
-.header{
-    grid-area: header;
-    background-color:white;
-    border-bottom: 1px solid black;
-    display: flex;
-
+    'header'
+    'main'
+    'footer';
 }
 
-#hpLogo{
-    height: 40%;
-    width: auto;
-    padding-left: 20%;
-    padding-top: 1%;
-    padding: 25px;
-}
 
 
 main{
