@@ -3,174 +3,242 @@ body {
     margin: 0;
     padding: 0px;
     overflow: hidden;
+    max-width:100%;
+    max-height:100%;
+    background-color:#f8f9fa;
 
   }
 
 .grid{
   display: grid;
-  grid-template-rows: 9% auto;
+  grid-template-rows: 9% 91%;
   grid-template-areas:
   'header'
   'main';
-}
-
-#slotName{
-    margin-top: 1%;
-    margin-left: 2.5%;
-    border: none;
-    font-size: 18px;
-    grid-area: name;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .main{
     grid-area: main;
     display: grid;
-    height: 75%;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 10% 100% 10 0%;
+    max-height: 100%;
+    grid-template-columns: 45% 55%;
     grid-template-areas:
-    'name name' 
-    'hort  map';
+    'products-section map-section';
 }
 
-.hortContainer{
-    height: 100%;
-    width: 100%;
-}
 
-.mapContainer{
-    width: 100%;
-    height: 100%;
-}
+/*------------------------------Products Section */
 
-#map{
-    width: 90%; 
-    height: 87%;
-    margin-top: 2%;
-    margin-left: 2%;
-}
-
-.hortList{
-    height: 85%;
-    width: 100%;
-    overflow-y:auto;
-}
-
-#hortList-section{
-    height: 85%;
-    width: 100%;
-
-}
-
-.hortalica-result{  
-    flex: 100%;
+#products-list-section{
+    grid-area: products-section;
+    max-width:100%;
+    max-height:100%;
+    background-color: white;
+    margin: 4%;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: row;  
-    margin-top:15px;  
-    margin-bottom:15px;
-
+    flex-direction: column;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #eceff2 #f6f7f9;
 }
 
 #product-result{
-    padding-right: 2rem;
-    padding-left: 2rem;
+    margin-bottom: 2%;
+    height: 25%;
+    max-height:25%;
+
 }
 
-#product-icon{
-    height: 120px;
-    width: 120px;
-    object-fit: cover;
-    border-radius: 10px 10px 10px 10px ;
+#hortalica-result{
+    max-width:100%;
+    max-height:100%;
+    display: grid;
+    grid-template-areas:
+        'image title delete'
+        'image description description'
+        'image feedback feedback'
+        'separation separation separation';
+    grid-template-rows: 25% 55% 15% 5%;
+    grid-template-columns: 30% 60% 10%;
+    height: 100%;
+    width: 100%;
 }
 
-.imagem-hortalica{
+#image-product-section{
+    grid-area: image;
+    border-radius: 10px 10px 10px 10px;
     background-color: lawngreen;
-    border-radius: 10px 10px 10px 10px ;
-    justify-content: center;
-    height: 120px;
-    width: 120px;
-    display: flex;
-    align-items: center;
+    margin: 9%;
+    max-height: 85%;
+    max-width: 75%;
+    vertical-align: middle;
+    background-size: cover;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
 }
 
-.image-frame{
-    max-height: 180px;
-    max-width: 180px;
+#image-icon{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px 10px 10px 10px;
+    height: 100%;
+    width: 100%;
 }
 
-#title-result{
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom:0px;
+#title-section{
+    max-width: 30%;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+    max-height: 100%;
+
+}
+
+#remove-product-button-section{
+    grid-area: delete;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 #delete-product{
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 10%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#product-description-section{
+    grid-area: description;
+    max-height: 100%;
+    font-size: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #eceff2 #f6f7f9;
+}
+
+#description-result{
+    margin-right: 10%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+#feedback-section{
+    max-width: 100%;
+    max-height: 100%;
+    grid-area: feedback;
+    margin-right: 10%;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+}
+
+#feedback-image-section{
+    flex: 3;
+    place-self: center;
+    text-align: right;
+    margin-right: 1%;
+}
+
+#feedback-image{
+    height: 50%;
+}
+
+
+#feedback-message-section{
     flex: 1;
+}
+
+#feedback-message{
+    margin: 0;
+    margin-top: 3%;
+}
+
+
+#separation{
+    grid-area: separation;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/*------------------------------------*/
+
+
+/*------------------------------Field Section */
+
+#map-section-grid{
+    grid-area: map-section;
+    display:grid;
+    background-color: green;
+    max-width:100%;
+    background-color: white;
+    margin: 3.3%;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
+    grid-template-areas:
+    'map map map'
+    'add-product add-product add-product'
+    'soil-info climate-info size-coord';
+    grid-template-rows: 60% 10% 30%;
+    grid-template-columns: 35% 35% 20%;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#map{
+    grid-area: map;
+    margin-left: 12%;
+    margin-top: 3%;
+}
+
+#add-product-button-section{
+    grid-area: add-product;
+    justify-self: center;
+}
+
+#button-add-product{
     cursor: pointer;
     outline: none;
     background: none;
     border: none;
-    font-size: 20px;
-    text-align: right;
-    margin-right: 2%;
-}
-
-#description-result{
-    grid-area: description;
-    width: 100%;
-    font-size: 14px;
-    margin-top: 0px;
-    margin-bottom:0px;
-}
-
-.image-feedback-section{
-    display: flex;
-    flex-direction: row;
-    grid-area: feedback ;
-    height: 30px;
-    margin-left: 68%;
-
-}
-
-.feedback-image{
-    height: 30px;
-    width: auto;
-}
-
-.feedback-message{
-    background-color: white;
-    font-size: 14px;
-    margin-left: 1%;
-}
-
-.imagem-resultado{
-    display: table-cell;
-    vertical-align: middle;
-    max-height: 180px;
-    max-width: 180px;
-
-}
-
-.imagem-description{
-    padding-left: 2em;
-}
-
-#button-add-product{
-    background-color: #DA5418;
-    border: none;
+    font-size: 17px;
     color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    max-width: 20%;
-    cursor: pointer;
-    border: none; 
-    margin-top: 2%;
-    margin-left: 40%;
+    border-radius: 15px 15px 15px 15px;
+    height: 70%;
+    width: 120%;
+    margin-top: 10%;
+    margin-left: 15%;
+    background-color: #DA5418;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
 }
-
 
 #button-add-product:hover{
     background-color: #E04824;
@@ -178,18 +246,29 @@ body {
     transition-duration: 0.6s;
 }
 
-.image-header{
-    display: flex;
+#field-info-soil-section{
+    grid-area: soil-info;
+    margin-left: 15%;
 }
 
-.slotInfo-container {
-    height: 75px;
-    width: 150px;
-    position: absolute;
-    bottom: 40px;
-    left: 10px;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 15px;
-    text-align: center;
-    z-index: 10;
-    }
+#field-info-climate-section{
+    grid-area: climate-info;
+    margin-left: 15%;
+}
+
+#info-title{
+    margin-bottom: 0px;
+}
+
+#first-paragraph{
+    margin-top: 0px;
+}
+
+#field-size-coord-section{
+    grid-area: size-coord;
+    margin-left: 6%;
+
+}
+
+/*------------------------------------*/
+

@@ -2,175 +2,249 @@ body {
     font-family: 'Calibri';
     margin: 0;
     padding: 0px;
+    overflow: hidden;
+    max-width:100%;
+    max-height:100%;
+    background-color:#f8f9fa;
+
   }
 
-.header{
-    display: flex;
-    height: 13%;
-}
-
-#profileButton{
-    padding-right: 5%;
-    padding-top: 1.5%;
-}
-
-#profileButton:hover{
-    cursor: pointer;
-}
-
-.logoContainer{
-    flex: 1;
-}
-
-#logo{
-    padding-top: 1.5%;
-    padding-left: 5%;
-    height: 55px;
-    width: 150px;
-}
-
-.slotInfo{
-    display: flex;
-}
-
-#errMsg{
-    display: none; 
-    max-height: 1px;
-    margin-top: 0;
-    color: red;
-}
-
-#slotName{
-    margin-left: 2.5%;
-    border: none;
-    font-size: 18px;
+.grid{
+  display: grid;
+  grid-template-rows: 9% 91%;
+  grid-template-areas:
+  'header'
+  'main';
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .main{
+    grid-area: main;
     display: grid;
-    height: 75%;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 100% 100%;
-    grid-template-areas: 
-    'hort hort hort map map map';
+    max-height: 100%;
+    grid-template-columns: 45% 55%;
+    grid-template-areas:
+    'products-section map-section';
 }
 
-.hortContainer{
-    height: 100%;
-    width: 100%;
-}
+/*------------------------------Products Section */
 
-.mapContainer{
-    width: 100%;
-    height: 100%;
-}
 
-#map{
-    width: 90%; 
-    height: 87%;
-    margin-top: 2%;
-    margin-left: 2%;
-}
 
-.hortList{
-    height: 85%;
-    width: 100%;
-}
-
-#addSlot{
-    background-color: #80A964;
-    text-align: center;
-    font-size: 20px;
-    color: white;
-    height: 25px;
-    width: 140px;
-    border: none;
-    border-radius: 8px 8px 8px 8px;
-    margin-top: 2%;
-    margin-left: 40%;
-}
-
-#addSlot:hover{
-    cursor: pointer;
-}
-
-.hortalica-result{  
-    flex: 100%;
+#products-list-section{
+    grid-area: products-section;
+    max-width:100%;
+    max-height:100%;
+    background-color: white;
+    margin: 4%;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: row;  
-    margin-top:15px;  
-}
-
-#product-result{
+    flex-direction: column;
     overflow-y: auto;
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: #eceff2 #f6f7f9;
-    padding-right: 2rem;
-    padding-left: 2rem;
 }
 
-#product-icon{
-    height: 120px;
-    width: 120px;
-    object-fit: cover;
-    border-radius: 10px 10px 10px 10px ;
+#product-result{
+    margin-bottom: 2%;
+    height: 25%;
+    max-height:25%;
+
 }
 
-.imagem-hortalica{
+#hortalica-result{
+    max-width:100%;
+    max-height:100%;
+    display: grid;
+    grid-template-areas:
+        'image title delete'
+        'image description description'
+        'image feedback feedback'
+        'separation separation separation';
+    grid-template-rows: 25% 55% 15% 5%;
+    grid-template-columns: 30% 60% 10%;
+    height: 100%;
+    width: 100%;
+}
+
+#image-product-section{
+    grid-area: image;
+    border-radius: 10px 10px 10px 10px;
     background-color: lawngreen;
-    border-radius: 10px 10px 10px 10px ;
-    justify-content: center;
-    height: 120px;
-    width: 120px;
-    display: flex;
-    align-items: center;
+    margin: 9%;
+    max-height: 85%;
+    max-width: 75%;
+    vertical-align: middle;
+    background-size: cover;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
 }
 
-.image-frame{
-    max-height: 180px;
-    max-width: 180px;
+#image-icon{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px 10px 10px 10px;
+    height: 100%;
+    width: 100%;
 }
 
-#title-result{
-    grid-area: title;
-    margin-top: 0px;
-    margin-right: 0px;
+#title-section{
+    max-width: 30%;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+    max-height: 100%;
+
+}
+
+#remove-product-button-section{
+    grid-area: delete;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 #delete-product{
-    grid-area: delete;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 10%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#product-description-section{
+    grid-area: description;
+    max-height: 100%;
+    font-size: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #eceff2 #f6f7f9;
+}
+
+#description-result{
+    margin-right: 10%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+#feedback-section{
+    max-width: 100%;
+    max-height: 100%;
+    grid-area: feedback;
+    margin-right: 10%;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+}
+
+#feedback-image-section{
+    flex: 3;
+    place-self: center;
+    text-align: right;
+    margin-right: 1%;
+}
+
+#feedback-image{
+    height: 50%;
+}
+
+
+#feedback-message-section{
+    flex: 1;
+}
+
+#feedback-message{
+    margin: 0;
+    margin-top: 3%;
+}
+
+
+#separation{
+    grid-area: separation;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/*------------------------------------*/
+
+
+/*------------------------------Field Section */
+
+#map-section-grid{
+    grid-area: map-section;
+    display:grid;
+    background-color: green;
+    max-width:100%;
+    background-color: white;
+    margin: 3.3%;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
+    grid-template-areas:
+    'instruction instruction instruction'
+    'map map map'
+    'add-product add-product add-product';
+    grid-template-rows: 10% 80% 20%;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#map{
+    grid-area: map;
+    margin: 2%;
+    margin-top: 0px;
+}
+
+#button-modal-section{
+    grid-area: add-product;
+    justify-self: center;
+}
+
+#button-modal{
     cursor: pointer;
     outline: none;
     background: none;
     border: none;
-    font-size: 20px;
-    margin-left: 0px;
-    margin-top: 0px;
-
+    font-size: 17px;
+    color: white;
+    border-radius: 15px 15px 15px 15px;
+    height: 35%;
+    width: 140%;
+    background-color: #DA5418;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
 }
 
-#description-result{
-    grid-area: description;
-    width: 100%;
-    font-size: 14px;
+#button-modal:hover{
+    background-color: #E04824;
+    color: white;
+    transition-duration: 0.6s;
 }
 
-.imagem-resultado{
-    display: table-cell;
-    vertical-align: middle;
-    max-height: 180px;
-    max-width: 180px;
-
-}
-
-.imagem-description{
-    padding-left: 2em;
-    display: grid;
-    grid-template-areas: 
-    'title title title delete'
-    'description description description description';
-    grid-template-rows: 2% 2% 95%;
-    grid-template-columns: 2% 2% 95%;
-    vertical-align: middle;
+#instruction-product{
+    margin-left: 5%;
+    font-size: 1.1em;
 }

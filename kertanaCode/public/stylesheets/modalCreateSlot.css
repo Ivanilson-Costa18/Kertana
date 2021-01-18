@@ -1,0 +1,130 @@
+#modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* it centers the container*/
+    transition: 200ms ease-in-out;
+    border: 1px solid rgb(0, 0, 0, 0.5);  
+    z-index: 10; /* we want our modal do draw above everything else*/
+    background-color: white;
+    width: 480px;
+    height: 300px;
+    max-width: 80%;
+    display: grid;
+    grid-template-areas:
+    'name close'
+    'description description'
+    'button button';
+    grid-template-rows: 30% 50% 20%;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1)
+}
+
+h4{
+    margin-bottom: 3%;
+
+}
+
+#name-section{
+    grid-area: name;
+    margin-left: 5%;
+}
+
+#slotName{
+    height: 30%;
+    width: 70%;
+}
+
+#cancel-button-section{
+    grid-area: close;
+}
+
+#delete-product{
+    float: right;
+    margin-right: 6%;
+    cursor: pointer;
+    outline: none;
+    background: none;
+    border: none;
+}
+
+#description-section{
+    grid-area: description;
+    margin-left: 4%;
+}
+
+#slotDescription{
+    height: 50%;
+    width: 70%;
+}
+
+#button-field-creation-section{
+    grid-area: button;
+    justify-self: center;
+
+}
+
+#button-field-creation{
+    cursor: pointer;
+    outline: none;
+    background: none;
+    border: none;
+    font-size: 17px;
+    color: white;
+    border-radius: 15px 15px 15px 15px;
+    height: 70%;
+    width: 140%;
+    margin-left: -15%;
+    background-color: #DA5418;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+#button-field-creation:hover{
+    background-color: #E04824;
+    color: white;
+    transition-duration: 0.6s;
+}
+
+
+
+
+
+/*------------------------------Modal Activation */
+
+
+#modal.active{
+  transform: translate(-50%, -50%) scale(1);
+}
+
+
+#overlay{
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgb(0,0,0,0.5);
+    pointer-events: none;
+    transition: 200ms ease-in-out;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+
+  
+

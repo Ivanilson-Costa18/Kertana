@@ -45,16 +45,16 @@ function updateArea(e) {
 
 const saveSlot = async () => {
     let name = document.getElementById('slotName').value
-    let err = document.getElementById('errMsg')
+    let description = document.getElementById('slotDescription').value
     let agroID = await createPolygon(updateArea())
-
+    console.log(agroID)
     let send = await $.ajax({
         url:'api/fields/'+farmerID+'/Terreno',
         method: 'post',
         dataType: 'json',
         data: {
             "nome": name,
-            "descricao": "Test",
+            "descricao": description,
             "coordenadas": JSON.stringify(updateArea()[0]),
             "agroId": agroID
         }

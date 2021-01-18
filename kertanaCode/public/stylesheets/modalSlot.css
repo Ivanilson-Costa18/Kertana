@@ -4,36 +4,70 @@
     left: 50%;
     transform: translate(-50%, -50%) scale(0); /* it centers the container*/
     transition: 200ms ease-in-out;
-    border: 1px solid black;
-    border-radius: 10px;
+    border: 1px solid rgb(0, 0, 0, 0.5);  
     z-index: 10; /* we want our modal do draw above everything else*/
     background-color: white;
-    width: 400px;
+    width: 600px;
+    height: 450px;
     max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1)
 }
+
 
 #modal.active{
   transform: translate(-50%, -50%) scale(1);
 }
 
-.modal-search{
-    padding: 10px 15px;
-    justify-content: center;
-    align-items: center;
+
+#name-cancel-button-section{
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+}
+
+#name-section{
+  flex: 1;
+  margin-left: 5%;
+}
+
+#cancel-button-section{
+  align-self: center;
+  margin-right: 5%;
+  font-size: 20px;
 }
 
 
+
+.modal-search{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+
+#label-search{
+  flex: 1;
+}
+
+
+
 #search-container{
-  padding: 6px;
+  padding: 2px;
   margin-top: 12px;
-  background: #ddd;
   font-size: 17px;
-  border-radius: 5px 5px 5px 5px;
-  text-align: center;
-  background-color: #CFEAC3;
-  border-color: #252525;
-  display: block;
-  margin-left: 10%;
+  background-color: white;
+  border: 1px solid rgb(0, 0, 0, 0.5);  
+  flex: 1;
 }
  
 #search-container:after {
@@ -56,21 +90,25 @@ input {
   
  
   form{
-    height: 150px;
     border: none;
-    max-height: 80%;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: thin;
-    scrollbar-color: #eceff2 #f6f7f9;
     padding-right: 2rem;
     padding-left: 2rem;
-    margin-top: 80px;
+    display: flex;
+    margin-top: 5%;
+  }
+
+  #date-label{
+    margin-right: 2%;
+    margin-top: 1%;
+  }
+
+  #date{
+    width: 30%;  
   }
   
   #search-result{
     cursor:pointer;
-    background-color: #C3E4B4;  
+    background-color: white;  
     padding: 5px;
     margin: 5px;
     color: rgb(0,0,0,0.5);
@@ -79,41 +117,39 @@ input {
   #search-result:hover{
   background-color: #87CA68;
   color: #252525;
+
+
   }
-  #modal-buttons{ 
-    display: flex;
-    flex-direction: row;
-    padding: 10px 15px;
-    justify-content: space-between;
-    align-items: center;
+  #modal-add-button-section{
+    height: 100%;
+    align-self: center;
+    margin-top: 180px;
+    border-top: 1px solid rgb(0,0,0,0.5);
+    width: 100%;
   }
 
   #add-button{
-    background-color: #E04824;
+    cursor: pointer;
+    outline: none;
+    background: none;
     border: none;
+    font-size: 17px;
     color: white;
-    padding: 15px 22px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    margin-left: 20px;
+    border-radius: 15px 15px 15px 15px;
+    height: 50%;
+    margin-left: 35%;
+    margin-top: 2%;
+    width: 30%;
+    background-color: #DA5418;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
   }
 
-  #cancel-button{
-    background-color: white;
-    color: #E04824;
-    padding: 15px 22px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    border-color: #E04824;
-    margin-right: 20px;
-
-  }
 
   #overlay{
     position: fixed;
@@ -136,12 +172,11 @@ input {
     position: absolute;
     border: none;
     width: 95%;
-    height: 50%;
+    height: 40%;
     overflow-y: scroll;
-    /*position the autocomplete items to be the same width as the container:*/
-    top: 20%;
     font-size: 20;
     text-align: center;
+    margin-bottom: -40%;
   }
   
   .search-container-items div {
@@ -149,9 +184,8 @@ input {
     margin-right: 26%;
     padding: 5px;
     cursor: pointer;
-    background-color:#87CA68; 
-    margin-bottom: 5px;
-    border-radius: 25px  25px 25px 25px;
+    background-color: white;
+    border: 1px solid rgb(0, 0, 0, 0.5);
 
   }
   
@@ -165,5 +199,26 @@ input {
   }
 
   #date{
-      border: 1px solid #87CA68;
+    border: 1px solid rgb(0, 0, 0, 0.5);  
   }
+
+  #search-containersearch-container-list{
+    position: absolute;
+    width: 95%;
+    border: 1px solid rgb(0, 0, 0, 0.5);
+    height: 35%;
+    overflow-y: scroll;
+    font-size: 20;
+    text-align: center;
+    margin-bottom: -36%;
+  }
+
+  .search-container-items div {
+    padding: 5px;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid rgb(0, 0, 0, 0.5);
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+

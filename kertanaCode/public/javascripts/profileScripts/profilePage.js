@@ -27,21 +27,32 @@ window.onload = async function loadProfileData() {
 
 
 function loadFarmerData(farmer){
-    let elementFarmerData = document.getElementById("photo-section-flex");
+    let elementFarmerData = document.getElementById("farmer-section-flex");
     let html ="";
     html += 
     '<section class="photo-section">'+
-        '<img id="profile-photo" src="'+farmer.Agricultor_Photo+'">'+
+        '<img id="photo" src="https://thispersondoesnotexist.com/image">'+ //'+farmer.Agricultor_Photo+'
     '</section>'+
     '<section class="name-section">'+
-        '<h2 id="name">'+farmer.Agricultor_PrimeiroNome+' '+farmer.Agricultor_UltimoNome+'</h2>'+
+        '<p id="greetings">Olá</p>'+
+        '<p id="name"><b>'+farmer.Agricultor_PrimeiroNome+' '+farmer.Agricultor_UltimoNome+'</b></p>'+
+    '</section>'+
+    '<section class="add-field-button-section">'+
+        '<input type="button" class="add-field-button" value="+ Adicionar Terreno" onclick="addField()"></input>'+
+    '</section>'+
+    '<section id="field-info-section">'+
+        '<p id="field-info-plantation">Plantações <b>X</b></p>'+
+        '<p id="field-info-harvest">Colheitas <b>X</b></p>'+
+        '<p id="field-info">Histórico Plantações:'+
+        '<br>'+
+        '<b>X</b> Produto1 · <b>X</b> Produto2 · <b>X</b> Produto3</p>'+
     '</section>';
 
     elementFarmerData.innerHTML = html;
 }
 
 function loadFieldsData(fields, growthStates){
-    let elementFieldsData = document.getElementById("fields-section-flex");
+    let elementFieldsData = document.getElementById("field-items-section");
     let html ="";
     
     for (let field of fields) {
@@ -60,34 +71,33 @@ function loadFieldsData(fields, growthStates){
             }
 
                 html += 
-                '<section class="field-item" onclick="sessionSaveFieldID('+ field.Terreno_ID +')">' +                        '<section class="item-description-flex">'+
-                        '<section class="title-cancel-section">'+
-                            '<section class="title-section">'+
-                            '<h2 class="title" id="'+field.Terreno_ID+'" >'+field.Terreno_Nome+'</h2>'+                            '</section>'+
-                            '<section class="cancel-section">'+
-                            '<button class="delete-field-button" onclick="deleteField()">&times;</button>'+
-                            '</section>'+
+                '<section class="field-item" onclick="sessionSaveFieldID('+ field.Terreno_ID +')">' +
+                    '<section id="title-section">'+                        
+                        '<h2 class="title" id="'+field.Terreno_ID+'" >'+field.Terreno_Nome+'</h2>'+                            
+                    '</section>'+
+                    '<section id="delete-field-button-section">'+
+                        '<input type="button" class="delete-field-button" value="&times;" onclick="deleteField()"></input>'+
+                    '</section>'+
+                    '<section id="description-section">'+
+                        '<p class="description">'+field.Terreno_Descricao+'</p>'+
+                    '</section>'+
+                    '<section id="feedback-section">'+
+                        '<section id="feedback-image-section">'+
+                            '<img class="feedback-image" src="/images/feedback-status-ready.PNG">'+
                         '</section>'+
-                        '<section class="description-section">'+
-                            '<p class="description">'+field.Terreno_Descricao+'</p>'+
-                        '</section>'+
-                        '<section class="feedback">'+
-                            '<section class="image-feedback-section">'+
-                            '<img class="feedback-image" src="/images/colheita-feedback-icon.PNG">'+
-                            '</section>'+
-                            '<secion class="message-feedback-section">';
+                        '<section id="feedback-message-section">';
                             if(finalTimeLeft <= 0){
-                                html += '<p class="feedback-message">'+state+'</p>';
-                                } else if(finalTimeLeft == Number.MAX_SAFE_INTEGER) {
-                                    html += '<p class="feedback-message">Vazio</p>';  
-                                } else{
-                                    html += '<p class="feedback-message">'+finalTimeLeft+'</p>';
-                                }
-                            html += '</section>'+
-                            '</secion>'+
+                                html += '<p id="feedback-message">'+state+'</p>';
+                            } else if(finalTimeLeft == Number.MAX_SAFE_INTEGER) {
+                                html += '<p id="feedback-message">Vazio</p>';  
+                            } else{
+                                html += '<p id="feedback-message">'+finalTimeLeft+'</p>';
+                            }
+                                html +=
                         '</section>'+
-                        '</section>'+
-                    '</section>';
+                    '</section>'+
+                '</section>';
+                
             
         
         }

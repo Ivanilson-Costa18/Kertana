@@ -36,43 +36,65 @@
               <img src="/images/profile-icon.png" alt="profileButton"  onclick="showProfile()" style="height: 50px; width: 75px;">
             </div>
         </header>
+
         <main class="main">
-          <h2 id='slotName'>Nome</h2>
-            <section class="hortContainer">
-              <hr style="width: 90%;">
-              <div class="hortList">
-                <section id="hortList-section">
-                </section>
-              </div>
-              <hr style="width: 90%;">
-              <button id="button-add-product" onclick="openModal()">Adicionar Produto</button>             </section>
-            <div class="mapContainer">
+
+            <section id="products-list-section">
+            </section>
+
+            <div id="map-section-grid">
               <div id="map">
-                <div class="slotInfo-container">
-                  <p>Yes</p>
-                  <div id="slotInfo"></div>
               </div>
+              <div id="add-product-button-section">
+                <input type="button" id="button-add-product" value="+ Adicionar Produto" onclick=openModal()></input>
+              </section>
+              </div>
+              <div id="field-info-soil-section">
+                <h2 id="info-title">Informação do Solo</h2>
+                <p id="first-paragraph"><b>t10</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.1º</p>
+                <p><b>t0</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10.6º</p>
+                <p><b>Humidade</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.856 m³/m³</p>
+              </div>
+              <div id="field-info-climate-section">
+                <h2 id="info-title">Informação do Clima</h2>
+                <p id="first-paragraph"><b>Vento</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.7 m/s,(360)</p>
+                <p><b>Pressão</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1005 hPa</p>
+                <p><b>Humidade</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;49%</p>
+                <p><b>Nuvens</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0%</p>
+              </div>
+              <div id="field-size-coord-section">
+                <h3>Tamanho (hectare)</h3>
+                <p>31.97019</p>                
+                <h3>Lat/Long</h3>
+                <p>-7.387359, 39.36488</p>
+
             </div>
+
             <script src="javascripts/slotScripts/slotPage.js"></script>
             <script src="javascripts/header/headerButtons.js"></script>
           </main>
-          <footer></footer>
+
           <section id="modal">
-            <section class="modal-search">
-                    <input type="text"  id="search-container" placeholder="Search..">
+            <section id="name-cancel-button-section">
+              <section id="name-section">
+                <h3 id="modal-title">Novo Terreno</h3>
+              </section>
+              <section id="cancel-button-section">
+                <input type="button" id="delete-product" value="&times;" onclick="cancelAddProduct()"></input>
+              </section>
             </section>
             <form>
-              <label for="date">Data de início:  </label><input name="date" id="date" type="date" required>
+              <label id="date-label" for="date">Data de início: </label>
+              <input name="date" id="date" type="date" required>
             </form>
-            <section id="modal-buttons">
-                <section id="modal-add-button">
-                    <button id="add-button"  type="button" onclick="addProductList()">Adicionar</button>
-                </section>
-                <section id="modal-cancel-button">
-                    <button id="cancel-button"  type="button" onclick="cancelAddProduct()">Cancelar</button>
-                </section>    
+            <section class="modal-search">
+              <p id="label-search">Produtos aptos para cultivo no terreno </p>
+              <input type="text"  id="search-container" placeholder="Ex: Tomate">
             </section>
-        </section>
+            <section id="modal-add-button-section">
+                <input id="add-button"  type="button" value="+ Adicionar Produto" onclick="addProductList()"></input>   
+            </section>
+          </section>
         <section id="overlay"></section>
           <script src="javascripts/slotScripts/addHort.js"></script>
     </body>

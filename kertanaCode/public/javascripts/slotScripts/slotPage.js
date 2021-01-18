@@ -139,7 +139,7 @@ function deleteResult() {
 
 
 function listProducts(products, growthStates) {
-    let elemHortlist = document.getElementById("hortList-section");
+    let elemHortlist = document.getElementById("products-list-section");
     let html ="";
     for (let product of products) {
         for (let growthState of growthStates){
@@ -150,26 +150,34 @@ function listProducts(products, growthStates) {
 
                 html += 
                         '<section id="product-result">'+
-                            '<section class= "hortalica-result">'+
-                                '<section class="imagem-hortalica">'+
-                                    '<section class="imagem-frame">'+
-                                        '<img id="product-icon" src="'+product.Produto_Photo+'">'+
-                                    '</section>'+
+                            '<section id= "hortalica-result">'+
+                                '<section id="image-product-section">'+
+                                    '<img id="image-icon" src="'+product.Produto_Photo+'">'+
                                 '</section>'+
-                                '<section class="imagem-description">'+
-                                    '<section class="image-header">'+
-                                    '<p id="title-result">'+product.Produto_Nome+'</p>'+
-                                    '<button id="delete-product" onclick="deleteResult()">&times;</button>'+
-                                    '</section>'+
+                                '<section id="title-section">'+
+                                    '<h3 id="title-result">'+product.Produto_Nome+'</h3>'+
+                                '</section>'+
+                                '<section id="remove-product-button-section">'+
+                                    '<input type="button" id="delete-product" value="&times;" onclick="deleteResult()"></input>'+
+                                '</section>'+   
+                                '<section id="product-description-section">'+
                                     '<p id="description-result">'+product.Produto_Descricao+'</p>'+
-                                    '<section class="image-feedback-section">'+
-                                        '<img class="feedback-image" src="/images/colheita-feedback-icon.PNG">';
-                                        if(timeLeft <= 0){
-                                        html += '<p class="feedback-message">'+state+'</p>';
-                                        } else{
-                                            html += '<p class="feedback-message">'+timeLeft+'</p>';  
-                                        }
-                                    html += '</section>'+
+                                '</section>'+
+                                '<section id="feedback-section">'+
+                                    '<section id="feedback-image-section">'+
+                                    '<img id="feedback-image" src="/images/feedback-status-ready.PNG">'+
+                                    '</section>'+
+                                    '<section id="feedback-message-section">';
+                                    if(timeLeft <= 0){
+                                        html += '<p id="feedback-message">'+state+'</p>';
+                                    } else{
+                                        html += '<p id="feedback-message">'+timeLeft+' (dias)</p>';  
+                                    }
+                                    html += 
+                                '</section>'+
+                                '</section>'+
+                                '<section id="separation">'+
+                                    '<hr style= "width: 90%; margin-bottom:20px;">'+
                                 '</section>'+
                             '</section>'+
                         '</section>';
