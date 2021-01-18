@@ -40,6 +40,8 @@ const polygonIsChild = (pol1, pol2) => {
 
 function updateArea(e) {
     data = draw.getAll();
+    console.log(turf.area(data))
+    console.log(turf.booleanContains())
     return data.features[0].geometry.coordinates
 }
 

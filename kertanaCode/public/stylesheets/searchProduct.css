@@ -1,0 +1,197 @@
+body{
+    font-family: 'Calibri';
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+h2{
+    margin-block-start: 2px;
+    text-align: center;
+    font-size: 22;
+}
+
+p:first-child{
+    text-align: center;
+    margin-block-start: 2px;  
+}
+
+p{
+    margin-left: 5%;
+    font-size: 18;
+}
+
+
+.header{
+    height: 10%;
+    background-color:#6cbe45;
+    display: flex;
+}
+
+
+#hpLogo{
+    margin-top: -7%;
+    height: 40px;
+    width: auto;
+    padding: 25px;
+}
+
+#button{
+    background-color:  #E04824; 
+    color: #ffffff; 
+    border: none;
+    border-radius: 5px 5px 5px 5px ;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 75%;
+}
+
+.main{
+    display: grid;
+    grid-template-columns: 33% 34% 33%;
+    grid-template-rows: 60% 40%;
+    grid-template-areas:
+    'locationList mapDisplay hortList'
+    'locationListResume mapDisplay addProduct';
+    height: 90%;
+    background-color: #f8f9fa;
+}
+
+.locationList{
+    margin: 10;
+    grid-area: locationList;
+    background-color: white;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.mapDisplay{
+    margin: 10;
+    grid-area: mapDisplay;
+    background-color: white;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+#map{
+    width: 95%;
+    height: 88%;
+    margin: 2.5%;
+}
+
+#hortList{
+    margin: 10;
+    grid-area: hortList;
+    background-color: white;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.locationListResume{
+    margin: 10;
+    grid-area: locationListResume;
+    background-color: white;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.addProduct{
+    margin: 10;
+    grid-area: addProduct;
+    background-color: white;
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
+}
+.search-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.search-input{
+    text-align: center;
+}
+
+input{
+    width:70%;
+    margin: 0;
+    padding: 5px;  
+    flex-basis: 1000px;
+    font-size: 17.5px;
+    border: 1x solid grey;
+  }
+
+.search-button{
+    margin-left: -10%;
+    height: 29px;
+    max-height: 30px;
+    margin-top: 0.7%;
+    color: #E04824;
+    font-size: 20px;
+    border: none; 
+    background-color: white;
+  }
+
+#addButton{
+    background-color:  #E04824; 
+    color: #ffffff; 
+    border: none;
+    border-radius: 5px 5px 5px 5px ;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 10px;
+    align-self: center;
+    margin-top: 10%;
+}
+
+#locationResult{
+    width: 98%;
+    border-bottom: 1px solid black;
+    border-spacing: 10px 0 0 0;
+    margin: 1%;
+}
+
+#hortSearched{
+    width: 98%;
+    border-bottom: 1px solid black;
+    border-spacing: 10px 0 0 0;
+    margin: 1%;
+}
+
+#locationResult th{
+  width: 80%;  
+  text-align: start;
+}
+
+#locationResult th:first-child{
+    width: 20%;
+}
+
+

@@ -1,37 +1,41 @@
 <html>
 <head>
   <title>Kertana</title>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="javascripts/homeScripts/profileButton.js"></script>
+  <script src="javascripts/homeScripts/buttons.js"></script>
+  <script src="javascripts/homeScripts/homePage.js"></script>
   <link rel="stylesheet" href="stylesheets/homePage.css">
   <link rel="icon" href="/images/bar-icon.png" type="image/png" style="width: 10px; height: 15px;">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body class="grid-container">
+<body>
   <div class="bc">
-    <div class="nav">  
-      <section class="links">  
-        <a href="https://www.github.com/Ivanilson-Costa18/Kertana" target="_blank">
-          <img src="/images/Github-icon.png" alt="Github" width="20" height="20">
-        </a>  
-      </section>
+    <div id="mynav">
+      <div id="navsup">
+      <div id="nav">  
+        <section class="links">  
+          <a href="https://www.github.com/Ivanilson-Costa18/Kertana" target="_blank">
+            <img src="/images/Github-icon.png" alt="Github" width="20" height="20">
+          </a>  
+        </section>
+      </div>
+      <hr id="hr" style="outline: none; line-height: 1px;"></div>
+      <div id="header">
+        <section class="logo">
+          <img src="/images/Logo.png" alt="Logo">
+        </section>
+        <section class="profileButton-container">
+          <a id="infoLink" href="#websiteInfo">Como funciona?</a>
+          <button class="button" onclick="onClick()" >Entrar</button>  
+        </section>
+      </div>
     </div>
-    <hr style="outline: none; line-height: 1px;">
-    <div class="header">
-      <section class="logo">
-        <img src="/images/Logo.png" alt="Logo">
-      </section>
-      <section class="profileButton-container">
-        <button id="buttonProfile" onclick="onClick()" >Profile</button>  
-      </section>
-    </div>
-
     <div class="main">
       <section class="search-area">
         <section class=search-title>
-          <strong><p style="color: white; font-size: 30;">Ser Agricultor nunca foi tão fácil</p></strong>
+          <strong><p style="color: white; font-size: 50; margin-block-end: 0;">Gerir o teu terreno<br> nunca foi tão fácil</p></strong>
+          <p style="color: white;">Experimente procurar um terreno a partir de uma localização ou produto:</p>
         </section>
         <section class="searchTabs">
           <div class="mytabs">
@@ -40,40 +44,70 @@
             <div class="tab">
               <form autocomplete="off">
               <div class="search-container">
-                <input type="text" id="search-localizacao" placeholder="Search.."> 
+                <input type="text" id="search-localizacao" placeholder="Ex: Concelho ou Freguesia"> 
                 <button class="search-button" type="button" onclick="saveLocation()"><i class="fa fa-search"></i></button>
               </div> 
               </form>             
             </div>
             
             <input type="radio" id="tabhort" name="mytabs">
-            <label for="tabhort">Hortaliça</label>
+            <label for="tabhort">Produto</label>
             <div class="tab">
             <form autocomplete="off">
               <div class="search-container">
-                <input  id="search-hortalica" type="text" placeholder="Search.."> 
+                <input  id="search-hortalica" type="text" placeholder="Ex: Alface"> 
                 <button class="search-button"  type="button" onclick="saveProduct()"><i class="fa fa-search"></i></button>
               </div>
             </form> 
             </div>
-        
           </div>
         </section>
         </section>
+        <div id='div-computer'>
+          <img id='computer' src="/images/phone-and-laptop.png" alt="computer">
+        </div>
       </section>
-    </main> 
   </div>
   </div>
-  <div class="footer">
-    <h3 style="color: hsl(124, 90%, 16%);">
-      A Kertana é a plataforma que lhe assiste em decisões difíceis
-    </h3>
-    <p style="line-height: 20px;">Sistema informático baseando as decisões através de dados como tipo de terreno e clima.<br>
-    Procure o terreno a partir de uma hortaliça que queira colher.<br>
-    Procure as hortaliças que pode cultivar.</p>
+  <div id="websiteInfo">
+    <section class="infoSection">
+      <img class="infoPicture" src="images/search-page-product.png" alt="searchPicture">
+      <div class="info"> 
+        <div class="infoTitle">
+          <img class="infoIcon" src="images/icon-carrot.png" alt="search">
+          <h2><strong>Procurar um terreno a partir de um produto</strong></h2>
+        </div>
+        <p>Descobre onde podes plantar os teus produtos favoritos. Só precisas de dizer-nos os produtos e nós indicamos as localizações.</p>
+      </div>
+    </section>
+    <section class="infoSection">
+      <div class="info"> 
+        <div class="infoTitle">
+          <img class="infoIcon" src="images/pointer.png" alt="search">
+          <h2><strong>Procurar um produto a partir de uma localização</strong></h2>
+        </div>
+        <p>Descobre os produtos aptos para uma localização ou um terreno que estejas a pensar em comprar</p>
+      </div>
+      <img class="infoPicture" src="images/search-page-location.png" alt="searchPicture">
+    </section>
+    <section class="infoSection">
+      <img class="infoPicture" src="images/field-page.png" alt="searchPicture">
+      <div class="info"> 
+        <div class="infoTitle">
+          <img class="infoIcon" src="images/harvesting.png" alt="search">
+          <h2><strong>Gere o teu terreno na nossa plataforma</strong></h2>
+        </div>
+        <p>Disponibilizamos os tipos de produtos aptos para o teu terreno nas alturas certasa. Feedback do tempo que falta para colher e o estado da produção</p>
+      </div>
+    </section>
+    <div style="height: 350px;">
+      <button class="button" onclick="createAccount()">Criar Conta</button>
+    </div>
   </div>
+  <footer class="footer">
 
+  </footer>
+  <script src="javascripts/homeScripts/searchBar.js"></script>
 </body>
-<script src="javascripts/homeScripts/searchBar.js"></script>
 
 </html>

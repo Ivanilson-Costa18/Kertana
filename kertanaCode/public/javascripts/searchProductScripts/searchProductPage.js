@@ -1,5 +1,7 @@
 var count=0
 
+
+
 ///////////////////////////////////////// WINDOW //////////////////////////////////////////////////////
 
 var suitable_locations = {}
@@ -17,44 +19,12 @@ window.onload = async function loadListProducts() {
         dataType: 'json'
     }).then( value => {
         mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnBnIiwiYSI6ImNraGwybDczMzFnOXcyeHA2MnM0ZWF4aDQifQ.dbfnIhEI5JJf-TV1LyEQQw';
-        var map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
-                center: [-7.956215,39.506282], 
-                zoom: 5.5
-                });
-
-        map.addControl(
-                new MapboxGeocoder({
-                    accessToken: mapboxgl.accessToken,
-                    mapboxgl: mapboxgl
-                })
-                );
-
-        var draw = new MapboxDraw({
-            displayControlsDefault: false,
-            controls: {
-            polygon: true,
-            trash: true
-            }
-            });
-        map.addControl(draw);
-                
-        map.on('draw.create',updateArea);
-        map.on('draw.delete',updateArea);
-        map.on('draw.update',updateArea);
-                    
-        function updateArea(e) {
-            var data = draw.getAll();
-            if (data.features.length > 0) {
-                var area = turf.area(data);
-                return data.features[0].geometry.coordinates;
-            } 
-            else {
-                if (e.type !== 'draw.delete')
-                alert('Use the draw tools to draw a polygon!');
-                }
-        }
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
+        center: [-7.956215,39.506282], 
+        zoom: 5.5
+        });
         map.on('load', function () {   
         let count = 0
         for (local of value[0] ){
@@ -85,7 +55,7 @@ window.onload = async function loadListProducts() {
             count++}
         });
                    
-        listProducts(product);
+        //listProducts(product);
 })}
 
 
@@ -93,29 +63,20 @@ function deleteResult(id) {
     var elem = document.getElementById(id);
     elem.parentNode.removeChild(elem);
 }
-
+/*
 function listProducts(products) {
     let elemHortlist = document.getElementById("product-result");
     let html ="";
     for (let product of products) {
         html += 
-                '<section class= "hortalica-result" id='+count+'>' +
-                   ' <section class="imagem-hortalica">' +
-                        '<section class="imagem-frame">' +
-                       '     <img id="product-icon" src="'+product.Produto_Photo+'">'+
-                       ' </section>'+
-                  '  </section>'+
-                   ' <section class="imagem-description">'+
-                       ' <p id="title-result">'+product.Produto_Nome+'</p>'+
-                       '<button id="delete-product" onclick="deleteResult('+count+')">&times;</button>'+
-                       ' <p id="description-result">'+product.Produto_Descricao+'</p>'+
-                   ' </section>';
+                '';
         count++
     }
 
     elemHortlist.innerHTML = html;
 }
 
+<<<<<<< Updated upstream
 
  
 ////////////////////////////////////////// MODAL ///////////////////////////////////////////
@@ -165,3 +126,6 @@ function addProductList() {
     document.getElementById('product-result').appendChild(newDiv);
     count++
 }
+=======
+*/
+>>>>>>> Stashed changes

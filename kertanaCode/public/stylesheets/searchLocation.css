@@ -2,6 +2,7 @@ body{
     font-family: 'Calibri';
     margin: 0;
     padding: 0;
+    background-color: #f8f9fa;
     overflow: hidden;
 }
 h2,h1{
@@ -11,39 +12,125 @@ h2,h1{
 }
 
 /* The grid container */
+<<<<<<< Updated upstream:kertanaCode/public/stylesheets/search.css
 .grid-container{
     display: grid;
     grid-template-rows: 9% auto;
     grid-template-areas:
     'header'
     'main';
+=======
+.header{
+    height: 10%;
+    background-color:#6cbe45;
+    display: flex;
+}
+
+
+#hpLogo{
+    margin-top: -7%;
+    height: 40px;
+    width: auto;
+    padding: 25px;
+>>>>>>> Stashed changes:kertanaCode/public/stylesheets/searchLocation.css
+}
+
+#button{
+    background-color:  #E04824; 
+    color: #ffffff; 
+    border: none;
+    border-radius: 5px 5px 5px 5px ;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 75%;
 }
 
 main{
-    grid-area: main;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 45% 55%;
     grid-template-rows: 100% 100%;
-    height: 100%;
+    height: 90%;
     grid-template-areas: 
     'hortList hortList hortList mapDisplay mapDisplay mapDisplay';
+    margin-top: 2%;
+}
+
+
+.mapDisplay{
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
+    margin-top: 0.7%;
     background-color: white;
+    max-height: 90%;
+    width: 98%;
+}
+
+#map{
+    margin-left: 4%;
+    height: 80%;
+    width: 92%;
+}
+
+.search-container{
+    display: flex;
+}
+
+.search-input{
+    margin-left: 4%;
     margin-top: 1%;
 }
 
-
-.mapDisplay #map{
-    height: 100%;
-    width: 100%;
-}
-
+input{
+    float: left;
+    display: block;
+    text-align: left;
+    width:80%;
+    margin: 0;
+    padding: 5px;  
+    flex-basis: 1000px;
+    font-size: 17.5px;
+    border: 1x solid grey;
+  }
+  
+  
+  .search-button{
+    margin-left: -20%;
+    float: left;
+    width: 17%;
+    height: 30px;
+    max-height: 30px;
+    margin-top: 0.5%;
+    color: #E04824;
+    font-size: 20px;
+    border: none; 
+    cursor: pointer;
+    background-color: white;
+  }
 
 #hortList{
+    box-shadow:
+    0 0 2.2px rgba(0, 0, 0, 0.1),
+    0 0 2.3px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 0 2.9px rgba(0, 0, 0, 0.1),
+    0 0 2.4px rgba(0, 0, 0, 0.1),
+    0 0 2px rgba(0, 0, 0, 0.1);
+    margin-left: 5%;
+    background-color: white;
     margin-top:5px;
     align-items: center;
     display: flex;
     flex-direction: column;
-    max-height: 100%;
+    max-height: 90%;
+    width: 90%;
 }
 
 .hortalica-result{  
@@ -72,7 +159,6 @@ main{
 }
 
 .imagem-hortalica{
-    background-color: lawngreen;
     border-radius: 10px 10px 10px 10px ;
     justify-content: center;
     height: 120px;

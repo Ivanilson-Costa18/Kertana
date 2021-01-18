@@ -7,38 +7,58 @@
         <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
         <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
         <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css"/>    <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
         <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css" type="text/css"/>
+<<<<<<< Updated upstream
         <link rel="stylesheet" href="stylesheets/search.css">
         <link rel="stylesheet" href="/stylesheets/headerBar.css">
 
 
+=======
+        <link rel="stylesheet" href="stylesheets/searchLocation.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+>>>>>>> Stashed changes
         <link rel="icon" href="/images/bar-icon.png" type="image/png" style="width: 10px; height: 15px;"> 
     </head>
 
 
     <body class="grid-container">
         <header class="header">
+<<<<<<< Updated upstream
             <div class="logoContainer">
                 <a href="index.html">
                   <img id='logo' src="/images/Logo.png" alt="Logo">
                 </a>
               </div>
+=======
+            <a href="index.html">
+                <img src="/images/Logo.png" id="hpLogo" alt="Logo">
+            </a>
+            <button id="button" onclick="onClick()" >Entrar</button>  
+>>>>>>> Stashed changes
         </header>
         <main class="main">
             <section id="hortList">
+                <h3 style="margin-block-start: 3%; margin-right: 15%; margin-bottom: 0;"><strong>Lista de produtos aptos para a zona selecionada</strong></h3>
                 <section id="product-result">
                 </section>
                 <hr style= "width: 90%; margin-left: 40px; margin-top: 5%;">  
             </section>
             <section class="mapDisplay">
+                <p style="margin-left: 4%;">Desenha um polígono para uma consulta mais específica</p>
                 <div id='map'>
                 </div>
+                <section class="search-container">
+                    <p style="margin-left: 4%; font-size: 17px;">Localização atual: <strong id="local">Zona</strong>, deseja mudar a localização?</p>
+                    <div class="search-input">
+                        <input  id="search-location" type="text" placeholder="Mudar Localização"> 
+                        <button class="search-button"  type="button" onclick="searchLocation()"><i class="fa fa-search"></i></button>
+                    </div>
+                </section>
             </section>
             <script src="javascripts/searchLocationScripts/searchLocationPage.js"></script>
         </main>
