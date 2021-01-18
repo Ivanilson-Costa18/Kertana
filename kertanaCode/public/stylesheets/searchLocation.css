@@ -12,14 +12,6 @@ h2,h1{
 }
 
 /* The grid container */
-<<<<<<< Updated upstream:kertanaCode/public/stylesheets/search.css
-.grid-container{
-    display: grid;
-    grid-template-rows: 9% auto;
-    grid-template-areas:
-    'header'
-    'main';
-=======
 .header{
     height: 10%;
     background-color:#6cbe45;
@@ -32,7 +24,6 @@ h2,h1{
     height: 40px;
     width: auto;
     padding: 25px;
->>>>>>> Stashed changes:kertanaCode/public/stylesheets/searchLocation.css
 }
 
 #button{
