@@ -4,13 +4,12 @@
     <link rel="stylesheet" href="/stylesheets/createSlot.css">
     <link rel="stylesheet" href="/stylesheets/headerBar.css">
     <link rel="stylesheet" href="/stylesheets/modalCreateSlot.css"/>
-
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" /> 
     <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css" type="text/css"/>
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js"></script>
-    <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
   </head>
@@ -33,35 +32,10 @@
             <h3 id="instruction-product">Lista de Produtos Aptos para zona selecionada</h3>
             <section id="separation">
               <hr style= "width: 90%; margin-bottom:0px;">
-          </section>
+            </section>
           </section>
           <section id="product-result">
-            <section id= "hortalica-result">
-                <section id="image-product-section">
-                    <img id="image-icon" src="">
-                </section>
-                <section id="title-section">
-                    <h3 id="title-result">+product.Produto_Nome+</h3>
-                </section>
-                <section id="remove-product-button-section">
-                    <input type="button" id="delete-product" value="&times;" onclick="deleteResult()"></input>
-                </section>   
-                <section id="product-description-section">
-                    <p id="description-result">+product.Produto_Descricao+</p>
-                </section>
-                <section id="feedback-section">
-                    <section id="feedback-image-section">
-                    <img id="feedback-image" src="/images/feedback-status-ready.PNG">
-                    </section>
-                    <section id="feedback-message-section">
-                      <p id="feedback-message">+state+</p>
-                </section>
-                </section>
-                <section id="separation">
-                    <hr style= "width: 90%; margin-bottom:20px;">
-                </section>
-            </section>
-        </section>
+          </section>
         </section>
 
         <div id="map-section-grid">

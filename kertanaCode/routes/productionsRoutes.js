@@ -20,5 +20,10 @@ router.get('/:fieldID/growthStates', async function(req, res, next) {
   res.send(growthStates); 
 });
 
-
+router.post('/:fieldID/production', async function(req, res, next){
+  let fieldID = req.params.fieldID
+  let production = req.body
+  let result = await mProductions.insertProduction(fieldID, production)
+  res.send(result)
+})
 module.exports = router;

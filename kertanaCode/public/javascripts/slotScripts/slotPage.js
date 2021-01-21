@@ -36,48 +36,15 @@ window.onload = async function loadPage() {
         method: 'get',
         dataType: 'json'
     }).then( value => {
-        centerCoordinate = JSON.parse(field.Terreno_Coordenadas);
-        coordinates2.push(centerCoordinate)
+        centerCoordinate = turf.centroid(turf.polygon([JSON.parse(field.Terreno_Coordenadas)]));
+        coordinates2.push(JSON.parse(field.Terreno_Coordenadas))
 
         map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
-            center: centerCoordinate.shift(0),
-            zoom: 15
+            center: centerCoordinate.geometry.coordinates,
+            zoom: 12
             });
-
-            map.addControl(
-                new MapboxGeocoder({
-                   accessToken: mapboxgl.accessToken,
-                   mapboxgl: mapboxgl
-                })
-               ); 
-            
-            var draw = new MapboxDraw({
-            displayControlsDefault: false,
-            controls: {
-               polygon: true,
-               trash: true
-            }
-            });
-            map.addControl(draw);
-            
-            map.on('draw.create',updateArea);
-            map.on('draw.delete',updateArea);
-            map.on('draw.update',updateArea);
-               
-            function updateArea(e) {
-            var data = draw.getAll();
-            
-            if (data.features.length > 0) {
-            var area = turf.area(data);
-            
-            } 
-            else {
-            if (e.type !== 'draw.delete')
-            alert('Use the draw tools to draw a polygon!');
-            }
-            }
 
         map.on('load', function () {   
             for (singleCoordinates of productionCoordinates){
@@ -115,7 +82,7 @@ window.onload = async function loadPage() {
                             'source': String(count),
                             'layout': {},
                             'paint': {
-                                'fill-color': color,
+                                'fill-color': '#088',
                                 'fill-opacity': 0.65
                             }
                     });
@@ -128,7 +95,7 @@ window.onload = async function loadPage() {
 
 function getFieldObj(field){
     let coordinate = JSON.parse(field.Terreno_Coordenadas);
-return coordinate;
+    return coordinate;
 }
 
 function deleteResult() {
@@ -146,8 +113,6 @@ function listProducts(products, growthStates) {
             if (product.Produto_ID == growthState.Producao_Produto_ID){
                 let state = growthState.EstadoCrescimento_Estado;
                 let timeLeft = growthState.TimeLeft;
-            
-
                 html += 
                         '<section id="product-result">'+
                             '<section id= "hortalica-result">'+
