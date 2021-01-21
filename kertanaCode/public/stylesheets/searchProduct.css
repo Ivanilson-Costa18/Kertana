@@ -105,6 +105,10 @@ p{
     0 0 2px rgba(0, 0, 0, 0.1);
 }
 
+#hortSearched{
+    text-align: center;
+}
+
 .locationListResume{
     margin: 10;
     grid-area: locationListResume;
@@ -133,6 +137,15 @@ p{
 .search-container{
     display: flex;
     flex-direction: column;
+}
+
+#search-hortalicasearch-container-list{
+    text-align: start;
+    margin-left: 17%;
+    margin-top: 1%;
+    cursor: pointer;
+    z-index: 10;
+    max-height: 5%;
 }
 
 .search-input{
@@ -173,25 +186,63 @@ input{
 
 #locationResult{
     width: 98%;
-    border-bottom: 1px solid black;
     border-spacing: 10px 0 0 0;
     margin: 1%;
 }
 
 #hortSearched{
     width: 98%;
-    border-bottom: 1px solid black;
     border-spacing: 10px 0 0 0;
     margin: 1%;
 }
 
-#locationResult th{
-  width: 80%;  
-  text-align: start;
+#locationResult th {
+    width: 50%;
+    text-align: start;
 }
 
-#locationResult th:first-child{
+
+
+
+#hortSearched th:first-child{
     width: 20%;
+}
+
+
+
+.result:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+
+#locationResult tr:first-child{
+    width: 20%;
+}
+
+
+
+
+tr td{
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+
+tr th{
+    border-bottom: 1px solid black;
+    padding-left: 10px;
+
+}
+
+table{
+    border-spacing: 0px;
+}
+
+#customers th {
+    background-color: #f8f9fa;
+}
+#customers th {
+    background-color: #f8f9fa;
 }
 
 

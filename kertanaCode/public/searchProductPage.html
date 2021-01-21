@@ -30,31 +30,31 @@
         <main class="main">
             <section class="locationList">
                 <h2>Lista de Freguesia Aptas</h2>
-                <table id="locationResult"><tr><th>Nome</th><th>Produtos</th></tr></table>
+                <table id="locationResult">
+                </table>
             </section>
             <section class="mapDisplay">
-                <p>Selecion um polígono para obter os resultados de uma localização</p>
+                <p>Seleciona um polígono para obter os resultados de uma localização</p>
                 <div id='map'>
                 </div>
             </section>
             <section id="hortList">
                 <table id="hortSearched">
-                    <tr><th>Cor</th><th>Nome</th><th>Germinação(dias)</th><th>Maturação(dias)</th></tr>
                 </table>             
             </section>
             <section class="LocationListResume">
                 <h2>Informação dos Resultados</h2>
-                <p>Total de freguesias aptas: <strong id="totalLocations">45</strong></p>
+                <p>Total de freguesias aptas: <strong id="totalLocations"></strong></p>
                 <p>Freguesia com mais resultados: <strong id="bestLocation">Lisboa</strong></p>
             </section>
             <section class="addProduct">
                 <h2>Adiciona mais produtos à consulta:</h2>
                 <section class="search-container">
                     <div class="search-input">
-                        <input  id="search-product" type="text"> 
+                        <input  id="search-hortalica" type="text"> 
                         <button class="search-button"  type="button"><i class="fa fa-search"></i></button>
                     </div>
-                    <button id="addButton" onclick="onClick()" >Adicionar Produto</button>  
+                    <button id="addButton" onclick="addProduct()" >Adicionar Produto</button>  
                 </section>
             </section>
         </main>
