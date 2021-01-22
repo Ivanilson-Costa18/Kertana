@@ -26,4 +26,11 @@ router.post('/:fieldID/production', async function(req, res, next){
   let result = await mProductions.insertProduction(fieldID, production)
   res.send(result)
 })
+
+router.post('/:productID/fields', async function(req, res, next){
+  let productID = req.params.productID
+  let result = await mProductions.removeProduct(productID)
+  res.send(result)
+})
+
 module.exports = router;

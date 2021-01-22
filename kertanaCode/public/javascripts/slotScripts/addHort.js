@@ -154,8 +154,11 @@ autocomplete(document.querySelector("#search-container"), hortalicas);
       modal.classList.add('active');
       overlay.classList.add('active');
       document.getElementById('button-add-product').disabled = false
+      document.getElementById('draw-button').disabled = true
       return data.features[0].geometry.coordinates
-    } 
+    } else {
+      alert('Defina a área da sua produção')
+    }
     return null
   }
 
@@ -177,7 +180,10 @@ autocomplete(document.querySelector("#search-container"), hortalicas);
   }
 
   const addProduction = async () => {
+    let json = sessionStorage.getItem("field");
+    let field = JSON.parse(json);
     let value = updateArea()[0]
+    let result
     if(value){
       let polygon = value
       let productID = chosenProductID
@@ -187,8 +193,8 @@ autocomplete(document.querySelector("#search-container"), hortalicas);
                       product: productID,
                       date: date
                     }
-      let result = await $.ajax({
-        url: 'api/productions/'+16+'/production',
+        result = await $.ajax({
+        url: 'api/productions/'+field.Terreno_ID+'/production',
         method: 'post',
         dataType:'json',
         data: production
@@ -197,35 +203,7 @@ autocomplete(document.querySelector("#search-container"), hortalicas);
       modal.classList.remove('active')
       overlay.classList.remove('active');
     }
+    document.location.reload(true)
   }
 
 
-
-  async function createPolygon(coordinates) {
-    try {
-        obj = 
-        {
-            "name":"Search Polygon",
-            "geo_json":{
-               "type":"Feature",
-               "properties":{
-         
-               },
-               "geometry":{
-                  "type":"Polygon",
-                  "coordinates":coordinates
-               }
-            }
-         }
-            let result = await $.ajax({
-            url: "http://api.agromonitoring.com/agro/1.0/polygons?appid=eaf41ee48e35adb39c24586fc8eb11c6",
-            method: "post",
-            dataType: "json",
-            data:JSON.stringify(obj),
-            contentType: "application/json"
-        });
-        return result.id;
-    } catch(err) {
-        console.log(err);
-    }
-}
