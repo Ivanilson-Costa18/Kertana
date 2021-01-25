@@ -15,17 +15,23 @@
         <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css"/>    <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
         <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css" type="text/css"/>
         <link rel="stylesheet" href="stylesheets/searchProduct.css">
+        <link rel="stylesheet" href="/stylesheets/headerBar.css">
+
 
         <link rel="icon" href="/images/bar-icon.png" type="image/png" style="width: 10px; height: 15px;"> 
     </head>
 
 
-    <body class="grid-container">
+    <body class="grid">
         <header class="header">
-            <a href="index.html">
-                <img src="/images/Logo.png" id="hpLogo" alt="Logo">
-            </a>
-            <button id="button" onclick="onClick()" >Entrar</button>  
+            <div class="logoContainer">
+              <a href="index.html">
+                <img id='logo' src="/images/Logo.png" alt="Logo">
+              </a>
+            </div>
+            <div id="login-button-section">
+                <input type="button" id="button" onclick="onClick()" value="Entrar"></input>
+            </div>
         </header>
         <main class="main">
             <section class="locationList">

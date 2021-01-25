@@ -203,7 +203,7 @@ autocomplete(document.querySelector("#search-container"), hortalicas);
       modal.classList.remove('active')
       overlay.classList.remove('active');
     }
-    document.location.reload(true)
+    window.location='slotPage.html'
   }
 
 

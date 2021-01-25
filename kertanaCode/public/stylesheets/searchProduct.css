@@ -22,32 +22,34 @@ p{
 }
 
 
-.header{
-    height: 10%;
-    background-color:#6cbe45;
-    display: flex;
-}
+.grid{
+    display: grid;
+    grid-template-rows: 9% 91%;
+    grid-template-areas:
+    'header'
+    'main';
+    max-width: 100%;
+    max-height: 100%;
+  }
 
+#login-button-section{
+    margin-right: 5%;
+}  
 
-#hpLogo{
-    margin-top: -7%;
-    height: 40px;
-    width: auto;
-    padding: 25px;
-}
 
 #button{
-    background-color:  #E04824; 
-    color: #ffffff; 
+    background-color: #E04824;
+    color: #ffffff;
     border: none;
-    border-radius: 5px 5px 5px 5px ;
+    border-radius: 5px 5px 5px 5px;
     font-size: 16px;
     cursor: pointer;
     padding: 10px 10px;
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: 75%;
+    padding-right: 100%;
 }
+
 
 .main{
     display: grid;

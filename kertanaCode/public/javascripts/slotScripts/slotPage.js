@@ -138,9 +138,12 @@ function listProducts(products, growthStates) {
                                         '<input type="button" id="delete-product" value="&times;" onclick="deleteResult()"></input>'+
                                     '</section>'+   
                                     '<section id="product-description-section">'+
-                                        '<p id="description-result">'+product.Produto_Descricao+'</p>'+
-                                    '</section>'+
-                                    '<section id="feedback-section">'+
+                                        '<p id="description-result"><b>Tipo Solo: </b>'+product.Produto_TipoSoloDescricao+'</p>'+
+                                        '<p id="description-result"><b>Epoca Semear: </b>'+product.Produto_EpocaSemearDescricao+'</p>'+
+                                        '<p id="description-result"><b>Epoca Colheita: </b>'+product.Produto_EpocaColheitaDescricao+'</p>'+
+                                        '<p id="description-result"><b>Exposição: </b>'+product.Produto_ExposicaoDescricao+'</p>'+
+                                        '</section>'+
+                                        '<section id="feedback-section">'+
                                         '<section id="feedback-image-section">'+
                                         '<img id="feedback-image" src="/images/feedback-status-ready.PNG">'+
                                         '</section>'+

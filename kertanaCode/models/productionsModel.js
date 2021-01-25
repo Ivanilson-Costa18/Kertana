@@ -2,7 +2,7 @@ const pool = require('./connection.js')
 
 module.exports.getAllProducts = async function(fieldID) {
     try{
-        const sql = 'SELECT Produto_ID, Produto_Nome, Produto_Photo, Produto_Descricao, Produto_TemperaturaMaxima, Produto_TemperaturaMinima, Produto_HumidadeSoloMaxima, Produto_HumidadeSoloMinima, Produto_Mes_Inicial, Produto_Mes_Final '+ 
+        const sql = 'SELECT Produto_ID, Produto_Nome, Produto_Photo, Produto_TipoSoloDescricao, Produto_EpocaSemearDescricao, Produto_EpocaColheitaDescricao, Produto_ExposicaoDescricao, Produto_TemperaturaMaxima, Produto_TemperaturaMinima, Produto_HumidadeSoloMaxima, Produto_HumidadeSoloMinima, Produto_Mes_Inicial, Produto_Mes_Final '+ 
         'FROM Producao, Produto WHERE  Producao_Produto_ID = Produto_ID AND Producao_Terreno_ID = ? AND Producao_EstadoPoligonoProducao_ID = 2;'
         let products = await pool.query(sql, [fieldID]);
         return products;

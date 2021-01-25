@@ -1,6 +1,8 @@
 const farmerID = 1;
 var farmer = {}
 var fields = []
+var plantationCounter = 0
+
 window.onload = async function loadProfileData() {
     farmer = await $.ajax({
         url: "/api/farmers/"+farmerID,
@@ -54,7 +56,7 @@ function loadFarmerData(farmer){
 function loadFieldsData(fields, growthStates){
     let elementFieldsData = document.getElementById("field-items-section");
     let html ="";
-    
+    let count = 0
     for (let field of fields) {
         let timeLeft = 0;
         let state = ''; 
@@ -99,10 +101,17 @@ function loadFieldsData(fields, growthStates){
                 '</section>';
                 
             
-        
+        count++
         }
+        getPlantationCounter(count)
+
     elementFieldsData.innerHTML = html;
     }
+
+function getPlantationCounter(count){
+    let plantation = document.getElementById("field-count");
+    plantation.innerHTML = '<b>Terrenos</b> '+count+ ' terrenos';
+}
 
 
 function sessionSaveFieldID(id){
