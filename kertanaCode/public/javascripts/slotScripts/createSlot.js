@@ -90,8 +90,10 @@ const showProducts = products => {
                 "<h3 id=\"title-result\">"+product.Produto_Nome+"</h3>"+
             "</section>"+
             "<section id=\"product-description-section\">"+
-                "<p id=\"description-result\">"+product.Produto_Descricao+"</p>"+
-            "</section>"+
+            '<p id="description-result"><b>Tipo Solo: </b>'+product.Produto_TipoSoloDescricao+'</p>'+
+            '<p id="description-result"><b>Epoca Semear: </b>'+product.Produto_EpocaSemearDescricao+'</p>'+
+            '<p id="description-result"><b>Epoca Colheita: </b>'+product.Produto_EpocaColheitaDescricao+'</p>'+
+            '<p id="description-result"><b>Exposição: </b>'+product.Produto_ExposicaoDescricao+'</p>'+            "</section>"+
             "<section id=\"separation\">"+
                 "<hr style= \"width: 90%; margin-bottom:20px;\">"+
             "</section>"+
