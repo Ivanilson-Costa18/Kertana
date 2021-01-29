@@ -98,19 +98,18 @@ function getFieldObj(field){
     return coordinate;
 }
 
-async function deleteResult() {
-    var elem = document.getElementById('product-result');
-    var elemChild = elem.firstChild.id
+async function deleteResult(prodID) {
+    var elem = document.getElementById('productID-'+prodID);
     let confirmation = confirm('Deseja remover este produto da terreno?')
     if(confirmation){
-        elem.parentNode.removeChild(elem)
+        elem.parentNode.parentNode.removeChild(elem.parentNode)
         let remove = await $.ajax({
-            url:'api/productions/'+Number(elemChild.split('-')[1])+'/fields',
+            url:'api/productions/'+prodID+'/fields',
             method: 'post',
             dataType:'json'
         })
-        map.removeLayer(String(Number(elemChild.split('-')[1])))    
-        map.removeSource(String(Number(elemChild.split('-')[1])))
+        map.removeLayer(String(prodID))    
+        map.removeSource(String(prodID))
     };
 }
 
@@ -135,7 +134,7 @@ function listProducts(products, growthStates) {
                                         '<h3 id="title-result">'+product.Produto_Nome+'</h3>'+
                                     '</section>'+
                                     '<section id="remove-product-button-section">'+
-                                        '<input type="button" id="delete-product" value="&times;" onclick="deleteResult()"></input>'+
+                                        '<input type="button" id="delete-product" value="&times;" onclick="deleteResult('+product.Produto_ID+')"></input>'+
                                     '</section>'+   
                                     '<section id="product-description-section">'+
                                         '<p id="description-result"><b>Tipo Solo: </b>'+product.Produto_TipoSoloDescricao+'</p>'+
