@@ -8,7 +8,7 @@
     z-index: 10; /* we want our modal do draw above everything else*/
     background-color: white;
     width: 600px;
-    height: 450px;
+    height: 480px;
     max-width: 80%;
     display: flex;
     flex-direction: column;
@@ -136,9 +136,8 @@ input {
     font-size: 17px;
     color: white;
     border-radius: 15px 15px 15px 15px;
-    height: 50%;
     margin-left: 35%;
-    margin-top: 2%;
+    margin-top: 1%;
     width: 30%;
     background-color: #DA5418;
     box-shadow:
@@ -148,8 +147,8 @@ input {
     0 0 2.9px rgba(0, 0, 0, 0.1),
     0 0 2.4px rgba(0, 0, 0, 0.1),
     0 0 2px rgba(0, 0, 0, 0.1);
+    position: absolute;
   }
-
 
   #overlay{
     position: fixed;

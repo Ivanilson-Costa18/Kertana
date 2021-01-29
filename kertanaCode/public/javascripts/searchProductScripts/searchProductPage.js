@@ -124,14 +124,14 @@ function listLocations() {
     '<tr>'+
         '<th>Nome</th>'+
         '<th>Produtos</th>'+
-    '</tr>';
-    for(nomeLocal of allLocations)
+    '</tr>'
+  for(nomeLocal of allLocations){
       html += 
     '<tr class="result">'+
         '<td>'+nomeLocal+'</td>'+
         '<td>produto</td>'+
     '</tr>';
-    
+    }
 
     elemHortlist.innerHTML = html;
 }

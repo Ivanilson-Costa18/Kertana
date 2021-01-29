@@ -238,6 +238,7 @@ tr th{
 
 table{
     border-spacing: 0px;
+    overflow: auto;
 }
 
 #customers th {
@@ -247,4 +248,7 @@ table{
     background-color: #f8f9fa;
 }
 
-
+.table-container{
+    max-height: 85%;
+    overflow-y: auto;
+}

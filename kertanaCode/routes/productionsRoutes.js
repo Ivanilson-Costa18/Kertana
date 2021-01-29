@@ -27,7 +27,7 @@ router.post('/:fieldID/production', async function(req, res, next){
   res.send(result)
 })
 
-router.post('/:productID/fields', async function(req, res, next){
+router.put('/:productID/fields', async function(req, res, next){
   let productID = req.params.productID
   let result = await mProductions.removeProduct(productID)
   res.send(result)
