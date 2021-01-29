@@ -33,7 +33,7 @@ function loadFarmerData(farmer){
     let html ="";
     html += 
     '<section class="photo-section">'+
-        '<img id="photo" src="https://thispersondoesnotexist.com/image">'+ //'+farmer.Agricultor_Photo+'
+        '<img id="photo" src="'+farmer.Agricultor_Photo+'">'+ //'+farmer.Agricultor_Photo+'
     '</section>'+
     '<section class="name-section">'+
         '<p id="greetings">Olá</p>'+
