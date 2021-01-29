@@ -10,3 +10,17 @@ module.exports.getFarmer = async function(farmerID) {
         return err;
     }
 }
+
+module.exports.register = async function(farmerObj){
+    try {
+        const sql = 'SELECT * FROM Agricultor WHERE * = ?'
+        let farmer = await pool.query(sql,[farmerObj])
+        if ( farmer > 0){
+            return {farmer: farmer}
+        } else {
+            return {msg: 'Email already in use.'}
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}
