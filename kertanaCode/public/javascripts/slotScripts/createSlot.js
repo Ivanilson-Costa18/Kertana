@@ -73,7 +73,7 @@ const getSuitableProducts = async id => {
         method:'get',
         dataType:'json'
     })
-    showProducts(products)
+    showProducts(products[0])
 }
 
 const showProducts = products => {
@@ -107,9 +107,8 @@ const saveSlot = async () => {
     let name = document.getElementById('slotName').value
     let description = document.getElementById('slotDescription').value
     let agroID = await createPolygon(updateArea())
-    console.log(agroID)
     let send = await $.ajax({
-        url:'api/farmer/'+farmerID+'/fields',
+        url:'api/farmers/'+farmerID+'/fields',
         method: 'post',
         dataType: 'json',
         data: {

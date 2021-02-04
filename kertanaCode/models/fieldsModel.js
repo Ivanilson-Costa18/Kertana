@@ -24,7 +24,7 @@ module.exports.insertProduction = async function(fieldID, production){
     try{
         const sql = 'INSERT INTO Producao(Producao_Produto_ID, Producao_Terreno_ID, Producao_EstadoCrescimento_ID, Producao_EstadoPoligonoProducao_ID, Producao_Coordenadas, Producao_dataPlantacao) VALUES(?,?,1,2,?,?)'
         let result = await pool.query(sql,[production.product, fieldID, production.coordinates, production.date])
-        if(result.changedRows > 0) return {msg: 'Insert into database successful'}
+        if(result.affectedRows > 0) return {msg: 'Insert into database successful'}
         else return{msg: 'Insert into database failed'}
     } catch(err){
         console.log(err)
