@@ -24,40 +24,40 @@ var getProductVar = [];
 
 
 window.onload = () => { 
-const getProducts = async () =>{
-    products = await $.ajax({
-    url: '/api/products', 
+  const getProducts = async () =>{
+      products = await $.ajax({
+      url: '/api/products', 
+      method:'get',
+      dataType: 'json'
+  });
+    let objProduct
+    for(product of products){
+      objProduct = product;
+    hortalicas.push(objProduct);
+  }
+    for(let product of products){
+      getProductVar.push(product.Produto_Nome);
+    }
+  }
+
+  const getLocations = async () =>{
+  locations = await $.ajax({
+    url: '/api/locations', 
     method:'get',
     dataType: 'json'
-});
-  let objProduct
-  for(product of products){
-    objProduct = product;
-  hortalicas.push(objProduct);
-}
-  for(let product of products){
-    getProductVar.push(product.Produto_Nome);
+  });
+  let objLocation={};
+    for(local of locations){
+      objLocation = {
+        'id':local.Freguesia_ID,
+        'nome':local.Freguesia_Nome,
+        'coordenadas': local.Freguesia_Coordenadas
+    }
+    localizacoes.push(objLocation);
   }
-}
-
-const getLocations = async () =>{
-locations = await $.ajax({
-  url: '/api/locations', 
-  method:'get',
-  dataType: 'json'
-});
-let objLocation={};
-  for(local of locations){
-    objLocation = {
-      'id':local.Freguesia_ID,
-      'nome':local.Freguesia_Nome,
-      'coordenadas': local.Freguesia_Coordenadas
+  for(let local of locations){
+    getLocationVar.push(local.Freguesia_Nome);
   }
-  localizacoes.push(objLocation);
-}
-for(let local of locations){
-  getLocationVar.push(local.Freguesia_Nome);
-}
 }
 
   getProducts();

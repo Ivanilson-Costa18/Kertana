@@ -7,13 +7,10 @@ router.get('/', async function(req, res, next){
   res.send(locations);
 })
 
-
-router.get('/storedProcedure/:id', async function(req, res, next){
-  let productId = req.params.id;
-  let locations = await mLoc.getSuitableLocations(productId);
-    res.send(locations);
-  });
-
-
+router.get('/:id/products', async function(req, res, next){
+  let localID = req.params.id;
+  let products = await mLoc.getSuitableProducts(localID);
+  res.send(products);
+});
 
 module.exports = router;

@@ -8,7 +8,6 @@ var results = 0
 ///////////////////////////////////////// WINDOW //////////////////////////////////////////////////////
 
 var suitable_locations = {}
-
 window.onload = async function loadListProducts() {
 
     const getProducts = async () =>{
@@ -21,10 +20,10 @@ window.onload = async function loadListProducts() {
     for(productItem of productsItems){
       objProductItem = productItem;
     hortalicas.push(objProductItem);
-  }
-  for(let productItem of productsItems){
-    getProductVar.push(productItem.Produto_Nome);
-  }
+      }
+    for(let productItem of productsItems){
+      getProductVar.push(productItem.Produto_Nome);
+    }
     }
 
     getProducts();
@@ -38,7 +37,7 @@ window.onload = async function loadListProducts() {
         dataType: "json"
     });
     suitable_locations = await $.ajax({
-        url: "/api/locations/storedProcedure/"+productID,
+        url: "/api/products/"+productID+"/locations",
         method: 'get',
         dataType: 'json'
     }).then( value => {

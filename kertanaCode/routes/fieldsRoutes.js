@@ -2,17 +2,26 @@ var express = require('express');
 var router = express.Router();
 var mFields = require('../models/fieldsModel');
 
-router.get('/:farmerID', async function(req, res, next) {
-  let farmerID = req.params.farmerID;
-  let fields =  await mFields.getAllFields(farmerID);
-  res.send(fields); 
-});
+router.get('/:fieldID/productions', async function(req, res, next) {
+  let fieldID = req.params.fieldID;
+  let productions =  await mFields.getAllProductions(fieldID);
+  res.send(productions); 
+})
 
-router.post('/:farmerID/Terreno', async function (req, res, next) {
-  let farmerID = req.params.farmerID;
-  let field = req.body
-  let result = await mFields.insertField(farmerID, field);
-  res.send(result);
-});
+router.post('/:fieldID/productions', async function(req, res, next){
+  let fieldID = req.params.fieldID
+  let production = req.body
+  let result = await mFields.insertProduction(fieldID, production)
+  res.send(result)
+})
+
+router.post('/:fieldID/productions/:productionID', async function(req, res, next){
+  let fieldID = req.params.fieldID
+  let productionID = req.params.productionID
+  let result = await mFields.removeProduction(productionID, fieldID)
+  res.send(result)
+})
+
+
 
 module.exports = router;

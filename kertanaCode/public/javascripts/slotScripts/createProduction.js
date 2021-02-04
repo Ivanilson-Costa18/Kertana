@@ -10,6 +10,7 @@ var draw = new MapboxDraw({
   });
 
 function openModal() {
+  document.getElementById('button-add-product').disabled = true
   if (modal == null) return;
   modal.classList.add('active');
   overlay.classList.add('active');
@@ -150,15 +151,26 @@ autocomplete(document.querySelector("#search-container"), hortalicas);
   
   function updateArea(e) {
     var data = draw.getAll();
-    if (data.features.length > 0) {
-      modal.classList.add('active');
-      overlay.classList.add('active');
-      document.getElementById('button-add-product').disabled = false
-      document.getElementById('draw-button').disabled = true
-      return data.features[0].geometry.coordinates
-    } else {
+    if (data.features.length > 0 ) {
+      let slot = turf.polygon([JSON.parse(field.Terreno_Coordenadas)])
+      console.log(field)
+      let production = turf.polygon(data.features[0].geometry.coordinates)
+      console.log(production)
+      let isInside = turf.booleanContains(slot, production)
+      console.log(isInside)
+      if (isInside) {
+        modal.classList.add('active');
+        overlay.classList.add('active');
+        document.getElementById('draw-button').disabled = true
+        return data.features[0].geometry.coordinates
+      } else {
+        alert('A área de produção não se encontra dentro do terreno.')
+        draw.deleteAll()
+      }
+
+      } else {
       alert('Defina a área da sua produção')
-    }
+      }
     return null
   }
 
@@ -176,7 +188,7 @@ autocomplete(document.querySelector("#search-container"), hortalicas);
     if(updateArea()){
       return updateArea()
     }
-
+    document.getElementById('button-add-product').disabled = false
   }
 
   const addProduction = async () => {
@@ -194,7 +206,7 @@ autocomplete(document.querySelector("#search-container"), hortalicas);
                       date: date
                     }
         result = await $.ajax({
-        url: 'api/productions/'+field.Terreno_ID+'/production',
+        url: 'api/fields/'+field.Terreno_ID+'/productions',
         method: 'post',
         dataType:'json',
         data: production

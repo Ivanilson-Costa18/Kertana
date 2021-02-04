@@ -11,20 +11,12 @@ window.onload = async function loadProfileData() {
     });
 
     fields = await $.ajax({
-        url: "/api/fields/"+farmerID,
+        url: "/api/farmers/"+farmerID+"/fields",
         method: "get",
         dataType: "json"
     });
-
-    let growthStates =  await $.ajax({
-        url: "/api/productions/"+fields[0].Terreno_ID+"/growthStates",
-        method: 'get',
-        dataType: 'json'
-    });
-    console.log(growthStates)
-    console.log(fields)
     loadFarmerData(farmer[0]);
-    loadFieldsData(fields, growthStates);
+    loadFieldsData(fields);
 }
 
 
@@ -53,32 +45,19 @@ function loadFarmerData(farmer){
     elementFarmerData.innerHTML = html;
 }
 
-function loadFieldsData(fields, growthStates){
+//Aprimorar a lógica da função
+function loadFieldsData(fields){
     let elementFieldsData = document.getElementById("field-items-section");
     let html ="";
     let count = 0
     for (let field of fields) {
-        let timeLeft = 0;
-        let state = ''; 
-        let finalTimeLeft = Number.MAX_SAFE_INTEGER;
-        for (let growthState of growthStates){
-            console.log(growthState.Producao_Terreno_ID)
-            if (field.Terreno_ID == growthState.Producao_Terreno_ID){
-                timeLeft = growthState.TimeLeft;
-                        if (finalTimeLeft > timeLeft){
-                        state = growthState.EstadoCrescimento_Estado;
-                        finalTimeLeft = timeLeft; 
-                        }      
-                }
-            }
-
                 html += 
                 '<section class="field-item" onclick="sessionSaveFieldID('+ field.Terreno_ID +')">' +
                     '<section id="title-section">'+                        
                         '<h2 class="title" id="'+field.Terreno_ID+'" >'+field.Terreno_Nome+'</h2>'+                            
                     '</section>'+
                     '<section id="delete-field-button-section">'+
-                        '<input type="button" class="delete-field-button" value="&times;" onclick="deleteField()"></input>'+
+                        '<input type="button" class="delete-field-button" value="&times;" onclick="deleteField('+field.Terreno_ID+')"></input>'+
                     '</section>'+
                     '<section id="description-section">'+
                         '<p class="description">'+field.Terreno_Descricao+'</p>'+
@@ -87,19 +66,11 @@ function loadFieldsData(fields, growthStates){
                         '<section id="feedback-image-section">'+
                             '<img class="feedback-image" src="/images/feedback-status-ready.PNG">'+
                         '</section>'+
-                        '<section id="feedback-message-section">';
-                            if(finalTimeLeft <= 0){
-                                html += '<p id="feedback-message">'+state+'</p>';
-                            } else if(finalTimeLeft == Number.MAX_SAFE_INTEGER) {
-                                html += '<p id="feedback-message">Vazio</p>';  
-                            } else{
-                                html += '<p id="feedback-message">'+finalTimeLeft+'</p>';
-                            }
-                                html +=
+                        '<section id="feedback-message-section">'+
+                            '<p id="feedback-message">Vazio</p>'+
                         '</section>'+
                     '</section>'+
-                '</section>';
-                
+                '</section>';                
             
         count++
         }
@@ -128,4 +99,14 @@ function sessionSaveFieldID(id){
 const addField = () => {
     sessionStorage.setItem("farmerID", farmer[0].Agricultor_ID)
     window.location = 'createSlotPage.html'
+}
+
+const deleteField = async fieldID => {
+    
+    let result = await $.ajax({
+        url: farmerID+'/fields/'+fieldID,
+        method: 'post',
+        dataType: 'json'
+    })
+    console.log(result)
 }

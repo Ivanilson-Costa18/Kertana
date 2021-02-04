@@ -1,67 +1,61 @@
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnBnIiwiYSI6ImNraGwybDczMzFnOXcyeHA2MnM0ZWF4aDQifQ.dbfnIhEI5JJf-TV1LyEQQw';
 var map
+var field 
 
 ////////////////////////////////////// WINDOW //////////////////////////////////////////////////////
 
-var colorsArray = ['#088'];
-var coordinates = [];
-window.onload = async function loadPage() {
+window.onload = async function() {
     let json = sessionStorage.getItem("field");
-    let field = JSON.parse(json);
-    getSoilMoisture(field.Terreno_AgroAPI_ID)
-    getTemperatures(field.Terreno_AgroAPI_ID)
-    let products = await $.ajax({
-        url: "/api/productions/"+field.Terreno_ID+"/products",
-        method: "get",
-        dataType: "json"
-    });
-    let productionCoordinates =  await $.ajax({
-        url: "/api/productions/"+field.Terreno_ID+"/coordinates",
-        method: 'get',
-        dataType: 'json'
-    });
+    field = JSON.parse(json);
 
-    let growthStates =  await $.ajax({
-        url: "/api/productions/"+field.Terreno_ID+"/growthStates",
-        method: 'get',
-        dataType: 'json'
-    });
+    let soilConditions = await getSoilMoisture(field.Terreno_AgroAPI_ID)
+    let climateConditions = await getTemperatures(field.Terreno_AgroAPI_ID)
 
-    listProducts(products, growthStates);
+    document.getElementById('field-info-soil-section').innerHTML = '<h2 id="info-title">Informação do Solo</h2>'+
+                                                                    '<p id="first-paragraph"><b>t10</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+(soilConditions.t10-273.15).toFixed(2)+' ºC</p>'+
+                                                                    '<p><b>t0</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+(soilConditions.t0-273.15).toFixed(2)+' ºC</p>'+
+                                                                    '<p><b>Humidade</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+soilConditions.moisture+' m&sup3;/m&sup3;</p>';
 
-   
+    document.getElementById('field-info-climate-section').innerHTML = '<h2 id="info-title">Informação do Clima</h2>'+
+                                                                        '<p id="first-paragraph"><b>Vento</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+climateConditions.wind.speed+'m/s</p>'+
+                                                                        '<p><b>Pressão</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+climateConditions.main.pressure+'hPa</p>'+
+                                                                        '<p><b>Humidade</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+climateConditions.main.humidity+'%</p>'+
+                                                                        '<p><b>Nuvens</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+climateConditions.clouds.all+'%</p>';
 
-    fieldCoordinates = await $.ajax({
-        url: "/api/fields/"+field.Terreno_ID,
+    document.getElementById('field-size-coord-section').innerHTML = '<h3>Tamanho (hectare)</h3>'+
+                                                                    '<p>'+(turf.area(turf.polygon([JSON.parse(field.Terreno_Coordenadas)]))/10000).toFixed(2)+' ha(s);</p>'+                
+                                                                    '<h3>Lat/Long</h3>'+
+                                                                    '<p>'+turf.centroid(turf.polygon([JSON.parse(field.Terreno_Coordenadas)])).geometry.coordinates[0].toFixed(4)+','+turf.centroid(turf.polygon([JSON.parse(field.Terreno_Coordenadas)])).geometry.coordinates[1].toFixed(4)+'</p>'
+
+    let data = await $.ajax({
+        url: 'api/fields/'+field.Terreno_ID+'/productions',
         method: 'get',
         dataType: 'json'
     })
-        centerCoordinate = turf.centroid(turf.polygon([JSON.parse(field.Terreno_Coordenadas)]));
-        coordinates.push({coordinates: JSON.parse(field.Terreno_Coordenadas), prodID: 0})
 
-        map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
-            center: centerCoordinate.geometry.coordinates,
-            zoom: 12
-            });
+    let productions = data.productions
+    let products = data.products
+    let growthStates = data.growthStates
+    let colorsArray = stateColors(productions)
+    listProducts(products, growthStates)
+    
+    productions.unshift({Producao_ID: 0, Producao_Coordenadas: field.Terreno_Coordenadas})
+    centerCoordinate = turf.centroid(turf.polygon([JSON.parse(field.Terreno_Coordenadas)]))
 
-        map.on('load', function () {   
-            for (singleCoordinates of productionCoordinates){
-                let coord = JSON.parse(singleCoordinates.Producao_Coordenadas)
-                coordinates.push({coordinates: coord, prodID: singleCoordinates.Producao_Produto_ID})
-                if (singleCoordinates.Producao_EstadoCrescimento_ID == 1) // Germinacao : Vermelho
-                    colorsArray.push('#e10');
-                if (singleCoordinates.Producao_EstadoCrescimento_ID == 2) // Maturacao : Amarelo
-                    colorsArray.push('#ff1');
-                if (singleCoordinates.Producao_EstadoCrescimento_ID == 3) // Pronto a colher : Verde
-                    colorsArray.push('#081');
-                }
-            let count = 0 
-            for (coordinate of coordinates) {
-                color = colorsArray[count];
+    map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
+        center: centerCoordinate.geometry.coordinates,
+        zoom: 12
+        });
+    
 
-            map.addSource(String(coordinate.prodID), {
+    map.on('load', function () {   
+        let count = 0 
+        for (production of productions) {
+            color = colorsArray[count];
+            map.addSource(String(production.Producao_ID), {
                     'type': 'geojson',
                     'data': {
                             'type': 'FeatureCollection',
@@ -70,16 +64,16 @@ window.onload = async function loadPage() {
                                             'type': 'Feature',
                                             'geometry': {
                                                 'type': 'Polygon',
-                                                'coordinates': [coordinate.coordinates]                               
+                                                'coordinates': [JSON.parse(production.Producao_Coordenadas)]                               
                                                             }
                                                         }
                                     ]
                                 }
                             }); 
                     map.addLayer({
-                            'id': String(coordinate.prodID),
+                            'id': String(production.Producao_ID),
                             'type': 'fill',
-                            'source': String(coordinate.prodID),
+                            'source': String(production.Producao_ID),
                             'layout': {},
                             'paint': {
                                 'fill-color': color,
@@ -88,7 +82,7 @@ window.onload = async function loadPage() {
                     });
                 count++
                 }
-            });
+        });
     
 }     
 
@@ -99,17 +93,18 @@ function getFieldObj(field){
 }
 
 async function deleteResult(prodID) {
-    var elem = document.getElementById('productID-'+prodID);
-    let confirmation = confirm('Deseja remover este produto da terreno?')
+    var elem = document.getElementById('productionID-'+prodID);
+    let confirmation = confirm('Deseja remover esta produção da terreno?')
     if(confirmation){
         elem.parentNode.parentNode.removeChild(elem.parentNode)
         let remove = await $.ajax({
-            url:'api/productions/'+prodID+'/fields',
+            url:'api/fields/'+field.Terreno_ID+'/productions/'+prodID,
             method: 'post',
             dataType:'json'
         })
         map.removeLayer(String(prodID))    
         map.removeSource(String(prodID))
+        document.location.reload()
     };
 }
 
@@ -119,53 +114,62 @@ function listProducts(products, growthStates) {
     let elemHortlist = document.getElementById("products-list-section");
     let html ="";
     for (let product of products) {
-        for (let growthState of growthStates){
-            if (product.Produto_ID == growthState.Producao_Produto_ID){
-                let state = growthState.EstadoCrescimento_Estado;
-                let timeLeft = growthState.TimeLeft;
-                html += 
-                        '<section id="product-result">'+
-                            '<div id="productID-'+product.Produto_ID+'">'+
-                                '<section id= "hortalica-result">'+
-                                    '<section id="image-product-section">'+
-                                        '<img id="image-icon" src="'+product.Produto_Photo+'">'+
-                                    '</section>'+
-                                    '<section id="title-section">'+
-                                        '<h3 id="title-result">'+product.Produto_Nome+'</h3>'+
-                                    '</section>'+
-                                    '<section id="remove-product-button-section">'+
-                                        '<input type="button" id="delete-product" value="&times;" onclick="deleteResult('+product.Produto_ID+')"></input>'+
-                                    '</section>'+   
-                                    '<section id="product-description-section">'+
-                                        '<p id="description-result"><b>Tipo Solo: </b>'+product.Produto_TipoSoloDescricao+'</p>'+
-                                        '<p id="description-result"><b>Epoca Semear: </b>'+product.Produto_EpocaSemearDescricao+'</p>'+
-                                        '<p id="description-result"><b>Epoca Colheita: </b>'+product.Produto_EpocaColheitaDescricao+'</p>'+
-                                        '<p id="description-result"><b>Exposição: </b>'+product.Produto_ExposicaoDescricao+'</p>'+
-                                        '</section>'+
-                                        '<section id="feedback-section">'+
-                                        '<section id="feedback-image-section">'+
-                                        '<img id="feedback-image" src="/images/feedback-status-ready.PNG">'+
-                                        '</section>'+
-                                        '<section id="feedback-message-section">';
-                                        if(timeLeft <= 0){
-                                            html += '<p id="feedback-message">'+state+'</p>';
-                                        } else{
-                                            html += '<p id="feedback-message">'+timeLeft+' (dias)</p>';  
-                                        }
-                                        html += 
-                                    '</section>'+
-                                    '</section>'+
-                                    '<section id="separation">'+
-                                        '<hr style= "width: 90%; margin-bottom:20px;">'+
-                                    '</section>'+
+        let growthState = growthStates.shift()
+        let state = growthState.EstadoCrescimento_Estado;
+        let timeLeft = growthState.TimeLeft;
+        html += 
+                '<section id="product-result">'+
+                    '<div id="productionID-'+growthState.Producao_ID+'">'+
+                        '<section id= "hortalica-result">'+
+                            '<section id="image-product-section">'+
+                                '<img id="image-icon" src="'+product.Produto_Photo+'">'+
+                            '</section>'+
+                            '<section id="title-section">'+
+                                '<h3 id="title-result">'+product.Produto_Nome+'</h3>'+
+                            '</section>'+
+                            '<section id="remove-product-button-section">'+
+                                '<input type="button" id="delete-product" value="&times;" onclick="deleteResult('+growthState.Producao_ID+')"></input>'+
+                            '</section>'+   
+                            '<section id="product-description-section">'+
+                                '<p id="description-result"><b>Tipo Solo: </b>'+product.Produto_TipoSoloDescricao+'</p>'+
+                                '<p id="description-result"><b>Epoca Semear: </b>'+product.Produto_EpocaSemearDescricao+'</p>'+
+                                '<p id="description-result"><b>Epoca Colheita: </b>'+product.Produto_EpocaColheitaDescricao+'</p>'+
+                                '<p id="description-result"><b>Exposição: </b>'+product.Produto_ExposicaoDescricao+'</p>'+
                                 '</section>'+
-                            '</div>'+
-                        '</section>';
-                
-            }
-        }
+                                '<section id="feedback-section">'+
+                                '<section id="feedback-image-section">'+
+                                '<img id="feedback-image" src="/images/feedback-status-ready.PNG">'+
+                                '</section>'+
+                                '<section id="feedback-message-section">';
+                                if(timeLeft <= 0){
+                                    html += '<p id="feedback-message">'+state+'</p>';
+                                } else{
+                                    html += '<p id="feedback-message">'+timeLeft+' (dias)</p>';  
+                                }
+                                html += 
+                            '</section>'+
+                            '</section>'+
+                            '<section id="separation">'+
+                                '<hr style= "width: 90%; margin-bottom:20px;">'+
+                            '</section>'+
+                        '</section>'+
+                    '</div>'+
+                '</section>';
     }
     elemHortlist.innerHTML = html;
+}
+
+const stateColors = productions => {
+    let colorsArray = ['#088'];
+    for (let production of productions){
+        if (production.Producao_EstadoCrescimento_ID == 1) // Germinacao : Vermelho
+            colorsArray.push('#e10');
+        if (production.Producao_EstadoCrescimento_ID == 2) // Maturacao : Amarelo
+            colorsArray.push('#ff1');
+        if (production.Producao_EstadoCrescimento_ID == 3) // Pronto a colher : Verde
+            colorsArray.push('#081');
+        }
+    return colorsArray
 }
 
 
@@ -179,8 +183,7 @@ async function getSoilMoisture(polygonID) {
             dataType: "json"
         });
         soilInfo = result;
-        console.log(soilInfo.moisture);
-        return soilInfo.moisture;
+        return soilInfo;
     } catch(err) {
         console.log(err);
         return err
@@ -194,8 +197,8 @@ async function getTemperatures(polygonID) {
             method: "get",
             dataType: "json"
         });
-        weatherInfo = result.main;
-        return console.log(weatherInfo);
+        weatherInfo = result;
+        return weatherInfo
     } catch(err) {
         console.log(err);
         return err

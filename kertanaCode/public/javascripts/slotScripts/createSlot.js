@@ -69,11 +69,11 @@ const getPolygonLocation = polygon => {
 
 const getSuitableProducts = async id => {
     let products = await $.ajax({
-        url:'/api/products/storedProcedure/'+id,
+        url:'/api/locations/'+id+'/products',
         method:'get',
         dataType:'json'
     })
-    showProducts(products[0])
+    showProducts(products)
 }
 
 const showProducts = products => {
@@ -109,7 +109,7 @@ const saveSlot = async () => {
     let agroID = await createPolygon(updateArea())
     console.log(agroID)
     let send = await $.ajax({
-        url:'api/fields/'+farmerID+'/Terreno',
+        url:'api/farmer/'+farmerID+'/fields',
         method: 'post',
         dataType: 'json',
         data: {

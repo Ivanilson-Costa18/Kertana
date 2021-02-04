@@ -11,12 +11,12 @@ module.exports.getAllLocations = async function () {
     }
 }
 
-module.exports.getSuitableLocations = async function (productID) {
+module.exports.getSuitableProducts = async function (local) {
     try{
-        const sql = 'CALL verified_location(?);';
-        let suitable_locations = await pool.query(sql,[productID]);
-        return suitable_locations;
-    }catch (err) {
+        const sql = 'CALL verified_products(?);';
+        let suitable_products = await pool.query(sql,[local]);
+        return suitable_products
+    }catch(err){
         console.log(err);
         return err;
     }

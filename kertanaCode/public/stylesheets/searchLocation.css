@@ -308,6 +308,16 @@ input{
     transition-duration: 0.6s;
 }
 
+
+#search-locationsearch-container-list{
+    text-align: start;
+    margin-left: 17%;
+    margin-top: 1%;
+    cursor: pointer;
+    z-index: 10;
+    max-height: 5%;
+}
+
 .mapboxgl-ctrl-bottom-left{
     display: none;
 }
