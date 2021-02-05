@@ -1,6 +1,5 @@
-![Kertana Logo](https://raw.githubusercontent.com/Silvarini/Huzen/master/Icon/banner-kertana.png) **[N'zembo - 50039011 &](https://github.com/Ivanilson-Costa18) [Bernardo - 50039481](https://github.com/Silvarini)**
+![Kertana Logo](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Entregas/Entrega%20Final%20Kertana/poster-kertana.png) **[N'zembo - 50039011 &](https://github.com/Ivanilson-Costa18) [Bernardo - 50039481](https://github.com/Silvarini)**
 <br> ![Website](https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fkertana.herokuapp.com%2F)            https://kertana.herokuapp.com/
-
 
 # Table of Contents
 
@@ -31,7 +30,6 @@ A plataforma Kertana não funciona bem como uma standalone, ou seja, se não hou
 **Consultar Hortaliça** - Utilizador consulta por hortaliças com condições para serem cultivar no seu terreno.<br>
 **Receber Feedback e Notificações das Plantações** - Obter feedback de quanto tempo demorará a hortaliça para ser colhida e uma notificação de quando o tempo de colher chegar.<br>
 **Gerir Terrenos** - Um utilizador poderá ter mais do que um terreno para gerir na plataforma.<br>
-**Controlo do Estado da Plantação** - O programa dá feedback do estado das platações, tendo em conta, a humidade do solo.
 
 ## Deliveries
 
@@ -77,35 +75,53 @@ A plataforma Kertana não funciona bem como uma standalone, ou seja, se não hou
 
 
 ## GUI
-![Home-Page-Hero](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Home Hero.PNG?raw=true)
-![Home-Page-Body-1](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Home Body 1.PNG?raw=true)
-![Home-Page-Body-2](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Home Body 2.PNG?raw=true)
-![Search-Product-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Product Search.PNG?raw=true)
-![Search-Product-Page-Selected](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Product Search Selected Location.PNG?raw=true)
-![Field-Search-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Location Search.PNG?raw=true)
-![Add-Product-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Add Product.PNG?raw=true)
-![Profile-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Profile.PNG?raw=true)
-![Field-Creation-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/field-creation-page.PNG?raw=true)
-![Field-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/field-page.PNG?raw=true)
+### Home Page Hero
+![Home-Page-Hero](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Home%20Hero.png)
+### Home Page Body 1
+![Home-Page-Body-1](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Home%20Body%201.png)
+### Home Page Body 2
+![Home-Page-Body-2](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Home%20Body%202.png)
+### Home Page Hero> Search Field with Products
+![Search-Product-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Product%20Search.png)
+### Home Page Hero> Search Field with Products> Search Field with Products (Location Selected)
+![Search-Product-Page-Selected](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Product%20Search%20Selected%20Location.png)
+### Home Page Hero> Search Products with Locations
+![Field-Search-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/search-page-location.png)
+### Home Page Hero> Profile Page
+![Profile-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Profile.png)
+### Home Page Hero> Profile Page> Field Creation Page
+![Field-Creation-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Field%20Creation.png?raw=true)
+### Home Page Hero> Profile Page> Field Creation Page> Field Creation Form
+![Field-Creation-PopUp](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Creat%20Field.png?raw=true)
+### Home Page Hero> Profile Page> Field Page
+![Field-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Field.png)
+### Home Page Hero> Profile Page> Field Page> Add Product to Field
+![Add-Product-PopUp](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/field-page-add-product.png)
+
 
 ## Diagrams
 
 #### Context Diagram
-![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/Diagrama%20Context.jpg?raw=true)
+![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/Context%20Diagram.png)
 
 #### Use Case Diagram
-![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/kertana-use-case.jpg?raw=true)
+![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/Use%20Case%20Diagram.png)
 
 #### Domain Model
-![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/kertana-modelo-dominio.jpg?raw=true)
-
-#### ER Diagram
-![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/kertana_database_model.png?raw=true)
+![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/Domain%20Model.png)
 
 #### Machine State Diagram
-![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/Estado%20pol%C3%ADgono%20produ%C3%A7%C3%A3o.png?raw=true)
-![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/Estado%20Colheita.png?raw=true)
+![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/State%20Machine%20Polygon%20State.png)
+![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/State%20Machine%20Harvest%20State.png)
 
+#### CRUD Matrix
+![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/CRUD%20Matrix.png)
+
+#### Block Diagram
+![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/Block%20Diagram.png)
+
+#### BPMN - Field Creation
+![](https://github.com/Ivanilson-Costa18/Kertana/blob/master/Diagrams/BPMN%20Field%20Creation.png)
 
 
 
