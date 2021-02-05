@@ -14,13 +14,16 @@
 
 
 ## Enquadramento
-O projeto consiste no desenvolvimento de uma plataforma web para consulta de terrenos com condições apropriadas para desenvolvimento e gerenciamento de uma plantação de hortaliças. Temos como objetivo aumentar a quantidade de informação disponibilizada ao cliente e organizar as suas plantações.<br><br>
-A tomada de decisões na agricultura é baseada em muitas condicionantes que só os agricultores com muita experiência e/ou investigação conseguem ter sucesso. Nós procuramos ajudar pessoas que não tenham estas características, não têm muito tempo ou não procuram dedicar-se totalmente para terem algumas colheitas.
-Ter um sistema informático baseando as decisões através de dados como, temperatura e humidade do clima e humidade do terreno, tem um grande impacto para manter uma produção. Mudança do clima pode alterar estes fatores, colheitas que correm bem num ano, podem vir a ter problemas no futuro.<br><br>
-A nossa plataforma pretende foca-se no setor agrícola. Queremos agilizar o processo que os agricultores fazem de pesquisa em apenas selecionar o terreno/região enquanto a plataforma trata de recolher toda informação sobre a hortaliças que a o utilizador poderá plantar no seu terreno ou um uma zona do mapa onde possa plantar a hortaliça que deseja. Com isto os agricultores passam a ser mais elucidados, dispensando as procuras por este tipo de informação.
-Para utilizadores que estejam autenticados na plataforma eles podem gerir vários terrenos com várias plantações de várias hortaliças. A plataforma vai dar feedback ao utilizador de quanto falta para a colheita da hortaliça e o estado do crescimento da hortaliça, visto que para cada estado, o utilizador precisa de alterar o tratamento.<br><br> 
-Tendo em vista os aspetos mencionados a nossa plataforma é importante para quem pretende plantar hortaliças no seu terreno,  pretende encontrar uma zona em Portugal, onde pode plantar uma certa hortaliça, tendo acesso à informação confiável, poupando tempo e esforço a quem precise ou gerir um terreno com apoio da plataforma para as suas decisões na produção das suas colheitas. 
-O projeto tem como objetivo alcançar um público alvo jovem, que não tem grande conhecimento e experiência na área e produtores que não têm dimensões grandes o suficiente para justificar um sistema mais profundo.
+A plataforma Kertana vai permitir a um utilizador procurar por uma zona do mapa de Portugal onde possa plantar produtos que o mesmo especificou, assim obtendo uma zona para o seu próximo terreno ou procurar dentro do seu terreno que produtos pode plantar.<br><br>
+- **Utilizador:** Ele terá um perfil na plataforma com os seus terrenos e para cada um deles um feedback de quanto falta para a próxima colheita do terreno.<br><br>
+- **Terreno:** Cada terreno tem uma página onde o utilizador pode visualizar o tempo que falta para cada produção estar pronta para colher, uma visualização do seu terreno (imagem obtida por um satélite) e produções, estes representados por um polígono com uma cor definida e informações sobre o solo, temperatura da superfície, temperatura a 10 cm profundidade e humidade, e clima, velocidade do vento, pressão atmosférica, humidade e nuvens, do seu terreno.<br><br>
+- **Produções:** As produções são produtos que se encontram plantados no terreno. Cada produção tem um produto, uma data inicial da plantação, indicada pelo utilizador, um estado de crescimento desde germinação, maturação e pronto a colher e um estado da colheita.<br><br>
+- **Produto:** Cada produto tem intervalos de valores toleráveis de temperatura e épocas de semear, entenda-se épocas de semear por meses em que se pode plantar aquele produto.<br><br>
+A Kertana necessita de sistemas, como a Agro API e Mapbox, para as funcionalidades da plataforma serem executadas.<br><br>
+- **Agro API:** A Kertana utiliza os dados fornecidos pela Agro API para filtrar resultados nas consultas do utilizador, listagem de produtos recomendados pela plataforma para o utilizador plantar no seu terreno e alertar caso os valores fornecidos pela Agro API não estejam dentro do intervalo tolerável dos produtos.<br><br>
+- **Mapbox:** O Mapbox é um serviço que disponibiliza o mapa utilizado na plataforma acompanhado de uma de uma biblioteca de funções, especificadas na documentação, que nos permitem trabalhar a informação a ser apresentada no mapa.
+A plataforma Kertana não funciona bem como uma standalone, ou seja, se não houver acesso à internet, o nosso serviço não tem utilidade.
+
 
 
 ## Highlights
@@ -63,22 +66,25 @@ O projeto tem como objetivo alcançar um público alvo jovem, que não tem grand
 - [x] Domain Model and State Machine Diagram 
 
 ### Forth Delivery
-  31.01.2020
-- [ ] Project final version
-- [ ] Final version code
-- [ ] Updated concept and use cases
-- [ ] Interaction description with BPMN 
-- [ ] REST service documentation
-- [ ] Power Point Presentation
-- [ ] Demo Video 
+  04.02.2021
+- [x] Project final version
+- [x] Final version code
+- [x] Updated concept and use cases
+- [x] Interaction description with BPMN 
+- [x] REST service documentation
+- [x] Power Point Presentation
+- [x] Demo Video 
 
 
 ## GUI
-![Home-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/home-page.PNG?raw=true)
-![Search-Product-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/search-product-page.PNG?raw=true)
-![Field-Search-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/field-search-page.PNG?raw=true)
-![Add-Product-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/add-product-page.PNG?raw=true)
-![Profile-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/profile-page.PNG?raw=true)
+![Home-Page-Hero](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Home Hero.PNG?raw=true)
+![Home-Page-Body-1](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Home Body 1.PNG?raw=true)
+![Home-Page-Body-2](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Home Body 2.PNG?raw=true)
+![Search-Product-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Product Search.PNG?raw=true)
+![Search-Product-Page-Selected](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Product Search Selected Location.PNG?raw=true)
+![Field-Search-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Location Search.PNG?raw=true)
+![Add-Product-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Add Product.PNG?raw=true)
+![Profile-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/Profile.PNG?raw=true)
 ![Field-Creation-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/field-creation-page.PNG?raw=true)
 ![Field-Page](https://github.com/Ivanilson-Costa18/Kertana/blob/master/GUI/field-page.PNG?raw=true)
 
