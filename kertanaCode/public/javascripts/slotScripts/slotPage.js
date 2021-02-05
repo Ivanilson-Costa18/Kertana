@@ -47,7 +47,7 @@ window.onload = async function() {
         container: 'map',
         style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
         center: centerCoordinate.geometry.coordinates,
-        zoom: 12
+        zoom: 15
         });
     
 

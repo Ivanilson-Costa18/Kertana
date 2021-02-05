@@ -34,6 +34,7 @@ function updateArea(e) {
     if (data.features.length > 0) {
         let polygon = data.features[0].geometry.coordinates
         let local = getPolygonLocation(polygon)
+        console.log(local.Freguesia_ID);
         if(local){
             getSuitableProducts(local.Freguesia_ID);
             fregID = local.Freguesia_ID
@@ -73,7 +74,7 @@ const getSuitableProducts = async id => {
         method:'get',
         dataType:'json'
     })
-    showProducts(products)
+    showProducts(products[0])
 }
 
 const showProducts = products => {
@@ -109,7 +110,7 @@ const saveSlot = async () => {
     let agroID = await createPolygon(updateArea())
     console.log(agroID)
     let send = await $.ajax({
-        url:'api/farmer/'+farmerID+'/fields',
+        url:'api/farmers/'+farmerID+'/fields',
         method: 'post',
         dataType: 'json',
         data: {

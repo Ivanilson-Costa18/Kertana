@@ -67,7 +67,7 @@ function loadFieldsData(fields){
                             '<img class="feedback-image" src="/images/feedback-status-ready.PNG">'+
                         '</section>'+
                         '<section id="feedback-message-section">'+
-                            '<p id="feedback-message">Vazio</p>'+
+                            '<p id="feedback-message">Ocupado</p>'+
                         '</section>'+
                     '</section>'+
                 '</section>';                
