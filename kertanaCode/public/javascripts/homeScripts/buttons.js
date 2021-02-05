@@ -1,7 +1,7 @@
 const onClick = () => {
-    window.location = 'profilePage.html'
+    window.location = 'loginPage.html'
 }
 
 const createAccount = () => {
-    alert('UNDER DEVELOPMENT')
+    window.location = "registerPage.html"
 }

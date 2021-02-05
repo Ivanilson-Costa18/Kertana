@@ -9,8 +9,6 @@ var farmersRouter = require('./routes/farmersRoutes');
 var fieldsRouter = require('./routes/fieldsRoutes');
 var productionsRouter = require('./routes/productionsRoutes');
 
-
-
 var app = express();
 
 app.use(logger('dev'));

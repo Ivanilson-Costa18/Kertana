@@ -8,6 +8,19 @@ router.get('/:farmerID', async function(req, res, next) {
   res.send(farmer); 
 });
 
+router.get('/authentication/login', async function(req,res,next) {
+  let farmer = req.query;
+  console.log(farmer.email +' ' +farmer.password)
+  let result = await mFarmers.logFarmer(farmer);
+  res.send(result)
+})
+
+router.post('/', async function(req, res, next){
+  let farmer = req.body;
+  let result = await mFarmers.createFarmer(farmer)
+  res.send(result)
+})
+
 router.get('/:farmerID/fields', async function(req, res, next) {
   let farmerID = req.params.farmerID;
   let fields =  await mFarmers.getAllFields(farmerID);
@@ -27,5 +40,6 @@ router.post('/:farmerID/fields/:fieldID', async function (req, res, next){
   let result = await mFarmers.removeField(farmerID, fieldID)
   res.send(result)
 })
+
 
 module.exports = router;

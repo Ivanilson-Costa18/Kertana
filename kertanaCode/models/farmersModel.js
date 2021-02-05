@@ -11,14 +11,29 @@ module.exports.getFarmer = async function(farmerID) {
     }
 }
 
-module.exports.register = async function(farmerObj){
+module.exports.logFarmer = async function(farmer) {
     try {
-        const sql = 'SELECT * FROM Agricultor WHERE * = ?'
-        let farmer = await pool.query(sql,[farmerObj])
-        if ( farmer > 0){
-            return {farmer: farmer}
-        } else {
-            return {msg: 'Email already in use.'}
+        const sql = 'SELECT * FROM Agricultor WHERE Agricultor_Email = ? AND Agricultor_Password = ?'
+        let result = await pool.query(sql, [farmer.email, farmer.password])
+        return {id: result[0].Agricultor_ID}
+    } catch(err) {
+        console.log(err)
+        return err
+    }
+                
+}
+
+module.exports.createFarmer = async function(farmerObj){
+    try {
+        const sql = 'SELECT * FROM Agricultor WHERE Agricultor_Email = ?'
+        let farmer = await pool.query(sql,[farmerObj.emailAddress])
+        if ( farmer.length > 0){
+            return {msg: 'Email already in use.', status: false}
+        } 
+        const sql2 = 'INSERT INTO Agricultor (Agricultor_PrimeiroNome, Agricultor_UltimoNome, Agricultor_Email, Agricultor_Password, Agricultor_Photo) Values (?,?,?,?,\'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvectorified.com%2Fimages%2Fgeneric-avatar-icon-12.jpg&f=1&nofb=1\')' 
+        let newFarmer = await pool.query(sql2,[farmerObj.firstName, farmerObj.lastName, farmerObj.emailAddress, farmerObj.pass])
+        if(newFarmer.insertId){
+            return {msg: 'Resgistro efetuado com sucesso.', status: true}
         }
     } catch (err) {
         console.log(err)

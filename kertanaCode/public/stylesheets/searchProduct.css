@@ -260,3 +260,10 @@ table{
     max-height: 85%;
     overflow-y: auto;
 }
+
+.circle {
+    border-radius: 50%;
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+  }

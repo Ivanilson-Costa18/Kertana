@@ -1,0 +1,74 @@
+body{
+    overflow: hidden;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../images/FarmBG.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    font-family: 'Calibri';
+    margin: 0;
+    padding: 0;
+}
+
+#form-box{
+    height: 360px;
+    width: 460px;
+    background-color: white;
+    border: 2px solid grey;
+    border-radius: 50px 50px 50px 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+}
+
+#logo{
+    height: 60px;
+    width: 150px;
+    margin-left: 33.5%;
+    margin-right: 34%;
+    margin-top: 5%;
+}
+
+#form-container{
+    height: 400px;
+    width: 93%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-content{
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-areas: 
+    'form-label form-field';
+    padding-bottom: 4%;
+}
+
+.form-label{
+    grid-area: form-label;
+}
+
+.form-field{
+    border: 1px solid gray;
+    border-radius: 5px 5px 5px 5px;
+    grid-area: form-field;
+}
+
+#login-button{
+    position: absolute;
+    background-color: #E04824;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px 5px 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 10px;
+    margin-left: 14.5%;
+    margin-top: 2%;
+}
+
+#status{
+    color: #6cbe45;
+}

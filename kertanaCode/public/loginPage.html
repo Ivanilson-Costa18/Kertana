@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Kertana</title>
+        <link rel="stylesheet" href="./stylesheets/loginPage.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="./javascripts/authenticationScripts/login.js"></script>
+    </head>
+    <body>
+        <section id="form-box">
+            <div id="form-title">
+                <a href="./index.html"><img id="logo" src="./images/LogoGreen.png"></a>
+                <p style="text-align: center; font-size: 25px;">LogIn</p>
+            </div>
+            <div id="form-container">
+                <form class="form">
+                    <div class="form-content">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="text" class="form-field" id="email" placeholder="exe@example.com">
+                    </div>
+                    <div class="form-content">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" class="form-field" id="password">
+                    </div>
+                    <p id="status"></p>
+                    <input id="login-button" type="button" value="Entrar" onclick="loginAccount()">
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

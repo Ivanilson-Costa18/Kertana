@@ -1,3 +1,5 @@
+mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnBnIiwiYSI6ImNraGwybDczMzFnOXcyeHA2MnM0ZWF4aDQifQ.dbfnIhEI5JJf-TV1LyEQQw';
+
 var count=0
 var hortalicas = [];  
 var getProductVar = [];
@@ -41,53 +43,47 @@ window.onload = async function loadListProducts() {
         method: 'get',
         dataType: 'json'
     }).then( value => {
-        mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnBnIiwiYSI6ImNraGwybDczMzFnOXcyeHA2MnM0ZWF4aDQifQ.dbfnIhEI5JJf-TV1LyEQQw';
+    mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnBnIiwiYSI6ImNraGwybDczMzFnOXcyeHA2MnM0ZWF4aDQifQ.dbfnIhEI5JJf-TV1LyEQQw';
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
         center: [-7.956215,39.506282], 
         zoom: 5.5
         });
-        map.on('load', function () {   
-        let count = 0
-        for (local of value[0]){
-          allLocations.push(local.Freguesia_Nome)
-            let coordinate = JSON.parse(local.Freguesia_Coordenadas)
-            map.addSource(String(count), {
-                    'type': 'geojson',
-                    'data': {
-                            'type': 'FeatureCollection',
-                            'features': [
-                                            {
-                                            'type': 'Feature',
-                                            'geometry': {
-                                            'type': 'Polygon',
-                                            'coordinates': [coordinate]                               
-                                                            }}
-                                    ]}}); 
-            map.addLayer({
-                    'id': String(count),
-                    'type': 'fill',
-                    'source': String(count),
-                    'layout': {},
-                    'paint': {
-                        'fill-color': '#088',
-                        'fill-opacity': 0.65
-                    }
-                    });
-            count++}
-            results+=count
-            listLocations()
-            allLocations=[]
-            resultCounter(results)
-
-
-
-        });
-                   
+    map.on('load', function () {   
+      let count = 0
+      for (local of value[0]){
+        allLocations.push(local.Freguesia_Nome)
+          let coordinate = JSON.parse(local.Freguesia_Coordenadas)
+          map.addSource(String(count), {
+                  'type': 'geojson',
+                  'data': {
+                          'type': 'FeatureCollection',
+                          'features': [
+                                          {
+                                          'type': 'Feature',
+                                          'geometry': {
+                                          'type': 'Polygon',
+                                          'coordinates': [coordinate]                               
+                                                          }}
+                                  ]}}); 
+          map.addLayer({
+                  'id': String(count),
+                  'type': 'fill',
+                  'source': String(count),
+                  'layout': {},
+                  'paint': {
+                      'fill-color': '#088',
+                      'fill-opacity': 0.65
+                  }
+                  });
+          count++}
+          results+=count
+          listLocations()
+          allLocations=[]
+          resultCounter(results)
+        });                   
         listProducts(product);
-
-
 })}
 
 
@@ -103,7 +99,7 @@ function listProducts(products) {
     for (let product of products) {
         html += 
     '<tr class="result">'+
-        '<td>verde</td>'+
+        '<td><div class="circle" style = "background-color: '+product.Produto_Cor+'"></div></td>'+
         '<td>'+product.Produto_Nome+'</td>'+
         '<td>'+product.Produto_TempoGerminacao+'</td>'+
         '<td>'+product.Produto_TempoMaturacao+'</td>'+
@@ -169,10 +165,10 @@ async function addProduct() {
             if(productItem.Produto_ID==item){
                 html += 
                 '<tr class="result">'+
-                    '<td>verde</td>'+
-                    '<td>'+productItem.Produto_Nome+'</td>'+
-                    '<td>'+productItem.Produto_TempoGerminacao+'</td>'+
-                    '<td>'+productItem.Produto_TempoMaturacao+'</td>'+
+                  '<td><div class="circle" style = "background-color: '+productItem.Produto_Cor+'"></div></td>'+
+                  '<td>'+productItem.Produto_Nome+'</td>'+
+                  '<td>'+productItem.Produto_TempoGerminacao+'</td>'+
+                  '<td>'+productItem.Produto_TempoMaturacao+'</td>'+
                 '</tr>';
             }   
         }

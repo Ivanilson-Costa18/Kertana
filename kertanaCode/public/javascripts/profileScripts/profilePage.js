@@ -1,9 +1,9 @@
-const farmerID = 1;
 var farmer = {}
 var fields = []
 var plantationCounter = 0
 
 window.onload = async function loadProfileData() {
+    let farmerID = sessionStorage.getItem("user_id")
     farmer = await $.ajax({
         url: "/api/farmers/"+farmerID,
         method: "get",
