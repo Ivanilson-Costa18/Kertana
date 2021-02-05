@@ -194,7 +194,7 @@ async function addProduct() {
         let count = 0
         for(productSessionID of productSessionParsedIDs){
             suitable_locations2 = await $.ajax({
-                url: "/api/locations/storedProcedure/"+productSessionID,
+                url: "/api/products/"+productSessionID+'/locations',
                 method: 'get',
                 dataType: 'json'
             }).then( value => {

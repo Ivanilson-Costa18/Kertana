@@ -108,7 +108,6 @@ const saveSlot = async () => {
     let name = document.getElementById('slotName').value
     let description = document.getElementById('slotDescription').value
     let agroID = await createPolygon(updateArea())
-    console.log(agroID)
     let send = await $.ajax({
         url:'api/farmers/'+farmerID+'/fields',
         method: 'post',

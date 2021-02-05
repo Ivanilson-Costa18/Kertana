@@ -142,12 +142,18 @@ p{
 }
 
 #search-hortalicasearch-container-list{
+    background-color: white;
     text-align: start;
-    margin-left: 17%;
-    margin-top: 1%;
+    margin-left: 5%;
     cursor: pointer;
-    z-index: 10;
+    z-index: 99;
     max-height: 5%;
+    width: 21%;
+    position: absolute;
+}
+
+#search-hortalicasearch-container-list:nth-child(n):hover{
+    background-color: #cfcfcf;
 }
 
 .search-input{
@@ -175,15 +181,17 @@ input{
   }
 
 #addButton{
-    background-color:  #E04824; 
-    color: #ffffff; 
+    position: fixed;
+    background-color: #E04824;
+    color: #ffffff;
     border: none;
-    border-radius: 5px 5px 5px 5px ;
+    border-radius: 5px 5px 5px 5px;
     font-size: 16px;
     cursor: pointer;
     padding: 10px 10px;
     align-self: center;
-    margin-top: 10%;
+    z-index: 0;
+    margin-top: 6%;
 }
 
 #locationResult{
