@@ -141,20 +141,33 @@ p{
     flex-direction: column;
 }
 
-#search-hortalicasearch-container-list{
-    background-color: white;
-    text-align: start;
-    margin-left: 5%;
-    cursor: pointer;
-    z-index: 99;
-    max-height: 5%;
-    width: 21%;
+.search-container-items {
     position: absolute;
-}
+    border: none;
+    width: 22%;
+    overflow-y: scroll;
+    font-size: 20;
+    text-align: center;
+    margin-bottom: -40%;
+    z-index: 1;
+    margin-left: 5%;
+  }
+  
+  .search-container-items div {
+    padding: 5px;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid rgb(0, 0, 0, 0.5);
 
-#search-hortalicasearch-container-list:nth-child(n):hover{
-    background-color: #cfcfcf;
-}
+  }
+    .search-container-items div:hover {
+    background-color: #e9e9e9; 
+  }
+  
+  /*when navigating through the items using the arrow keys:*/
+  .search-container-active {
+    background-color: #e9e9e9 !important; 
+  }
 
 .search-input{
     text-align: center;
@@ -266,4 +279,10 @@ table{
     display: inline-block;
     height: 15px;
     width: 15px;
+    margin-right: 4px;
+    margin-top: 3px;
+  }
+
+  .circle-products {
+    margin-left: 14px;
   }

@@ -1,254 +1,163 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnBnIiwiYSI6ImNraGwybDczMzFnOXcyeHA2MnM0ZWF4aDQifQ.dbfnIhEI5JJf-TV1LyEQQw';
-
-var count=0
-var hortalicas = [];  
-var getProductVar = [];
-var allLocations = []
-var results = 0
-
-
+var map
+var chosenProduct
+var searchedProducts = []
+var resultLocations = []
 ///////////////////////////////////////// WINDOW //////////////////////////////////////////////////////
 
-var suitable_locations = {}
 window.onload = async function loadListProducts() {
+  let productID = JSON.parse(sessionStorage.getItem("productID"));
+  searchedProducts.push(productID)
+  let allProducts = await $.ajax({
+    url: '/api/products', 
+    method:'get',
+    dataType: 'json'
+  });
+  
+  let product = await $.ajax({
+      url: "/api/products/"+productID,
+      method: "get",
+      dataType: "json"
+  });
 
-    const getProducts = async () =>{
-        productsItems = await $.ajax({
-        url: '/api/products', 
-        method:'get',
-        dataType: 'json'
-    });
-    let objProductItem
-    for(productItem of productsItems){
-      objProductItem = productItem;
-    hortalicas.push(objProductItem);
-      }
-    for(let productItem of productsItems){
-      getProductVar.push(productItem.Produto_Nome);
-    }
-    }
-
-    getProducts();
-    autocomplete(document.querySelector("#search-hortalica"), getProductVar)
-
-    let productID = sessionStorage.getItem("productID");
-
-    let product = await $.ajax({
-        url: "/api/products/"+productID,
-        method: "get",
-        dataType: "json"
-    });
-    suitable_locations = await $.ajax({
-        url: "/api/products/"+productID+"/locations",
-        method: 'get',
-        dataType: 'json'
-    }).then( value => {
-    mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnBnIiwiYSI6ImNraGwybDczMzFnOXcyeHA2MnM0ZWF4aDQifQ.dbfnIhEI5JJf-TV1LyEQQw';
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
-        center: [-7.956215,39.506282], 
-        zoom: 5.5
-        });
-    map.on('load', function () {   
-      let count = 0
-      for (local of value[0]){
-        allLocations.push(local.Freguesia_Nome)
-          let coordinate = JSON.parse(local.Freguesia_Coordenadas)
-          map.addSource(String(count), {
-                  'type': 'geojson',
-                  'data': {
-                          'type': 'FeatureCollection',
-                          'features': [
-                                          {
-                                          'type': 'Feature',
-                                          'geometry': {
-                                          'type': 'Polygon',
-                                          'coordinates': [coordinate]                               
-                                                          }}
-                                  ]}}); 
-          map.addLayer({
-                  'id': String(count),
-                  'type': 'fill',
-                  'source': String(count),
-                  'layout': {},
-                  'paint': {
-                      'fill-color': '#088',
-                      'fill-opacity': 0.65
-                  }
-                  });
-          count++}
-          results+=count
-          listLocations()
-          allLocations=[]
-          resultCounter(results)
-        });                   
-        listProducts(product);
-})}
-
-
-function listProducts(products) {
-    let elemHortlist = document.getElementById("hortSearched");
-    let html =
-    '<tr>'+
-        '<th>Cor</th>'+
-        '<th>Nome</th>'+
-        '<th>Germinação(dias)</th>'+
-        '<th>Maturação(dias)</th>'+
-    '</tr>';
-    for (let product of products) {
-        html += 
-    '<tr class="result">'+
-        '<td><div class="circle" style = "background-color: '+product.Produto_Cor+'"></div></td>'+
-        '<td>'+product.Produto_Nome+'</td>'+
-        '<td>'+product.Produto_TempoGerminacao+'</td>'+
-        '<td>'+product.Produto_TempoMaturacao+'</td>'+
-    '</tr>';
-    }
-
-    elemHortlist.innerHTML = html;
+  let suitable_locations = await $.ajax({
+      url: "/api/products/"+productID+"/locations",
+      method: 'get',
+      dataType: 'json'
+  })
+  map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
+      center: [-7.956215,39.506282], 
+      zoom: 5.5
+      });
+  map.on('load', function () {   
+    let count = 0
+    for (local of suitable_locations[0]){
+        let coordinate = JSON.parse(local.Freguesia_Coordenadas)
+        map.addSource(String(local.Freguesia_ID), {
+                'type': 'geojson',
+                'data': {
+                        'type': 'FeatureCollection',
+                        'features': [
+                                        {
+                                        'type': 'Feature',
+                                        'geometry': {
+                                        'type': 'Polygon',
+                                        'coordinates': [coordinate]                               
+                                                        }}
+                                ]}}); 
+        map.addLayer({
+                'id': String(local.Freguesia_ID),
+                'type': 'fill',
+                'source': String(local.Freguesia_ID),
+                'layout': {},
+                'paint': {
+                    'fill-color': '#088',
+                    'fill-opacity': 0.65
+                }
+              });
+        count++
+      } 
+      document.getElementById("totalLocations").innerHTML = count
+    });                   
+  listProduct(product[0]);
+  listLocations(suitable_locations[0])
+  autocomplete(document.querySelector("#search-hortalica"), allProducts)
 }
 
 
+function listProduct(product) {
+    let elemHortlist = document.getElementById("hortSearched");
+    let html =
+      '<tr class="result">'+
+          '<td><div class="circle circle-products" style = "background-color: '+product.Produto_Cor+'"></div></td>'+
+          '<td>'+product.Produto_Nome+'</td>'+
+          '<td>'+product.Produto_TempoGerminacao+'</td>'+
+          '<td>'+product.Produto_TempoMaturacao+'</td>'+
+      '</tr>';
+  
+    elemHortlist.innerHTML += html;
+}
 
 
-function listLocations() {
+function listLocations(locations) {
+  console.log(locations)
   let html = ""
-    let elemHortlist = document.getElementById("locationResult");
-    html =
-    '<tr>'+
-        '<th>Nome</th>'+
-        '<th>Produtos</th>'+
-    '</tr>'
-  for(nomeLocal of allLocations){
-      html += 
-    '<tr class="result">'+
-        '<td>'+nomeLocal+'</td>'+
-        '<td>produto</td>'+
-    '</tr>';
+  let elemHortlist = document.getElementById("locationResult");
+  for(local of locations){
+    let index = resultLocations.indexOf(local.Freguesia_Nome)
+    /*Verificar se a localização já se encontra na tabela*/
+    if(index<0){
+      resultLocations.push(local.Freguesia_Nome)
+        html += 
+          '<tr class="result">'+
+            '<td>'+local.Freguesia_Nome+'</td>'+
+            '<td id="locationProducts-'+local.Freguesia_ID+'"><div class="circle" style = "background-color: '+local.Produto_Cor+'"></div></td>'+
+          '</tr>'
+      } else {
+      document.getElementById('locationProducts-'+local.Freguesia_ID).innerHTML += '<div class="circle" style = "background-color: '+local.Produto_Cor+'"></div>'
+        }
     }
-
-    elemHortlist.innerHTML = html;
+  document.getElementById('totalLocations').innerHTML = resultLocations.length
+  elemHortlist.innerHTML += html;
 }
 
 
 arr=[]
 async function addProduct() {
-    productID = JSON.parse(sessionStorage.getItem('productID'));  
-    if (Array.isArray(productID)){
-        arr=[]
-        for(let ID of productID){
-        arr.push(ID)
-        }
-    } else {
-        arr.push(productID)
+  let index = searchedProducts.indexOf(chosenProduct.Produto_ID)
+  /*Verificar se o produto já foi pesquisado*/
+  if(index >= 0) {return alert('O produto pesquisado já foi inserido.')}
+
+  /*Inserir o produto na lista dos já pesquisados*/
+  searchedProducts.push(chosenProduct.Produto_ID)
+
+  /*Receber localizações do produto inserido*/
+  let locations = await $.ajax({
+    url: "/api/products/"+chosenProduct.Produto_ID+"/locations",
+    method: 'get',
+    dataType: 'json'
+  })
+
+  listProduct(chosenProduct)
+  listLocations(locations[0])
+
+  /*Introduzir as localizações no mapa */
+  for (local of locations[0]){
+      let coordinate = JSON.parse(local.Freguesia_Coordenadas)
+      /*Verificar se a Localização está no mapa */
+      if(!map.getLayer(local.Freguesia_ID) && !map.getSource(local.Freguesia_ID)){
+        map.addSource(String(local.Freguesia_ID), {
+                'type': 'geojson',
+                'data': {
+                        'type': 'FeatureCollection',
+                        'features': [
+                                        {
+                                        'type': 'Feature',
+                                        'geometry': {
+                                        'type': 'Polygon',
+                                        'coordinates': [coordinate]                               
+                                                        }}
+                                ]}}); 
+        map.addLayer({
+                'id': String(local.Freguesia_ID),
+                'type': 'fill',
+                'source': String(local.Freguesia_ID),
+                'layout': {},
+                'paint': {
+                    'fill-color': '#088',
+                    'fill-opacity': 0.65
+                }
+              });
+      } else {
+        map.getLayer()
+      }
     }
-    let productItemID = 0;
-    let productName = document.getElementById("search-hortalica").value;
-    for(let productItem of hortalicas){
-      if(productItem.Produto_Nome == productName) productItemID = productItem.Produto_ID;
-    }
-    arr.push(productItemID)
-    sessionStorage.setItem('productID', JSON.stringify(arr));
-
-
-    let elemHortlist = document.getElementById("hortSearched");
-    let html =
-    '<tr>'+
-        '<th>Cor</th>'+
-        '<th>Nome</th>'+
-        '<th>Germinação(dias)</th>'+
-        '<th>Maturação(dias)</th>'+
-    '</tr>';
-    for(productItem of productsItems){
-        for(item of arr){
-            if(productItem.Produto_ID==item){
-                html += 
-                '<tr class="result">'+
-                  '<td><div class="circle" style = "background-color: '+productItem.Produto_Cor+'"></div></td>'+
-                  '<td>'+productItem.Produto_Nome+'</td>'+
-                  '<td>'+productItem.Produto_TempoGerminacao+'</td>'+
-                  '<td>'+productItem.Produto_TempoMaturacao+'</td>'+
-                '</tr>';
-            }   
-        }
-    }
-    elemHortlist.innerHTML = html;
-    suitable_locations = []
-
-    let productSessionIDs = sessionStorage.getItem("productID");
-    productSessionParsedIDs = JSON.parse(productSessionIDs)
-
-    mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnBnIiwiYSI6ImNraGwybDczMzFnOXcyeHA2MnM0ZWF4aDQifQ.dbfnIhEI5JJf-TV1LyEQQw';
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
-        center: [-7.956215,39.506282], 
-        zoom: 5.5
-        });
-        map.on('load', async function () {   
-        let count = 0
-        for(productSessionID of productSessionParsedIDs){
-            suitable_locations2 = await $.ajax({
-                url: "/api/products/"+productSessionID+'/locations',
-                method: 'get',
-                dataType: 'json'
-            }).then( value => {
-            for (locations of value[0]){
-              allLocations.push(locations.Freguesia_Nome)
-            let coordinate = JSON.parse(locations.Freguesia_Coordenadas)
-            map.addSource(String(count), {
-                    'type': 'geojson',
-                    'data': {
-                            'type': 'FeatureCollection',
-                            'features': [
-                                            {
-                                            'type': 'Feature',
-                                            'geometry': {
-                                            'type': 'Polygon',
-                                            'coordinates': [coordinate]                               
-                                                            }}
-                                    ]}}); 
-            map.addLayer({
-                    'id': String(count),
-                    'type': 'fill',
-                    'source': String(count),
-                    'layout': {},
-                    'paint': {
-                        'fill-color': '#088',
-                        'fill-opacity': 0.65
-                    }
-                    });
-            count++}
-            results=0
-            results += count
-            listLocations()
-            console.log(results);
-            resultCounter(results)
-
-
-          }
-
-            )
-          }
-          allLocations=[]
-
-        });
-
 }
 
 
-function resultCounter(count){
-  let elemHortlist = document.getElementById("totalLocations");
-  elemHortlist.innerHTML = count;
 
-}
-
-
-function deleteResult(id) {
-    var elem = document.getElementById(id);
-    elem.parentNode.removeChild(elem);
-}
 
 function autocomplete (inp, arr) {
     /*the autocomplete function takes two arguments,
@@ -270,17 +179,19 @@ function autocomplete (inp, arr) {
         /*for each item in the array...*/
         for(i = 0; i < arr.length; i++) {
           /*check if the item starts with the same letters as the text field value:*/
-          if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()){
+          if (arr[i].Produto_Nome.substr(0, val.length).toUpperCase() == val.toUpperCase()){
             /*create a DIV element for each matching element:*/
             b = document.createElement("DIV");
             /*make the matching letters bold:*/
-            b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-            b.innerHTML += arr[i].substr(val.length);
+            b.innerHTML = "<strong>" + arr[i].Produto_Nome.substr(0, val.length) + "</strong>";
+            b.innerHTML += arr[i].Produto_Nome.substr(val.length);
             /*insert a input field that will hold the current array item's value:*/
-            b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+            b.innerHTML += "<input type='hidden' value='" + arr[i].Produto_Nome + "'>";
             /*execute a function when someone clicks on the item value (DIV element):*/
+            let product = arr[i]
             b.addEventListener("click", function(e) {
                 /*insert the value for the autocomplete text field:*/
+                chosenProduct = product
                 inp.value = this.getElementsByTagName("input")[0].value;
                 /*close the list of autocompleted values,
                 (or any other open lists of autocompleted values:*/

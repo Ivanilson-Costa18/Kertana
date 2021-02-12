@@ -1,11 +1,9 @@
-var localizacao = {}
-var coordenada = []
 var map
 
 window.onload = async function loadListLocations() {
     let json = sessionStorage.getItem("location");
-    localizacao = JSON.parse(json);
-    coordenada = JSON.parse(localizacao.coordenadas)
+    let localizacao = JSON.parse(json);
+    let coordenada = JSON.parse(localizacao.coordenadas)
     document.getElementById('local').innerHTML = localizacao.nome
     let suitable_products = await $.ajax({
         url: "/api/locations/"+localizacao.id+"/products",

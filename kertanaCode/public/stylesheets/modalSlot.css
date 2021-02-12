@@ -212,12 +212,4 @@ input {
     margin-bottom: -36%;
   }
 
-  .search-container-items div {
-    padding: 5px;
-    cursor: pointer;
-    background-color: white;
-    border: 1px solid rgb(0, 0, 0, 0.5);
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-
+  
