@@ -131,91 +131,83 @@ function autocomplete(inp, arr) {
 
 autocomplete(document.querySelector("#search-container"), hortalicas);
  
-  function addProductList() {
-    product  = document.getElementById('search-container')
-    
-      modal.classList.remove('active');
-      overlay.classList.remove('active');
-  }
-
-  
-  function cancelAddProduct() {
+ 
+function cancelAddProduct() {
     if (modal == null) return;
     modal.classList.remove('active');
     overlay.classList.remove('active');
   }
   
-  overlay.addEventListener('click', () => {
+overlay.addEventListener('click', () => {
     cancelAddProduct();
   })
   
-  function updateArea(e) {
-    var data = draw.getAll();
-    if (data.features.length > 0 ) {
-      let slot = turf.polygon([JSON.parse(field.Terreno_Coordenadas)])
-      console.log(field)
-      let production = turf.polygon(data.features[0].geometry.coordinates)
-      console.log(production)
-      let isInside = turf.booleanContains(slot, production)
-      console.log(isInside)
-      if (isInside) {
-        modal.classList.add('active');
-        overlay.classList.add('active');
-        document.getElementById('draw-button').disabled = true
-        return data.features[0].geometry.coordinates
-      } else {
-        alert('A área de produção não se encontra dentro do terreno.')
-        draw.deleteAll()
-      }
+function updateArea(e) {
+  var data = draw.getAll();
+  if (data.features.length > 0 ) {
 
-      } else {
-      alert('Defina a área da sua produção')
-      }
-    return null
+    let slot = turf.polygon([JSON.parse(field.Terreno_Coordenadas)])
+    let production = turf.polygon(data.features[0].geometry.coordinates)
+    let isInside = turf.booleanContains(slot, production)
+
+    /* Se produção estiver dentro do terreno devolve as coordenadas*/
+    if (isInside) {
+      modal.classList.add('active');
+      overlay.classList.add('active');
+      document.getElementById('draw-button').disabled = true
+      return data.features[0].geometry.coordinates
+    } else {
+      alert('A área de produção não se encontra dentro do terreno.')
+      draw.deleteAll()
+    }
+
+  } else {
+    alert('Defina a área da sua produção.')
   }
+  return null
+}
 
-  const createProduction = () => {
+const createProduction = () => {
+  modal.classList.remove('active')
+  overlay.classList.remove('active');
+  document.getElementById('button-add-product').disabled = true
+
+  map.addControl(draw);
+  
+  map.on('draw.create',updateArea);
+  map.on('draw.delete',updateArea);
+  map.on('draw.update',updateArea);
+
+  if(updateArea()){
+    return updateArea()
+  }
+  document.getElementById('button-add-product').disabled = false
+}
+
+const addProduction = async () => {
+  let json = sessionStorage.getItem("field");
+  let field = JSON.parse(json);
+  let coordinates = updateArea()[0]
+  let result
+  if(value){
+    let productID = chosenProductID
+    let date = document.getElementById('date').value
+    let production = {
+                    coordinates: JSON.stringify(coordinates),
+                    product: productID,
+                    date: date
+                  }
+      result = await $.ajax({
+      url: 'api/fields/'+field.Terreno_ID+'/productions',
+      method: 'post',
+      dataType:'json',
+      data: production
+    })
+    alert('Produção criada com sucesso!')
     modal.classList.remove('active')
     overlay.classList.remove('active');
-    document.getElementById('button-add-product').disabled = true
-
-    map.addControl(draw);
-    
-    map.on('draw.create',updateArea);
-    map.on('draw.delete',updateArea);
-    map.on('draw.update',updateArea);
-
-    if(updateArea()){
-      return updateArea()
-    }
-    document.getElementById('button-add-product').disabled = false
-  }
-
-  const addProduction = async () => {
-    let json = sessionStorage.getItem("field");
-    let field = JSON.parse(json);
-    let value = updateArea()[0]
-    let result
-    if(value){
-      let polygon = value
-      let productID = chosenProductID
-      let date = document.getElementById('date').value
-      let production = {
-                      coordinates: JSON.stringify(polygon),
-                      product: productID,
-                      date: date
-                    }
-        result = await $.ajax({
-        url: 'api/fields/'+field.Terreno_ID+'/productions',
-        method: 'post',
-        dataType:'json',
-        data: production
-      })
-      alert('Done')
-      modal.classList.remove('active')
-      overlay.classList.remove('active');
-      document.location.reload(true)
-    }    
-  }
+    document.location.reload(true)
+  }    
+}
 
 

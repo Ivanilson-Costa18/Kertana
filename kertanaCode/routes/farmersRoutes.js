@@ -15,17 +15,23 @@ router.get('/authentication/login', async function(req,res,next) {
   res.send(result)
 })
 
-router.post('/', async function(req, res, next){
-  let farmer = req.body;
-  let result = await mFarmers.createFarmer(farmer)
-  res.send(result)
-})
-
 router.get('/:farmerID/fields', async function(req, res, next) {
   let farmerID = req.params.farmerID;
   let fields =  await mFarmers.getAllFields(farmerID);
   res.send(fields); 
 });
+
+router.get('/:farmerID/fields/productions', async function(req, res, next){
+  let farmerID = req.params.farmerID;
+  let productions = await mFarmers.getAllProductions(farmerID);
+  res.send(productions)
+})
+
+router.post('/', async function(req, res, next){
+  let farmer = req.body;
+  let result = await mFarmers.createFarmer(farmer)
+  res.send(result)
+})
 
 router.post('/:farmerID/fields', async function (req, res, next) {
   let farmerID = req.params.farmerID;

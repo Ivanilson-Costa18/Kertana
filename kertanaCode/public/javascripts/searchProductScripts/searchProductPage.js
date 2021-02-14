@@ -82,7 +82,6 @@ function listProduct(product) {
 
 
 function listLocations(locations) {
-  console.log(locations)
   let html = ""
   let elemHortlist = document.getElementById("locationResult");
   for(local of locations){
@@ -104,11 +103,10 @@ function listLocations(locations) {
 }
 
 
-arr=[]
 async function addProduct() {
   let index = searchedProducts.indexOf(chosenProduct.Produto_ID)
   /*Verificar se o produto já foi pesquisado*/
-  if(index >= 0) {return alert('O produto pesquisado já foi inserido.')}
+  if(index >= 0) {return alert('O produto inserido já foi pesquisado.')}
 
   /*Inserir o produto na lista dos já pesquisados*/
   searchedProducts.push(chosenProduct.Produto_ID)

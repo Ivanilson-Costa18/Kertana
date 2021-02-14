@@ -51,6 +51,17 @@ module.exports.getAllFields = async function(farmerID) {
     }
 }
 
+module.exports.getAllProductions = async function(farmerID){
+    try {
+        const sql = 'SELECT Producao_ID, Producao_Produto_ID, Producao_Terreno_ID, Producao_EstadoCrescimento_ID, Producao_EstadoColheita_ID, Producao_EstadoPoligonoProducao_ID, Producao_Coordenadas, Producao_dataPlantacao, EstadoCrescimento_Estado, Produto_TempoGerminacao + Produto_TempoMaturacao - DATEDIFF(CURRENT_DATE, Producao_dataPlantacao) AS TimeLeft FROM Agricultor, Terreno, Producao, Produto, EstadoCrescimento WHERE Agricultor_ID = ? AND Terreno_Agricultor_ID = Agricultor_ID AND Producao_Terreno_ID = Terreno_ID AND Producao_Produto_ID = Produto_ID AND Producao_EstadoCrescimento_ID = EstadoCrescimento_ID AND Producao_EstadoPoligonoProducao_ID = 2'
+        let productions = await pool.query(sql, [farmerID])
+        return productions
+    } catch (err) {
+        console.log(err)
+        return err;
+    }
+}
+
 module.exports.insertField = async function(farmerID, fieldObj) {
     try{
         const sql = 'INSERT INTO Terreno (Terreno_Agricultor_ID, Terreno_Nome, Terreno_Descricao, Terreno_Coordenadas, Terreno_AgroAPI_ID, Terreno_FreguesiaID) VALUES (?, ?, ?, ?, ?, ?)';

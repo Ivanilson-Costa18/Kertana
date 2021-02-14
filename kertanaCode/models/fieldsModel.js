@@ -4,14 +4,11 @@ module.exports.getAllProductions = async function(fieldID) {
     try{
         const sql = 'SELECT * FROM Produto WHERE Produto_ID IN (SELECT Producao_Produto_ID FROM Producao WHERE Producao_Terreno_ID = ? AND Producao_EstadoPoligonoProducao_ID = 2);'
         let products = await pool.query(sql, [fieldID]);
-        const sql2 = 'SELECT * FROM Producao WHERE Producao_Terreno_ID = ? AND Producao_EstadoPoligonoProducao_ID = 2;'
+        const sql2 = 'SELECT Producao_ID, Producao_Produto_ID, Producao_Terreno_ID, Producao_EstadoCrescimento_ID, Producao_EstadoColheita_ID, Producao_EstadoPoligonoProducao_ID, Producao_Coordenadas, Producao_dataPlantacao, EstadoCrescimento_Estado, Produto_TempoGerminacao + Produto_TempoMaturacao - DATEDIFF(CURRENT_DATE, Producao_dataPlantacao) AS TimeLeft FROM Producao, Produto, EstadoCrescimento WHERE Producao_Terreno_ID = ? AND Producao_Produto_ID = Produto_ID AND Producao_EstadoCrescimento_ID = EstadoCrescimento_ID AND Producao_EstadoPoligonoProducao_ID = 2 ORDER BY Producao_ID;'
         let production = await pool.query(sql2, [fieldID]);
-        const sql3 = 'CALL growth_state(?);'
-        let growthStates = await pool.query(sql3, [fieldID]);
         let productions = {
             products: products,
             productions: production,
-            growthStates: growthStates[0]
         }
         return productions
     }catch(err){

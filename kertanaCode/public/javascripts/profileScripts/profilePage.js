@@ -15,12 +15,19 @@ window.onload = async function loadProfileData() {
         method: "get",
         dataType: "json"
     });
-    loadFarmerData(farmer[0]);
+
+    let productions = await $.ajax({
+        url:"/api/farmers/"+farmerID+"/fields/productions",
+        method: "get",
+        dataType: "json"
+    })
+    console.log(productions)    
+    loadFarmerData(farmer[0], productions);
     loadFieldsData(fields);
 }
 
 
-function loadFarmerData(farmer){
+function loadFarmerData(farmer, productions){
     let elementFarmerData = document.getElementById("farmer-section-flex");
     let html ="";
     html += 
@@ -35,8 +42,8 @@ function loadFarmerData(farmer){
         '<input type="button" class="add-field-button" value="+ Adicionar Terreno" onclick="addField()"></input>'+
     '</section>'+
     '<section id="field-info-section">'+
-        '<p id="field-info-plantation">Plantações <b>X</b></p>'+
-        '<p id="field-info-harvest">Colheitas <b>X</b></p>'+
+        '<p id="field-info-plantation">Nº Plantações: <b>'+productions.length+'</b></p>'+
+        '<p id="field-info-harvest">Prontas a colher: <b>'+getAllReadyProductions(productions)+'</b></p>'+
         '<p id="field-info">Histórico Plantações:'+
         '<br>'+
         '<b>X</b> Produto1 · <b>X</b> Produto2 · <b>X</b> Produto3</p>'+
@@ -82,6 +89,16 @@ function loadFieldsData(fields){
 function getPlantationCounter(count){
     let plantation = document.getElementById("field-count");
     plantation.innerHTML = '<b>Terrenos</b> '+count+ ' terrenos';
+}
+
+function getAllReadyProductions(productions){
+    let count = 0
+    for(let production of productions){
+        if(production.Producao_EstadoCrescimento_ID == 3){
+            count++
+        }
+    }
+    return count
 }
 
 
