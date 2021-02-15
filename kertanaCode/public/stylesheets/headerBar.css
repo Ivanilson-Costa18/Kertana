@@ -18,7 +18,8 @@
 
 }
 
-#profileButtons{
-    display: flex;
-    width: 150px;
+#profileButton{
+    margin-right: 1%;
+    margin-top: 0.5%;
+    cursor:pointer;
 }
