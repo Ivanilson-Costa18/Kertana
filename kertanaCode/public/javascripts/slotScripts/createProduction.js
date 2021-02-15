@@ -189,7 +189,7 @@ const addProduction = async () => {
   let field = JSON.parse(json);
   let coordinates = updateArea()[0]
   let result
-  if(value){
+  if(coordinates){
     let productID = chosenProductID
     let date = document.getElementById('date').value
     let production = {

@@ -20,6 +20,8 @@ module.exports.getAllProductions = async function(fieldID) {
 module.exports.insertProduction = async function(fieldID, production){
     try{
         const sql = 'INSERT INTO Producao(Producao_Produto_ID, Producao_Terreno_ID, Producao_EstadoCrescimento_ID, Producao_EstadoPoligonoProducao_ID, Producao_Coordenadas, Producao_dataPlantacao) VALUES(?,?,1,2,?,?)'
+        const sql2 = 'UPDATE Terreno SET Terreno_EstadoTerreno_ID = 2 WHERE Terreno_ID = ?'
+        let update = await pool.query(sql2, [fieldID])
         let result = await pool.query(sql,[production.product, fieldID, production.coordinates, production.date])
         if(result.affectedRows > 0) return {msg: 'Insert into database successful'}
         else return{msg: 'Insert into database failed'}

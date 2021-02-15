@@ -42,7 +42,7 @@ module.exports.createFarmer = async function(farmerObj){
 
 module.exports.getAllFields = async function(farmerID) {
     try {
-        const sql = 'SELECT * FROM Terreno WHERE Terreno_Agricultor_ID = ?;';
+        const sql = 'SELECT *,  EstadoTerreno_Tipo FROM Terreno, EstadoTerreno WHERE Terreno_Agricultor_ID = ? AND Terreno_EstadoTerreno_ID = EstadoTerreno_ID;';
         let fields = await pool.query(sql, [farmerID]);
         return fields; 
     }  catch (err) {

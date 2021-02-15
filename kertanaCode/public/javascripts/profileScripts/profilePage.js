@@ -1,5 +1,7 @@
 var farmer = {}
 var fields = []
+var completeProductions = []
+var unstableProductions = []
 var plantationCounter = 0
 
 window.onload = async function loadProfileData() {
@@ -21,9 +23,9 @@ window.onload = async function loadProfileData() {
         method: "get",
         dataType: "json"
     })
-    console.log(productions)    
     loadFarmerData(farmer[0], productions);
     loadFieldsData(fields);
+    checkFields(completeProductions,unstableProductions)
 }
 
 
@@ -52,7 +54,6 @@ function loadFarmerData(farmer, productions){
     elementFarmerData.innerHTML = html;
 }
 
-//Aprimorar a lógica da função
 function loadFieldsData(fields){
     let elementFieldsData = document.getElementById("field-items-section");
     let html ="";
@@ -74,7 +75,7 @@ function loadFieldsData(fields){
                             '<img class="feedback-image" src="/images/feedback-status-ready.PNG">'+
                         '</section>'+
                         '<section id="feedback-message-section">'+
-                            '<p id="feedback-message">Ocupado</p>'+
+                            '<p id="feedback-message">'+field.EstadoTerreno_Tipo+'</p>'+
                         '</section>'+
                     '</section>'+
                 '</section>';                
@@ -95,6 +96,7 @@ function getAllReadyProductions(productions){
     let count = 0
     for(let production of productions){
         if(production.Producao_EstadoCrescimento_ID == 3){
+            completeProductions.push(production)
             count++
         }
     }
@@ -119,7 +121,6 @@ const addField = () => {
 }
 
 const deleteField = async fieldID => {
-    
     let result = await $.ajax({
         url: farmerID+'/fields/'+fieldID,
         method: 'post',
@@ -127,3 +128,13 @@ const deleteField = async fieldID => {
     })
     console.log(result)
 }
+
+function checkFields(completeProductions, unstableProductions) {
+    for(let production of completeProductions){
+        document.getElementById('notifications-content').innerHTML = '<p>'+production.Producao_ID+'</p>'
+    }
+    for(let production of unstableProductions){
+
+    }
+}
+
