@@ -1,5 +1,7 @@
 var farmer = {}
 var fields = []
+var completeProductions = []
+var unstableProductions = []
 var plantationCounter = 0
 
 window.onload = async function loadProfileData() {
@@ -16,14 +18,22 @@ window.onload = async function loadProfileData() {
         dataType: "json"
     });
     console.log(fields);
-    loadFarmerData(farmer[0]);
+    
+    let productions = await $.ajax({
+        url:"/api/farmers/"+farmerID+"/fields/productions",
+        method: "get",
+        dataType: "json"
+    })
+    loadFarmerData(farmer[0], productions);
+
     loadFieldsData(fields);
     getFieldsCounter(fields.length)
+    checkFields(completeProductions,unstableProductions)
 
 }
 
 
-function loadFarmerData(farmer){
+function loadFarmerData(farmer, productions){
     let elementFarmerData = document.getElementById("farmer-section-flex");
     let html ="";
     html += 
@@ -38,8 +48,8 @@ function loadFarmerData(farmer){
         '<input type="button" class="add-field-button" value="+ Adicionar Terreno" onclick="addField()"></input>'+
     '</section>'+
     '<section id="field-info-section">'+
-        '<p id="field-info-plantation">Plantações <b>X</b></p>'+
-        '<p id="field-info-harvest">Colheitas <b>X</b></p>'+
+        '<p id="field-info-plantation">Nº Plantações: <b>'+productions.length+'</b></p>'+
+        '<p id="field-info-harvest">Prontas a colher: <b>'+getAllReadyProductions(productions)+'</b></p>'+
         '<p id="field-info">Histórico Plantações:'+
         '<br>'+
         '<b>X</b> Produto1 · <b>X</b> Produto2 · <b>X</b> Produto3</p>'+
@@ -48,7 +58,6 @@ function loadFarmerData(farmer){
     elementFarmerData.innerHTML = html;
 }
 
-//Aprimorar a lógica da função
 function loadFieldsData(fields){
     let elementFieldsData = document.getElementById("field-items-section");
     let html ="";
@@ -69,7 +78,7 @@ function loadFieldsData(fields){
                             '<img class="feedback-image" src="/images/feedback-status-ready.PNG">'+
                         '</section>'+
                         '<section id="feedback-message-section">'+
-                            '<p id="feedback-message">Ocupado</p>'+
+                        '<p id="feedback-message">'+field.EstadoTerreno_Tipo+'</p>'+
                         '</section>'+
                     '</section>'+
                 '</section>';                
@@ -82,6 +91,17 @@ function loadFieldsData(fields){
 function getFieldsCounter(count){
     let plantation = document.getElementById("field-count");
     plantation.innerHTML = '<b>Terrenos</b> '+count+ ' terrenos';
+}
+
+function getAllReadyProductions(productions){
+    let count = 0
+    for(let production of productions){
+        if(production.Producao_EstadoCrescimento_ID == 3){
+            completeProductions.push(production)
+            count++
+        }
+    }
+    return count
 }
 
 
@@ -109,4 +129,13 @@ const deleteField = async fieldID => {
         dataType: 'json'
     })
     console.log(result)
+}
+
+function checkFields(completeProductions, unstableProductions) {
+    for(let production of completeProductions){
+        document.getElementById('notifications-content').innerHTML = '<p>'+production.Producao_ID+'</p>'
+    }
+    for(let production of unstableProductions){
+
+    }
 }

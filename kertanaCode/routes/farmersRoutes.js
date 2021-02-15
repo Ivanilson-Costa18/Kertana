@@ -34,6 +34,21 @@ router.post('/', async function(req, res, next){
   res.status(201).send(result)
 })
 
+/* Get all productions for a specific farmer */
+router.get('/:farmerID/fields/productions', async function(req, res, next){
+  let farmerID = req.params.farmerID;
+  let productions = await mFarmers.getAllProductions(farmerID);
+  if (productions.length != 0){
+    res.status(200).send(productions); 
+    } else {
+      res.status(404).send({
+        "status":404,
+        "error":"Not Found",
+        "message":"The requested resource does not exist",
+        "detail": "The given ID for the farmer doesn't have any productions"
+      }); 
+    }})
+
 /* Get all fields of a specific farmer. */
 router.get('/:farmerID/fields', async function(req, res, next) {
   let farmerID = req.params.farmerID;

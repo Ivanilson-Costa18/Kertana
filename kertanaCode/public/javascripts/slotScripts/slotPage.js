@@ -36,10 +36,9 @@ window.onload = async function() {
 
     let productions = data.productions
     let products = data.products
-    let growthStates = data.growthStates
     let colorsArray = stateColors(productions)
-    listProducts(products, growthStates)
-    
+    listProducts(products, productions)
+
     productions.unshift({Producao_ID: 0, Producao_Coordenadas: field.Terreno_Coordenadas})
     centerCoordinate = turf.centroid(turf.polygon([JSON.parse(field.Terreno_Coordenadas)]))
 
@@ -87,15 +86,12 @@ window.onload = async function() {
 }     
 
 
-function getFieldObj(field){
-    let coordinate = JSON.parse(field.Terreno_Coordenadas);
-    return coordinate;
-}
+
 
 async function deleteResult(prodID) {
     var elem = document.getElementById('productionID-'+prodID);
-    let confirmation = confirm('Deseja remover esta produção da terreno?')
-    if(confirmation){
+    let confirmation = confirm('Deseja remover esta produção do terreno?')
+        if(confirmation){
         elem.parentNode.parentNode.removeChild(elem.parentNode)
         let remove = await $.ajax({
             url:'api/fields/'+field.Terreno_ID+'/productions/'+prodID,
@@ -110,16 +106,20 @@ async function deleteResult(prodID) {
 
 
 
-function listProducts(products, growthStates) {
+function listProducts(products, productions) {
     let elemHortlist = document.getElementById("products-list-section");
     let html ="";
-    for (let product of products) {
-        let growthState = growthStates.shift()
-        let state = growthState.EstadoCrescimento_Estado;
-        let timeLeft = growthState.TimeLeft;
+    let count = 0
+    while (productions.length > count) {
+        let product = products[count]
+        let production = productions[count]
+
+        let state = production.EstadoCrescimento_Estado;
+        let timeLeft = production.TimeLeft;
+        
         html += 
                 '<section id="product-result">'+
-                    '<div id="productionID-'+growthState.Producao_ID+'">'+
+                '<div id="productionID-'+production.Producao_ID+'">'+
                         '<section id= "hortalica-result">'+
                             '<section id="image-product-section">'+
                                 '<img id="image-icon" src="'+product.Produto_Photo+'">'+
@@ -128,7 +128,7 @@ function listProducts(products, growthStates) {
                                 '<h3 id="title-result">'+product.Produto_Nome+'</h3>'+
                             '</section>'+
                             '<section id="remove-product-button-section">'+
-                                '<input type="button" id="delete-product" value="&times;" onclick="deleteResult('+growthState.Producao_ID+')"></input>'+
+                            '<input type="button" id="delete-product" value="&times;" onclick="deleteResult('+production.Producao_ID+')"></input>'+
                             '</section>'+   
                             '<section id="product-description-section">'+
                                 '<p id="description-result"><b>Tipo Solo: </b>'+product.Produto_TipoSoloDescricao+'</p>'+
@@ -155,6 +155,7 @@ function listProducts(products, growthStates) {
                         '</section>'+
                     '</div>'+
                 '</section>';
+                count++
     }
     elemHortlist.innerHTML = html;
 }
