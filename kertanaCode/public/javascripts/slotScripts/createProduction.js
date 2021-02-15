@@ -205,6 +205,7 @@ autocomplete(document.querySelector("#search-container"), hortalicas);
                       product: productID,
                       date: date
                     }
+                    console.log(production)
         result = await $.ajax({
         url: 'api/fields/'+field.Terreno_ID+'/productions',
         method: 'post',

@@ -15,8 +15,11 @@ window.onload = async function loadProfileData() {
         method: "get",
         dataType: "json"
     });
+    console.log(fields);
     loadFarmerData(farmer[0]);
     loadFieldsData(fields);
+    getFieldsCounter(fields.length)
+
 }
 
 
@@ -49,7 +52,6 @@ function loadFarmerData(farmer){
 function loadFieldsData(fields){
     let elementFieldsData = document.getElementById("field-items-section");
     let html ="";
-    let count = 0
     for (let field of fields) {
                 html += 
                 '<section class="field-item" onclick="sessionSaveFieldID('+ field.Terreno_ID +')">' +
@@ -72,14 +74,12 @@ function loadFieldsData(fields){
                     '</section>'+
                 '</section>';                
             
-        count++
         }
-        getPlantationCounter(count)
-
+        
     elementFieldsData.innerHTML = html;
     }
 
-function getPlantationCounter(count){
+function getFieldsCounter(count){
     let plantation = document.getElementById("field-count");
     plantation.innerHTML = '<b>Terrenos</b> '+count+ ' terrenos';
 }

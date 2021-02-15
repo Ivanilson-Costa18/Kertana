@@ -23,6 +23,17 @@ app.use('/api/farmers', farmersRouter);
 app.use('/api/fields', fieldsRouter);
 app.use('/api/productions', productionsRouter);
 
+app.use((req, res, next) => {
+    const error = new Error('Not found');
+    error.status = 404;
+    next(error);
+})
+
+app.use((error, req, res, next)=>{
+    res.status(error.status || 500)
+    res.send(error.message)
+})
+
 
 
 module.exports = app;
