@@ -1,3 +1,4 @@
+mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnBnIiwiYSI6ImNraGwybDczMzFnOXcyeHA2MnM0ZWF4aDQifQ.dbfnIhEI5JJf-TV1LyEQQw';
 var farmerID = 0;
 var fregID = 0;
 var locations = []
@@ -7,7 +8,6 @@ window.onload = function(){
     getLocations()
 }
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnBnIiwiYSI6ImNraGwybDczMzFnOXcyeHA2MnM0ZWF4aDQifQ.dbfnIhEI5JJf-TV1LyEQQw';
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
@@ -108,6 +108,7 @@ const saveSlot = async () => {
     let name = document.getElementById('slotName').value
     let description = document.getElementById('slotDescription').value
     let agroID = await createPolygon(updateArea())
+    
     let send = await $.ajax({
         url:'api/farmers/'+farmerID+'/fields',
         method: 'post',
