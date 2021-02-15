@@ -7,7 +7,7 @@ router.get('/:fieldID/productions', async function(req, res, next) {
   let fieldID = req.params.fieldID;
   let productions =  await mFields.getAllProductions(fieldID);
   console.log(productions)
-  if (productions.productions.length != 0){
+  if (productions.length != 0){
     res.status(200).send(productions); 
     } else {
       res.status(404).send({

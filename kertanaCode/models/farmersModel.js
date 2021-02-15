@@ -42,7 +42,7 @@ module.exports.createFarmer = async function(farmerObj){
 
 module.exports.getAllFields = async function(farmerID) {
     try {
-        const sql = 'SELECT *,  EstadoTerreno_Tipo FROM Terreno, EstadoTerreno WHERE Terreno_Agricultor_ID = ? AND Terreno_EstadoTerreno_ID = EstadoTerreno_ID;';
+        const sql = 'SELECT *,  EstadoTerreno_Tipo FROM Terreno, EstadoTerreno WHERE Terreno_Agricultor_ID = ? AND Terreno_EstadoTerreno_ID = EstadoTerreno_ID AND Terreno_Associacao = "associado";';
         let fields = await pool.query(sql, [farmerID]);
         return fields; 
     }  catch (err) {
@@ -53,7 +53,7 @@ module.exports.getAllFields = async function(farmerID) {
 
 module.exports.getAllProductions = async function(farmerID){
     try {
-        const sql = 'SELECT Producao_ID, Producao_Produto_ID, Producao_Terreno_ID, Producao_EstadoCrescimento_ID, Producao_EstadoColheita_ID, Producao_EstadoPoligonoProducao_ID, Producao_Coordenadas, Producao_dataPlantacao, EstadoCrescimento_Estado, Produto_TempoGerminacao + Produto_TempoMaturacao - DATEDIFF(CURRENT_DATE, Producao_dataPlantacao) AS TimeLeft FROM Agricultor, Terreno, Producao, Produto, EstadoCrescimento WHERE Agricultor_ID = ? AND Terreno_Agricultor_ID = Agricultor_ID AND Producao_Terreno_ID = Terreno_ID AND Producao_Produto_ID = Produto_ID AND Producao_EstadoCrescimento_ID = EstadoCrescimento_ID AND Producao_EstadoPoligonoProducao_ID = 2'
+        const sql = 'SELECT Producao_ID, Producao_Produto_ID, Producao_Terreno_ID, Producao_EstadoCrescimento_ID, Producao_EstadoColheita_ID, Producao_EstadoPoligonoProducao_ID, Producao_Coordenadas, Producao_dataPlantacao, EstadoCrescimento_Estado, Produto_TempoGerminacao + Produto_TempoMaturacao - DATEDIFF(CURRENT_DATE, Producao_dataPlantacao) AS TimeLeft FROM Agricultor, Terreno, Producao, Produto, EstadoCrescimento WHERE Agricultor_ID = ? AND Terreno_Agricultor_ID = Agricultor_ID AND Producao_Terreno_ID = Terreno_ID AND Producao_Produto_ID = Produto_ID AND Producao_EstadoCrescimento_ID = EstadoCrescimento_ID AND Producao_EstadoPoligonoProducao_ID = 2 AND Terreno_Associacao = "associado";'
         let productions = await pool.query(sql, [farmerID])
         return productions
     } catch (err) {
@@ -75,11 +75,9 @@ module.exports.insertField = async function(farmerID, fieldObj) {
 
 module.exports.removeField = async function(farmerID, fieldID){
     try {
-        const sql = 'DELETE FROM Terreno WHERE Terreno_ID = ? and Terreno_Agricultor_ID = ?'
+        const sql = 'UPDATE Terreno SET Terreno_Associacao = "não associado" WHERE Terreno_ID = ? AND Terreno_Agricultor_ID = ?'
         let result = await pool.query(sql, [fieldID, farmerID])
-        if(result.changedRows > 0)
-            return {msg: 'Update database successful'}
-        else return{msg: 'Update database failed'}
+        return {msg: 'Update database successful'}
     } catch(err){
         console.log(err)
         return err

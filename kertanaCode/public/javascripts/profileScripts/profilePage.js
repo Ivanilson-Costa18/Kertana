@@ -17,7 +17,6 @@ window.onload = async function loadProfileData() {
         method: "get",
         dataType: "json"
     });
-    console.log(fields);
     
     let productions = await $.ajax({
         url:"/api/farmers/"+farmerID+"/fields/productions",
@@ -63,12 +62,12 @@ function loadFieldsData(fields){
     let html ="";
     for (let field of fields) {
                 html += 
-                '<section class="field-item" onclick="sessionSaveFieldID('+ field.Terreno_ID +')">' +
-                    '<section id="title-section">'+                        
+                '<section class="field-item">' +
+                    '<section id="title-section" onclick="sessionSaveFieldID('+ field.Terreno_ID +')">'+                        
                         '<h2 class="title" id="'+field.Terreno_ID+'" >'+field.Terreno_Nome+'</h2>'+                            
                     '</section>'+
-                    '<section id="delete-field-button-section">'+
-                        '<input type="button" class="delete-field-button" value="&times;" onclick="deleteField('+field.Terreno_ID+')"></input>'+
+                    '<section id="delete-field-button-section" onclick="deleteField('+field.Terreno_ID+')">'+
+                        '<input type="button" class="delete-field-button" value="&times;"></input>'+
                     '</section>'+
                     '<section id="description-section">'+
                         '<p class="description">'+field.Terreno_Descricao+'</p>'+
@@ -122,13 +121,15 @@ const addField = () => {
 }
 
 const deleteField = async fieldID => {
-    
+    let farmerID = sessionStorage.getItem("user_id")
     let result = await $.ajax({
-        url: farmerID+'/fields/'+fieldID,
+        url: '/api/farmers/'+farmerID+'/fields/'+fieldID,
         method: 'post',
         dataType: 'json'
     })
-    console.log(result)
+    document.location.reload()
+
+
 }
 
 function checkFields(completeProductions, unstableProductions) {
