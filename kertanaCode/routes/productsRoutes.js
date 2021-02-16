@@ -16,7 +16,7 @@ router.get('/:id', async function(req, res, next) {
   if (product.length != 0){
     res.status(200).send(product); 
     } else {
-      res.status(404).send({
+      res.status(404).json({
         "status":404,
         "error":"Not Found",
         "message":"The requested resource does not exist",
@@ -31,7 +31,7 @@ router.get('/:id/locations', async function(req, res, next){
   if (locations[0].length != 0){
     res.status(200).send(locations); 
     } else {
-      res.status(404).send({
+      res.status(404).json({
         "status":404,
         "error":"Not Found",
         "message":"The requested resource does not exist",

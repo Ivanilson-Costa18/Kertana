@@ -7,7 +7,6 @@ var productsRouter = require('./routes/productsRoutes');
 var locationsRouter = require('./routes/locationsRoutes');
 var farmersRouter = require('./routes/farmersRoutes');
 var fieldsRouter = require('./routes/fieldsRoutes');
-var productionsRouter = require('./routes/productionsRoutes');
 
 var app = express();
 
@@ -21,7 +20,6 @@ app.use('/api/products', productsRouter);
 app.use('/api/locations', locationsRouter);
 app.use('/api/farmers', farmersRouter);
 app.use('/api/fields', fieldsRouter);
-app.use('/api/productions', productionsRouter);
 
 app.use((req, res, next) => {
     const error = new Error('Not found');

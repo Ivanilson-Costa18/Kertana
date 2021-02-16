@@ -10,7 +10,7 @@ router.get('/:farmerID', async function(req, res, next) {
   if (farmer.length != 0){
     res.status(200).send(farmer); 
     } else {
-      res.status(404).send({
+      res.status(404).json({
         "status":404,
         "error":"Not Found",
         "message":"The requested resource does not exist",
@@ -41,7 +41,7 @@ router.get('/:farmerID/fields/productions', async function(req, res, next){
   if (productions.length != 0){
     res.status(200).send(productions); 
     } else {
-      res.status(404).send({
+      res.status(404).json({
         "status":404,
         "error":"Not Found",
         "message":"The requested resource does not exist",
@@ -56,7 +56,7 @@ router.get('/:farmerID/fields', async function(req, res, next) {
   if (fields.length != 0){
     res.status(200).send(fields); 
     } else {
-      res.status(404).send({
+      res.status(404).json({
         "status":404,
         "error":"Not Found",
         "message":"The requested resource does not exist",
@@ -70,7 +70,7 @@ router.post('/:farmerID/fields', async function (req, res, next) {
   let field = req.body
   let result = await mFarmers.insertField(farmerID, field);
   if (!field.nome || !field.descricao || !field.coordenadas || !field.agroId || !field.fregID){
-    res.status(400).send({
+    res.status(400).json({
       "status":400,
       "error":"Bad Request",
       "message":"Client sent an invalid request",
