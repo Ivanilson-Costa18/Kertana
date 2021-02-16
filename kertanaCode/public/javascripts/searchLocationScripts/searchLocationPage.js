@@ -1,60 +1,51 @@
 var map
+var draw
+var chosenLocation
+var locations
 
 window.onload = async function loadListLocations() {
-    let json = sessionStorage.getItem("location");
-    let localizacao = JSON.parse(json);
-    let coordenada = JSON.parse(localizacao.coordenadas)
-    document.getElementById('local').innerHTML = localizacao.nome
-    let suitable_products = await $.ajax({
-        url: "/api/locations/"+localizacao.id+"/products",
-        method: 'get',
-        dataType: 'json'
-    })            
-    let locations = await $.ajax({
-        url: "/api/locations",
-        method: 'get',
-        dataType: 'json'
-    })
-    autocomplete(document.getElementById('search-location'),locations)
-    listProducts(suitable_products[0]);
+  let json = sessionStorage.getItem("location");
+  let localizacao = JSON.parse(json);
+  let coordenada = JSON.parse(localizacao.coordenadas)
 
-    mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnBnIiwiYSI6ImNraGwybDczMzFnOXcyeHA2MnM0ZWF4aDQifQ.dbfnIhEI5JJf-TV1LyEQQw';
-    map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
-    center: coordenada[0], 
-    zoom: 8
-});
+  document.getElementById('local').innerHTML = localizacao.nome
 
-    var draw = new MapboxDraw({
-            displayControlsDefault: false,
-            controls: {
-            polygon: true,
-            trash: true
-            }
-            });
-    map.addControl(draw);
+  let suitable_products = await $.ajax({
+      url: "/api/locations/"+localizacao.id+"/products",
+      method: 'get',
+      dataType: 'json'
+  })            
+  locations = await $.ajax({
+      url: "/api/locations",
+      method: 'get',
+      dataType: 'json'
+  })
 
-    map.on('draw.create',updateArea);
+  autocomplete(document.getElementById('search-location'),locations)
+  listProducts(suitable_products[0]);
+
+  mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnBnIiwiYSI6ImNraGwybDczMzFnOXcyeHA2MnM0ZWF4aDQifQ.dbfnIhEI5JJf-TV1LyEQQw';
+  map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/ivanpg/ckhp1ckfr2dbd19o0op09umzk', 
+  center: coordenada[0], 
+  zoom: 8
+  });
+
+  draw = new MapboxDraw({
+    displayControlsDefault: false,
+    controls: {
+    polygon: true,
+    trash: true
+    }
+  });
+  map.addControl(draw);
+  
+  map.on('draw.create',updateArea);
+  map.on('draw.delete',updateArea);
+  map.on('draw.update',updateArea);
+
 }
-
-
-
-     
-function updateArea(e) {
-    var data = draw.getAll();
-
-    if (data.features.length > 0) {
-        var area = turf.area(data);
-        return data.features[0].geometry.coordinates;
-    } 
-    else {
-        if (e.type !== 'draw.delete')
-        alert('Use the draw tools to draw a polygon!');
-        }
-}
-
-
 
 function listProducts(products) {
     let elemHortlist = document.getElementById("products-list-section");
@@ -87,6 +78,70 @@ function listProducts(products) {
 }
 
 
+async function searchLocation() {
+  let suitable_products = await $.ajax({
+    url: 'api/locations/'+chosenLocation.Freguesia_ID+'/products',
+    method: 'get',
+    dataType: 'json'
+  })
+
+  document.getElementById('local').innerHTML = chosenLocation.Freguesia_Nome
+
+  listProducts(suitable_products[0])
+
+  let coordinates =  JSON.parse(chosenLocation.Freguesia_Coordenadas)
+  let bounds = coordinates.reduce((bounds, coord) => {
+    return bounds.extend(coord);
+  }, new mapboxgl.LngLatBounds(coordinates[0].lng, coordinates[0].lat));
+  
+  map.fitBounds(bounds, {
+    padding: 30,
+    maxZoom: 14.15,
+    duration: 2000
+  });
+}
+
+
+function updateArea(e) {
+  let data = draw.getAll();
+  if (data.features.length > 0) {
+      let polygon = data.features[0].geometry.coordinates
+      let local = getPolygonLocation(polygon)
+      console.log(local.Freguesia_ID);
+      if(local){
+          getSuitableProducts(local.Freguesia_ID);
+          document.getElementById('local').innerHTML = local.Freguesia_Nome
+          fregID = local.Freguesia_ID
+          return polygon
+      } 
+  } else {
+      document.getElementById('product-list-section').innerHTML=""
+  }
+}
+
+const getPolygonLocation = polygon => {
+  let pol1 = turf.polygon(polygon)
+  let result = null
+  for(let local of locations){
+      let pol2 = turf.polygon([JSON.parse(local.Freguesia_Coordenadas)])
+      if(turf.booleanContains(pol2,pol1)){
+          result = local
+          break;
+      } 
+  }
+  return result
+}
+
+
+const getSuitableProducts = async id => {
+  let products = await $.ajax({
+      url:'/api/locations/'+id+'/products',
+      method:'get',
+      dataType:'json'
+  })
+  listProducts(products[0])
+}
+
 
 function autocomplete (inp, arr) {
     /*the autocomplete function takes two arguments,
@@ -116,8 +171,10 @@ function autocomplete (inp, arr) {
             b.innerHTML += arr[i].Freguesia_Nome.substr(val.length);
             /*insert a input field that will hold the current array item's value:*/
             b.innerHTML += "<input type='hidden' value='" + arr[i].Freguesia_Nome + "'>";
+            let location = arr[i]
             /*execute a function when someone clicks on the item value (DIV element):*/
             b.addEventListener("click", function(e) {
+                chosenLocation = location
                 /*insert the value for the autocomplete text field:*/
                 inp.value = this.getElementsByTagName("input")[0].value;
                 /*close the list of autocompleted values,
