@@ -1,7 +1,6 @@
 var farmer = {}
 var fields = []
 var completeProductions = []
-var unstableProductions = []
 var plantationCounter = 0
 
 window.onload = async function loadProfileData() {
@@ -27,7 +26,7 @@ window.onload = async function loadProfileData() {
 
     loadFieldsData(fields);
     getFieldsCounter(fields.length)
-    checkFields(completeProductions,unstableProductions)
+    checkFields(completeProductions)
 
 }
 
@@ -132,11 +131,10 @@ const deleteField = async fieldID => {
 
 }
 
-function checkFields(completeProductions, unstableProductions) {
-    for(let production of completeProductions){
-        document.getElementById('notifications-content').innerHTML = '<p>'+production.Producao_ID+'</p>'
-    }
-    for(let production of unstableProductions){
-
+function checkFields(completeProductions) {
+    if(completeProductions.length > 0){
+        for(let production of completeProductions){
+            document.getElementById('notifications-content').innerHTML += '<a href="#"> A produção '+production.Producao_ID+' está pronta há '+production.TimeLeft*-1+' dias.</a>'                                                                                                                                  
+        }
     }
 }

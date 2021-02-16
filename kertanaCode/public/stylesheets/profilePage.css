@@ -257,12 +257,28 @@ main{
 #notifications-content{
     position: absolute;
     display: none;
-    height: 100px;
-    width: 200px;
-    background-color: green;
-    margin-right: 50px;
+    min-height: 136.5px;
+    max-height: 136.5px;
+    width: 275px;
+    margin-left: -136.5px;
+    background-color: rgb(127, 223, 81);
     z-index: 1;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+#notifications-content::-webkit-scrollbar{
+    width: 3px;
+}
+
+#notifications-content::-webkit-scrollbar-track{
+    background: none;
+}
+
+#notifications-content::-webkit-scrollbar-thumb{
+    background-color: rgb(92, 92, 92);    
+    border-radius: 20px;
 }
 
 #notifications{
@@ -276,6 +292,21 @@ main{
     display: block;
 }
 
+#notifications a{
+    text-align: center;
+    padding: 12px;
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+#notifications a:hover{
+    background-color: rgb(110, 192, 72)
+  }
+
+
 #profile-icon{
+    display: inline-block;
+    position: relative;
     cursor: pointer;
 }
